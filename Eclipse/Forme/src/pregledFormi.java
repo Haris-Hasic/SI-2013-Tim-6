@@ -50,7 +50,7 @@ public class pregledFormi extends JFrame {
 				}
 			
 		});
-		btnNewButton.setBounds(10, 38, 89, 23);
+		btnNewButton.setBounds(10, 38, 103, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Login");
@@ -60,7 +60,7 @@ public class pregledFormi extends JFrame {
 				l.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(10, 11, 89, 23);
+		btnNewButton_1.setBounds(10, 11, 103, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnServiser = new JButton("Serviser");
@@ -70,8 +70,27 @@ public class pregledFormi extends JFrame {
 				ser.setVisible(true);
 			}
 		});
-		btnServiser.setBounds(10, 72, 89, 23);
+		btnServiser.setBounds(10, 72, 103, 23);
 		contentPane.add(btnServiser);
+		
+		JButton btnAdministrator = new JButton("Administrator");
+		btnAdministrator.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmAdministrator admin=new frmAdministrator();
+				admin.setVisible(true);
+			}
+		});
+		btnAdministrator.setBounds(10, 106, 103, 23);
+		contentPane.add(btnAdministrator);
+		
+		JButton btnDispatcher = new JButton("Dispatcher");
+		btnDispatcher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmDispatcher dispatch=new frmDispatcher();
+				dispatch.setVisible(true);
+			}
+		});
+		btnDispatcher.setBounds(10, 135, 103, 23);
+		contentPane.add(btnDispatcher);
 	}
-
 }
