@@ -33,7 +33,7 @@ public class panelDodajUredjaj extends JPanel {
 		JLabel lblJibKorisnika = new JLabel("JIB korisnika:");
 		lblJibKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblJibProizvoaa = new JLabel("JIB proizvo\u0111a\u0107a:");
+		JLabel lblJibProizvoaa = new JLabel("JIB proizvo\u0111a\u010Da:");
 		lblJibProizvoaa.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		txtKorisnik = new JTextField();

@@ -34,7 +34,7 @@ public class panelPregledUredjaja extends JPanel {
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"JIP klijenta", "JIB proizvo\u0111a\u0107a", "Tip ure\u0111aja", "IBFU", "IBFM"
+				"JIP klijenta", "JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -42,12 +42,6 @@ public class panelPregledUredjaja extends JPanel {
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		tabela.getColumnModel().getColumn(0).setPreferredWidth(133);
