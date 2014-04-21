@@ -24,7 +24,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import paneli.panelDodajKorisnika;
 import paneli.panelDodajUredjaj;
+import paneli.panelPregledKlijenata;
 import paneli.panelPregledUredjaja;
 
 import java.awt.event.ActionListener;
@@ -88,7 +90,7 @@ public class frmManager extends JFrame {
 		btnPregledUreaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelPregledUredjaja();
+				centralniPanel = new panelPregledUredjaja(true);
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -102,15 +104,34 @@ public class frmManager extends JFrame {
 		btnPretragaUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnPretragaUreaja.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JButton btnDodajKorisnika = new JButton("Dodaj korisnika");
-		btnDodajKorisnika.setHorizontalAlignment(SwingConstants.LEFT);
-		btnDodajKorisnika.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		JButton btnDodajKlijenta = new JButton("Dodaj klijenta");
+		btnDodajKlijenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelDodajKorisnika();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
+		btnDodajKlijenta.setHorizontalAlignment(SwingConstants.LEFT);
+		btnDodajKlijenta.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPregled = new JButton("Pregled korisnika");
+		JButton btnPregled = new JButton("Pregled klijenta");
+		btnPregled.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelPregledKlijenata(true);
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnPregled.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregled.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPretraga = new JButton("Tra\u017Ei korisnika");
+		JButton btnPretraga = new JButton("Traži klijenta");
 		btnPretraga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPretraga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
@@ -139,7 +160,7 @@ public class frmManager extends JFrame {
 		slika=new ImageIcon(getClass().getResource("AddUserIcon.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-		btnDodajKorisnika.setIcon(new ImageIcon(temp));
+		btnDodajKlijenta.setIcon(new ImageIcon(temp));
 		
 		slika=new ImageIcon(getClass().getResource("AddIcon.png"));
 		sl=slika.getImage();
@@ -196,7 +217,7 @@ public class frmManager extends JFrame {
 		JMenuItem mntmPromjenaifre = new JMenuItem("Promjena \u0161ifre");
 		mnNewMenu.add(mntmPromjenaifre);
 		
-		panel.setBorder(BorderFactory.createTitledBorder("Korisnici:"));
+		panel.setBorder(BorderFactory.createTitledBorder("Klijenti:"));
 		TitledBorder border=(TitledBorder)panel.getBorder();
 		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
 		
@@ -215,14 +236,14 @@ public class frmManager extends JFrame {
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnDodajKorisnika, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addComponent(btnDodajKlijenta, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 				.addComponent(btnPregled, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 				.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addComponent(btnDodajKorisnika)
+					.addComponent(btnDodajKlijenta)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnPregled)
 					.addGap(7)

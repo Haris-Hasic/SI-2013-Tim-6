@@ -16,45 +16,38 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class panelPregledUredjaja extends JPanel {
+public class panelPregledKlijenata extends JPanel {
 
 	    private JTable tabela=new JTable();
 	    private JTextField textField;
-	/**
+	   
+	    /**	
+	 * 
 	 * Create the panel.
 	 */
-	public panelPregledUredjaja(Boolean _dugmeVidljivo) {
+	
+	public panelPregledKlijenata(Boolean _dugmeVidljivo) {
+		setBorder(BorderFactory.createTitledBorder("Pregled klijenata:"));
 		
-		setBorder(BorderFactory.createTitledBorder("Pregled ure\u0111aja:"));
-		TitledBorder border=(TitledBorder)getBorder();
-		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
-
 		tabela.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
+				{null, null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"JIP klijenta", "JIB proizvo\u0111a\u0107a", "Tip ure\u0111aja", "IBFU", "IBFM"
+				"Naziv", "Tip", "JIB", "Adresa", "Mjesto", "Telefon", "Email", "Web"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, Object.class, String.class
+				String.class, String.class, String.class, Object.class, String.class, String.class, Object.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
 			}
 		});
 		tabela.getColumnModel().getColumn(0).setPreferredWidth(133);
 		tabela.getColumnModel().getColumn(1).setPreferredWidth(130);
 		tabela.getColumnModel().getColumn(2).setPreferredWidth(111);
 		tabela.getColumnModel().getColumn(3).setPreferredWidth(93);
-		tabela.getColumnModel().getColumn(4).setPreferredWidth(93);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(tabela);
 		
@@ -63,21 +56,23 @@ public class panelPregledUredjaja extends JPanel {
 		textField = new JTextField();
 		textField.setColumns(10);
 		
-		JButton btnIzmjeni = new JButton("Izmjeni");
+		 JButton btnIzmjeni = new JButton("Izmjeni");
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblFilter)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
-						.addComponent(btnIzmjeni))
-					.addContainerGap())
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblFilter)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(textField, GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)))
+							.addContainerGap())
+						.addComponent(btnIzmjeni, Alignment.TRAILING)))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -87,10 +82,10 @@ public class panelPregledUredjaja extends JPanel {
 						.addComponent(lblFilter)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnIzmjeni)
-					.addContainerGap())
+					.addGap(6))
 		);
 		setLayout(groupLayout);
 		btnIzmjeni.setVisible(_dugmeVidljivo);

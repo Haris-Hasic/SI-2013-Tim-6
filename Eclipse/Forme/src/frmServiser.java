@@ -24,9 +24,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import paneli.panelPregledKlijenata;
+import paneli.panelPregledUredjaja;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class frmServiser extends JFrame {
 	private JPanel contentPane;
+	private JPanel centralniPanel;
 	
 	public frmServiser() {
 		setTitle("Prijavljen kao: Ime Prezime");
@@ -48,12 +55,23 @@ public class frmServiser extends JFrame {
 		JPanel panel_4 = new JPanel();
 		
 		JPanel panel_5 = new JPanel();
+		centralniPanel=new JPanel();
+		contentPane.add(centralniPanel, BorderLayout.CENTER);
 		
 		JButton btnIzvjetaji = new JButton("Izvje\u0161taji");
 		btnIzvjetaji.setHorizontalAlignment(SwingConstants.LEFT);
 		btnIzvjetaji.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnPregledUreaja = new JButton("Pregled ure\u0111aja");
+		btnPregledUreaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelPregledUredjaja(false);
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnPregledUreaja.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregledUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
@@ -61,11 +79,20 @@ public class frmServiser extends JFrame {
 		btnPretragaUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnPretragaUreaja.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JButton btnPregled = new JButton("Pregled korisnika");
+		JButton btnPregled = new JButton("Pregled klijenata");
+		btnPregled.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelPregledKlijenata(false);
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnPregled.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregled.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPretraga = new JButton("Tra\u017Ei korisnika");
+		JButton btnPretraga = new JButton("Tra\u017Ei klijenta");
 		btnPretraga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPretraga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
@@ -137,10 +164,6 @@ public class frmServiser extends JFrame {
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnZadaci.setIcon(new ImageIcon(temp));
 		btnZadaci.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(UIManager.getColor("Slider.highlight"));
-		contentPane.add(panel_3, BorderLayout.CENTER);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
