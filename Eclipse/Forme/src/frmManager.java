@@ -24,10 +24,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import paneli.panelDodajKorisnika;
+import paneli.panelDodajKlijenta;
 import paneli.panelDodajUredjaj;
 import paneli.panelPregledKlijenata;
 import paneli.panelPregledUredjaja;
+import paneli.panelTraziKlijenta;
+import paneli.panelTraziUredjaj;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -101,6 +103,15 @@ public class frmManager extends JFrame {
 		btnPregledUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnPretragaUreaja = new JButton("Tra\u017Ei ure\u0111aj");
+		btnPretragaUreaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelTraziUredjaj();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnPretragaUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnPretragaUreaja.setHorizontalAlignment(SwingConstants.LEFT);
 		
@@ -109,7 +120,7 @@ public class frmManager extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelDodajKorisnika();
+				centralniPanel = new panelDodajKlijenta();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -132,6 +143,15 @@ public class frmManager extends JFrame {
 		btnPregled.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnPretraga = new JButton("Traži klijenta");
+		btnPretraga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelTraziKlijenta();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnPretraga.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPretraga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		

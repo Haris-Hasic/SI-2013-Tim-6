@@ -6,11 +6,17 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
+
+import forme.frmDodavanjeKorisnika;
+import forme.frmPregledKorisnika;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -18,23 +24,20 @@ import java.awt.Color;
 
 public class frmAdministrator extends JFrame {
 	public frmAdministrator() {
-		setTitle("Prijavljen kao: Ime i Prezime");
-		setBounds(100, 100, 537, 245);
+		setTitle("Administrator");
+		setBounds(100, 100, 280, 245);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
 		JMenuItem mntmPostavke = new JMenuItem("Postavke");
 		menuBar.add(mntmPostavke);
-		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 213, 173);
-		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 11, 191, 92);
+		panel_1.setBounds(10, 11, 244, 92);
 		panel_1.setBorder(BorderFactory.createTitledBorder("Uposlenici:"));
 		panel.add(panel_1);
 		
@@ -43,20 +46,23 @@ public class frmAdministrator extends JFrame {
 		Image temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		slika=new ImageIcon(temp);
 		
-		JButton btnDodajUposlenika = new JButton("Dodaj uposlenika");
+		JButton btnDodajUposlenika = new JButton("Dodaj korisnika");
 		btnDodajUposlenika.setHorizontalAlignment(SwingConstants.LEFT);
 		btnDodajUposlenika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frmDodavanjeKorisnika frmKor=new frmDodavanjeKorisnika();
+				frmKor.setVisible(true);
 			}
 		});
 		btnDodajUposlenika.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnDodajUposlenika.setIcon(new ImageIcon(temp));
 		
-		JButton btnPregledUposlenika = new JButton("Pregled uposlenika");
+		JButton btnPregledUposlenika = new JButton("Pregled korisnika");
 		btnPregledUposlenika.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregledUposlenika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmPregledUposlenika uposlenici=new frmPregledUposlenika();
+				
+				frmPregledKorisnika uposlenici=new frmPregledKorisnika();
 				uposlenici.setVisible(true);
 			}
 		});
@@ -83,19 +89,23 @@ public class frmAdministrator extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 		
 		JButton btnOdjaviSe = new JButton("Odjavi se");
-		btnOdjaviSe.setHorizontalAlignment(SwingConstants.LEFT);
 		btnOdjaviSe.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnOdjaviSe.setBounds(10, 125, 191, 29);
+		btnOdjaviSe.setBounds(10, 125, 244, 29);
 		panel.add(btnOdjaviSe);
 		slika=new ImageIcon(getClass().getResource("LogoutIcon.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnOdjaviSe.setIcon(new ImageIcon(temp));
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.WHITE);
-		panel_2.setBounds(212, 0, 301, 173);
-		getContentPane().add(panel_2);
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+		);
+		getContentPane().setLayout(groupLayout);
 		
 	}
 }

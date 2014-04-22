@@ -16,10 +16,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import forme.frmIzmjenaUredjaja;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class panelPregledUredjaja extends JPanel {
 
 	    private JTable tabela=new JTable();
-	    private JTextField textField;
 	/**
 	 * Create the panel.
 	 */
@@ -52,36 +56,29 @@ public class panelPregledUredjaja extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(tabela);
 		
-		JLabel lblFilter = new JLabel("Filter:");
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
 		JButton btnIzmjeni = new JButton("Izmjeni");
+		btnIzmjeni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmIzmjenaUredjaja fi=new frmIzmjenaUredjaja();
+				fi.setVisible(true);
+			}
+		});
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblFilter)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
-						.addComponent(btnIzmjeni))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+						.addComponent(btnIzmjeni, Alignment.TRAILING))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFilter)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnIzmjeni)
 					.addContainerGap())

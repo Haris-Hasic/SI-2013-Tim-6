@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 public class panelPregledKlijenata extends JPanel {
 
 	    private JTable tabela=new JTable();
-	    private JTextField textField;
 	   
 	    /**	
 	 * 
@@ -51,11 +50,6 @@ public class panelPregledKlijenata extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(tabela);
 		
-		JLabel lblFilter = new JLabel("Filter:");
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
 		 JButton btnIzmjeni = new JButton("Izmjeni");
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -65,27 +59,19 @@ public class panelPregledKlijenata extends JPanel {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblFilter)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField, GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)))
-							.addContainerGap())
-						.addComponent(btnIzmjeni, Alignment.TRAILING)))
+							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+							.addGap(10))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(btnIzmjeni)
+							.addContainerGap())))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(22)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblFilter)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnIzmjeni)
-					.addGap(6))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+					.addGap(17)
+					.addComponent(btnIzmjeni))
 		);
 		setLayout(groupLayout);
 		btnIzmjeni.setVisible(_dugmeVidljivo);

@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
+import forme.frmPromjenaSifre;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -92,5 +95,15 @@ public class pregledFormi extends JFrame {
 		});
 		btnDispatcher.setBounds(10, 135, 103, 23);
 		contentPane.add(btnDispatcher);
+		
+		JButton btnNewButton_2 = new JButton("Promjena sifre");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPromjenaSifre fs=new frmPromjenaSifre();
+				fs.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBounds(10, 163, 103, 23);
+		contentPane.add(btnNewButton_2);
 	}
 }

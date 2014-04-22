@@ -9,10 +9,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.FlowLayout;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import forme.frmIzmjenaUredjaja;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class panelDodajUredjaj extends JPanel {
 	private JTextField txtKorisnik;
@@ -43,6 +50,11 @@ public class panelDodajUredjaj extends JPanel {
 		textField_3.setColumns(10);
 		
 		JButton btnDodajUredjaj = new JButton("Dodaj ure\u0111aj");
+		btnDodajUredjaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+			}
+		});
 		
 		textField = new JTextField();
 		textField.setColumns(10);

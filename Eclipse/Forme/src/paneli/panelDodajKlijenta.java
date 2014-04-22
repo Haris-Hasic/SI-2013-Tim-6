@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Component;
 
-public class panelDodajKorisnika extends JPanel {
+public class panelDodajKlijenta extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -27,7 +27,7 @@ public class panelDodajKorisnika extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public panelDodajKorisnika() {
+	public panelDodajKlijenta() {
 		setBorder(BorderFactory.createTitledBorder("Dodaj klijenta:"));
 		
 		JLabel lblNaziv = new JLabel("Naziv:");
