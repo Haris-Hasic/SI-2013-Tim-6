@@ -26,13 +26,20 @@ import javax.swing.JMenuItem;
 
 import paneli.panelDodajKlijenta;
 import paneli.panelDodajUredjaj;
+import paneli.panelIzvjestaji;
 import paneli.panelPregledKlijenata;
 import paneli.panelPregledUredjaja;
-import paneli.panelTraziKlijenta;
-import paneli.panelTraziUredjaj;
+import paneli.panelObradiZahtjev;
+import paneli.panelPregledZadatakaMenadzer;
+import paneli.panelDetaljiKlijenta;
+import paneli.panelDetaljiUredjaja;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JLabel;
+
+import forme.frmPromjenaSifre;
 
 
 public class frmManager extends JFrame {
@@ -41,7 +48,7 @@ public class frmManager extends JFrame {
 
 	public frmManager() {
 		setTitle("Prijavljen kao: Ime Prezime");
-		setBounds(100, 100, 743, 550);
+		setBounds(100, 100, 849, 597);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
@@ -58,13 +65,29 @@ public class frmManager extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		
-		JPanel panel_5 = new JPanel();
-		
-		JButton btnIzvjetaji = new JButton("Izvje\u0161taji");
+		JButton btnIzvjetaji = new JButton("Kreiraj izvještaj");
+		btnIzvjetaji.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelIzvjestaji();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnIzvjetaji.setHorizontalAlignment(SwingConstants.LEFT);
 		btnIzvjetaji.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnZadaci = new JButton("Zadaci");
+		JButton btnZadaci = new JButton("Pregled zadataka");
+		btnZadaci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelPregledZadatakaMenadzer();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();	
+			}
+		});
 		btnZadaci.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		centralniPanel=new JPanel();
@@ -102,11 +125,11 @@ public class frmManager extends JFrame {
 		btnPregledUreaja.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregledUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPretragaUreaja = new JButton("Tra\u017Ei ure\u0111aj");
+		JButton btnPretragaUreaja = new JButton("Detalji uređaja");
 		btnPretragaUreaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelTraziUredjaj();
+				centralniPanel = new panelDetaljiUredjaja();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -129,7 +152,7 @@ public class frmManager extends JFrame {
 		btnDodajKlijenta.setHorizontalAlignment(SwingConstants.LEFT);
 		btnDodajKlijenta.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPregled = new JButton("Pregled klijenta");
+		JButton btnPregled = new JButton("Pregled klijenata");
 		btnPregled.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
@@ -142,11 +165,11 @@ public class frmManager extends JFrame {
 		btnPregled.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregled.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPretraga = new JButton("Traži klijenta");
+		JButton btnPretraga = new JButton("Detalji klijenta");
 		btnPretraga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelTraziKlijenta();
+				centralniPanel = new panelDetaljiKlijenta();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -158,14 +181,7 @@ public class frmManager extends JFrame {
 		JButton btnNewButton = new JButton("Odjavi se");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		JButton btnZahtjevi = new JButton("Zahtjevi");
-		btnZahtjevi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnZahtjevi.setHorizontalAlignment(SwingConstants.LEFT);
-		btnZahtjevi.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		JButton btnZahtjevi = new JButton("Obradi zahtjev");
 		
 		ImageIcon slika = new ImageIcon(getClass().getResource("NotifIcon.png"));
 		Image sl=slika.getImage();
@@ -187,10 +203,7 @@ public class frmManager extends JFrame {
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnNewButton_1.setIcon(new ImageIcon(temp));
 		
-		slika=new ImageIcon(getClass().getResource("NotifIcon.png"));
-		sl=slika.getImage();
-		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-		btnZahtjevi.setIcon(new ImageIcon(temp));
+		
 		
 		slika=new ImageIcon(getClass().getResource("SearchIcon.png"));
 		sl=slika.getImage();
@@ -226,6 +239,11 @@ public class frmManager extends JFrame {
 		btnZadaci.setIcon(new ImageIcon(temp));
 		btnZadaci.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
+		slika=new ImageIcon(getClass().getResource("NotifIcon.png"));
+		sl=slika.getImage();
+		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+		btnZahtjevi.setIcon(new ImageIcon(temp));
+		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -235,6 +253,12 @@ public class frmManager extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmPromjenaifre = new JMenuItem("Promjena \u0161ifre");
+		mntmPromjenaifre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPromjenaSifre fs=new frmPromjenaSifre();
+				fs.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmPromjenaifre);
 		
 		panel.setBorder(BorderFactory.createTitledBorder("Klijenti:"));
@@ -248,9 +272,6 @@ public class frmManager extends JFrame {
 		panel_4.setBorder(BorderFactory.createTitledBorder("Aktivnosti:"));
 		border=(TitledBorder)panel_4.getBorder();
 		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		panel_5.setBorder(BorderFactory.createTitledBorder("Profil:"));
-		border=(TitledBorder)panel_5.getBorder();
 		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -271,6 +292,8 @@ public class frmManager extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 				
+				JLabel lblFdss = new JLabel("FDSS \u00A9-copyright");
+				
 			
 		
 		
@@ -279,57 +302,36 @@ public class frmManager extends JFrame {
 				GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 				gl_panel_1.setHorizontalGroup(
 					gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel, 0, 0, Short.MAX_VALUE)
-							.addGap(12))
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(12)
-							.addComponent(panel_2, 0, 0, Short.MAX_VALUE)
+							.addContainerGap()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+								.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
 							.addContainerGap())
 						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addGap(68)
+							.addComponent(lblFdss, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(78))
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(12))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
 							.addContainerGap())
 				);
 				gl_panel_1.setVerticalGroup(
-					gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
 							.addComponent(btnNewButton)
-							.addContainerGap())
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblFdss))
 				);
-				
-				
-				
-				GroupLayout gl_panel_5 = new GroupLayout(panel_5);
-				gl_panel_5.setHorizontalGroup(
-					gl_panel_5.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnZahtjevi, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-				);
-				gl_panel_5.setVerticalGroup(
-					gl_panel_5.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_5.createSequentialGroup()
-							.addComponent(btnZahtjevi)
-							.addContainerGap(22, Short.MAX_VALUE))
-				);
-				panel_5.setLayout(gl_panel_5);
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -349,19 +351,36 @@ public class frmManager extends JFrame {
 					.addGap(12))
 		);
 		panel_2.setLayout(gl_panel_2);
+		
+		
+		btnZahtjevi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelObradiZahtjev();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
+		btnZahtjevi.setHorizontalAlignment(SwingConstants.LEFT);
+		btnZahtjevi.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnIzvjetaji, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addComponent(btnIzvjetaji, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+				.addComponent(btnZahtjevi, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+				.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
 		);
 		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addComponent(btnIzvjetaji)
+			gl_panel_4.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_4.createSequentialGroup()
+					.addGap(6)
+					.addComponent(btnZahtjevi)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnZadaci)
-					.addGap(35))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnIzvjetaji)
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		panel_4.setLayout(gl_panel_4);
 		panel_1.setLayout(gl_panel_1);

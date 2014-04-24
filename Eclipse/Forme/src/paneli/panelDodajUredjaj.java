@@ -20,6 +20,7 @@ import forme.frmIzmjenaUredjaja;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 public class panelDodajUredjaj extends JPanel {
 	private JTextField txtKorisnik;
@@ -34,8 +35,7 @@ public class panelDodajUredjaj extends JPanel {
 	public panelDodajUredjaj() {
 		
 		setBorder(BorderFactory.createTitledBorder("Novi ure\u0111aj:"));
-		TitledBorder border=(TitledBorder)getBorder();
-		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
+		
 		
 		JLabel lblJibKorisnika = new JLabel("JIB korisnika:");
 		lblJibKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -73,32 +73,34 @@ public class panelDodajUredjaj extends JPanel {
 		
 		JLabel label_2 = new JLabel("Tip ure\u0111aja:");
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		JSeparator separator_1 = new JSeparator();
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
-						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblJibProizvoaa, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblJibKorisnika, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(txtKorisnik)
-							.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(125, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(228, Short.MAX_VALUE)
-					.addComponent(btnDodajUredjaj)
-					.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(10)
+									.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
+								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblJibProizvoaa, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblJibKorisnika, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+									.addComponent(txtKorisnik)
+									.addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnDodajUredjaj, Alignment.TRAILING)
+						.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+					.addGap(8))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -123,9 +125,10 @@ public class panelDodajUredjaj extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label))
-					.addPreferredGap(ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-					.addComponent(btnDodajUredjaj)
-					.addContainerGap())
+					.addPreferredGap(ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnDodajUredjaj))
 		);
 		setLayout(groupLayout);
 

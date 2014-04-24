@@ -40,6 +40,7 @@ public class frmPromjenaSifre extends JFrame {
 	 * Create the frame.
 	 */
 	public frmPromjenaSifre() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Promjena \u0161ifre");
 		setBounds(100, 100, 416, 196);

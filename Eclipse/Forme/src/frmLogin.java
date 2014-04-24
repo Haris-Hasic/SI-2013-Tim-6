@@ -19,9 +19,9 @@ public class frmLogin extends JFrame {
 	
 	public frmLogin() {
 		setResizable(false);
-		setTitle("Prijava na sistem");
+		setTitle("FDSS");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 465, 201);
+		setBounds(100, 100, 434, 247);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
@@ -30,17 +30,17 @@ public class frmLogin extends JFrame {
 		JLabel lblKorisnikoIme = new JLabel("Korisni\u010Dko ime:");
 		lblKorisnikoIme.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnikoIme.setFont(new Font("Cambria", Font.PLAIN, 14));
-		lblKorisnikoIme.setBounds(98, 34, 105, 20);
+		lblKorisnikoIme.setBounds(34, 98, 105, 20);
 		getContentPane().add(lblKorisnikoIme);
 		
 		JLabel lblKorisnikaifra = new JLabel("Korisni\u010Dka \u0161ifra:");
 		lblKorisnikaifra.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnikaifra.setFont(new Font("Cambria", Font.PLAIN, 14));
-		lblKorisnikaifra.setBounds(98, 74, 105, 14);
+		lblKorisnikaifra.setBounds(34, 130, 105, 14);
 		getContentPane().add(lblKorisnikaifra);
 		
 		textField = new JTextField();
-		textField.setBounds(213, 35, 219, 20);
+		textField.setBounds(149, 99, 219, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -52,28 +52,23 @@ public class frmLogin extends JFrame {
 			}
 		});
 		btnPrijaviSe.setFont(new Font("Cambria", Font.PLAIN, 14));
-		btnPrijaviSe.setBounds(213, 103, 105, 33);
+		btnPrijaviSe.setBounds(263, 159, 105, 33);
 		getContentPane().add(btnPrijaviSe);
-		
-		JButton btnNewButton = new JButton("Zatvori");
-		btnNewButton.setFont(new Font("Cambria", Font.PLAIN, 14));
-		btnNewButton.setBounds(328, 103, 104, 33);
-		getContentPane().add(btnNewButton);
 		
 		
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(10, 25, 90, 90);
+		lblNewLabel.setBounds(105, 11, 196, 79);
 		getContentPane().add(lblNewLabel);
 		
-		slika = new ImageIcon(getClass().getResource("LoginIcon.png"));
+		slika = new ImageIcon(getClass().getResource("logoFirme.jpg"));
 		Image sl=slika.getImage();
 		Image temp=sl.getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), java.awt.Image.SCALE_SMOOTH);
 		slika=new ImageIcon(temp);
 		lblNewLabel.setIcon(slika);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(213, 72, 219, 20);
+		passwordField.setBounds(149, 128, 219, 20);
 		contentPane.add(passwordField);
 	}
 }

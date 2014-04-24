@@ -45,14 +45,15 @@ public class frmIzmjenaUredjaja extends JFrame {
 	 */
 	public frmIzmjenaUredjaja() {//promjeniti konstruktor u frmIzmjenaUredjaja(uredjaj u)
 								//i na osnovu toka popuniti tb
-		setTitle("Promjena ure\u0111aja");
+		setTitle("Izmjena ure\u0111aja");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 279);
+		setBounds(100, 100, 441, 268);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 405, 185);
 		
 		JLabel label = new JLabel("Tip ure\u0111aja:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -150,29 +151,15 @@ public class frmIzmjenaUredjaja extends JFrame {
 		panel.setLayout(gl_panel);
 		panel.setBorder(BorderFactory.createTitledBorder("Podaci o ure\u0111aju:"));
 		
-		JButton button = new JButton("Dodaj ure\u0111aj");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(button))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(5)
-							.addComponent(panel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)))
-					.addGap(5))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(6)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(button, GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-		);
-		contentPane.setLayout(gl_contentPane);
+		JButton btnStasiIzmjene = new JButton("Spasi izmjene");
+		btnStasiIzmjene.setBounds(297, 202, 118, 23);
+		contentPane.setLayout(null);
+		
+		JButton btnIzbriiUreaj = new JButton("Izbri\u0161i ure\u0111aj");
+		btnIzbriiUreaj.setBounds(175, 202, 116, 23);
+		contentPane.add(btnIzbriiUreaj);
+		contentPane.add(btnStasiIzmjene);
+		contentPane.add(panel);
 	}
 
 }

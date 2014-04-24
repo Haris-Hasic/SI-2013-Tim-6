@@ -7,7 +7,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
 import forme.frmPromjenaSifre;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -37,7 +36,7 @@ public class pregledFormi extends JFrame {
 	 */
 	public pregledFormi() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 192, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,7 +52,7 @@ public class pregledFormi extends JFrame {
 				}
 			
 		});
-		btnNewButton.setBounds(10, 38, 103, 23);
+		btnNewButton.setBounds(10, 38, 131, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Login");
@@ -63,7 +62,7 @@ public class pregledFormi extends JFrame {
 				l.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(10, 11, 103, 23);
+		btnNewButton_1.setBounds(10, 11, 131, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnServiser = new JButton("Serviser");
@@ -73,7 +72,7 @@ public class pregledFormi extends JFrame {
 				ser.setVisible(true);
 			}
 		});
-		btnServiser.setBounds(10, 72, 103, 23);
+		btnServiser.setBounds(10, 72, 131, 23);
 		contentPane.add(btnServiser);
 		
 		JButton btnAdministrator = new JButton("Administrator");
@@ -83,7 +82,7 @@ public class pregledFormi extends JFrame {
 				admin.setVisible(true);
 			}
 		});
-		btnAdministrator.setBounds(10, 106, 103, 23);
+		btnAdministrator.setBounds(10, 106, 131, 23);
 		contentPane.add(btnAdministrator);
 		
 		JButton btnDispatcher = new JButton("Dispatcher");
@@ -93,7 +92,7 @@ public class pregledFormi extends JFrame {
 				dispatch.setVisible(true);
 			}
 		});
-		btnDispatcher.setBounds(10, 135, 103, 23);
+		btnDispatcher.setBounds(10, 135, 131, 23);
 		contentPane.add(btnDispatcher);
 		
 		JButton btnNewButton_2 = new JButton("Promjena sifre");
@@ -103,7 +102,7 @@ public class pregledFormi extends JFrame {
 				fs.setVisible(true);
 			}
 		});
-		btnNewButton_2.setBounds(10, 163, 103, 23);
+		btnNewButton_2.setBounds(10, 163, 131, 23);
 		contentPane.add(btnNewButton_2);
 	}
 }

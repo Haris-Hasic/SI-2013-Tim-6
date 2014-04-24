@@ -16,22 +16,20 @@ import javax.swing.ImageIcon;
 
 import forme.frmDodavanjeKorisnika;
 import forme.frmPregledKorisnika;
+import forme.frmPromjenaSifre;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
+import javax.swing.JMenu;
+
 
 public class frmAdministrator extends JFrame {
 	public frmAdministrator() {
+		setResizable(false);
 		setTitle("Administrator");
-		setBounds(100, 100, 280, 245);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenuItem mntmPostavke = new JMenuItem("Postavke");
-		menuBar.add(mntmPostavke);
+		setBounds(100, 100, 280, 219);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -89,6 +87,7 @@ public class frmAdministrator extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 		
 		JButton btnOdjaviSe = new JButton("Odjavi se");
+		btnOdjaviSe.setHorizontalAlignment(SwingConstants.LEFT);
 		btnOdjaviSe.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnOdjaviSe.setBounds(10, 125, 244, 29);
 		panel.add(btnOdjaviSe);
@@ -106,6 +105,21 @@ public class frmAdministrator extends JFrame {
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
 		);
 		getContentPane().setLayout(groupLayout);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnPostavke = new JMenu("Postavke");
+		menuBar.add(mnPostavke);
+		
+		JMenuItem mntmPromjenaifre = new JMenuItem("Promjena \u0161ifre");
+		mntmPromjenaifre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPromjenaSifre fs=new frmPromjenaSifre();
+				fs.setVisible(true);
+			}
+		});
+		mnPostavke.add(mntmPromjenaifre);
 		
 	}
 }

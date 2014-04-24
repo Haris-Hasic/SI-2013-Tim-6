@@ -26,7 +26,7 @@ import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class panelTraziKlijenta extends JPanel {
+public class panelDetaljiKlijenta extends JPanel {
 	private JTextField textField;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -39,12 +39,10 @@ public class panelTraziKlijenta extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public panelTraziKlijenta() {
+	public panelDetaljiKlijenta() {
 		
-		setBorder(BorderFactory.createTitledBorder("Pretraga klijenata"));
-		TitledBorder border=(TitledBorder)getBorder();
-		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
-		
+		setBorder(BorderFactory.createTitledBorder("Detalji klijenta"));
+				
 		textField = new JTextField();
 		textField.setColumns(10);
 		

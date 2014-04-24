@@ -27,11 +27,17 @@ import javax.swing.JMenuItem;
 import paneli.panelDodajKlijenta;
 import paneli.panelPregledKlijenata;
 import paneli.panelPregledUredjaja;
-import paneli.panelTraziKlijenta;
-import paneli.panelTraziUredjaj;
+import paneli.panelPregledZadatakaServiser;
+import paneli.panelDetaljiKlijenta;
+import paneli.panelDetaljiUredjaja;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JCheckBoxMenuItem;
+
+import forme.frmPromjenaSifre;
 
 
 public class frmServiser extends JFrame {
@@ -55,15 +61,9 @@ public class frmServiser extends JFrame {
 		
 		JPanel panel_2 = new JPanel();
 		
-		JPanel panel_4 = new JPanel();
-		
 		JPanel panel_5 = new JPanel();
 		centralniPanel=new JPanel();
 		contentPane.add(centralniPanel, BorderLayout.CENTER);
-		
-		JButton btnIzvjetaji = new JButton("Izvje\u0161taji");
-		btnIzvjetaji.setHorizontalAlignment(SwingConstants.LEFT);
-		btnIzvjetaji.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnPregledUreaja = new JButton("Pregled ure\u0111aja");
 		btnPregledUreaja.addActionListener(new ActionListener() {
@@ -78,11 +78,11 @@ public class frmServiser extends JFrame {
 		btnPregledUreaja.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregledUreaja.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPretragaUreaja = new JButton("Tra\u017Ei ure\u0111aj");
+		JButton btnPretragaUreaja = new JButton("Detalji ure\u0111aja");
 		btnPretragaUreaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelTraziUredjaj();
+				centralniPanel = new panelDetaljiUredjaja();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -104,11 +104,11 @@ public class frmServiser extends JFrame {
 		btnPregled.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPregled.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnPretraga = new JButton("Tra\u017Ei klijenta");
+		JButton btnPretraga = new JButton("Detalji klijenta");
 		btnPretraga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelTraziKlijenta();
+				centralniPanel = new panelDetaljiKlijenta();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -121,12 +121,17 @@ public class frmServiser extends JFrame {
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnNoviZadaci = new JButton("Novi zadaci(4)");
-		btnNoviZadaci.setHorizontalAlignment(SwingConstants.LEFT);
-		btnNoviZadaci.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		
-		JButton btnZadaci = new JButton("Moji zadaci");
+		JButton btnZadaci = new JButton("Zadaci");
+		btnZadaci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelPregledZadatakaServiser();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
 		btnZadaci.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		ImageIcon slika = new ImageIcon(getClass().getResource("NotifIcon.png"));
@@ -150,7 +155,6 @@ public class frmServiser extends JFrame {
 		slika=new ImageIcon(getClass().getResource("NotifIcon.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-		btnNoviZadaci.setIcon(new ImageIcon(temp));
 		
 		slika=new ImageIcon(getClass().getResource("SearchIcon.png"));
 		sl=slika.getImage();
@@ -167,7 +171,6 @@ public class frmServiser extends JFrame {
 		slika=new ImageIcon(getClass().getResource("RepoIcon.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-		btnIzvjetaji.setIcon(new ImageIcon(temp));
 		
 		slika=new ImageIcon(getClass().getResource("ViewIcon.png"));
 		sl=slika.getImage();
@@ -195,6 +198,12 @@ public class frmServiser extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmPromjenaifre = new JMenuItem("Promjena \u0161ifre");
+		mntmPromjenaifre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPromjenaSifre fs=new frmPromjenaSifre();
+				fs.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmPromjenaifre);
 		
 		panel.setBorder(BorderFactory.createTitledBorder("Korisnici:"));
@@ -204,9 +213,6 @@ public class frmServiser extends JFrame {
 		panel_2.setBorder(BorderFactory.createTitledBorder("Ure\u0111aji:"));
 		 border=(TitledBorder)panel_2.getBorder();
 		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
-		
-		panel_4.setBorder(BorderFactory.createTitledBorder("Aktivnosti:"));
-		border=(TitledBorder)panel_4.getBorder();
 		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		panel_5.setBorder(BorderFactory.createTitledBorder("Profil:"));
@@ -229,6 +235,8 @@ public class frmServiser extends JFrame {
 		);
 		panel.setLayout(gl_panel);
 				
+				JLabel label = new JLabel("FDSS ©-copyright");
+				
 			
 		
 		
@@ -238,38 +246,38 @@ public class frmServiser extends JFrame {
 				gl_panel_1.setHorizontalGroup(
 					gl_panel_1.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(panel_5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-								.addComponent(panel, 0, 0, Short.MAX_VALUE))
-							.addGap(12))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addGap(12)
-							.addComponent(panel_2, 0, 0, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(12)
+									.addComponent(panel, 0, 0, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(12)
+									.addComponent(panel_2, 0, 0, Short.MAX_VALUE))
+								.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+									.addGap(12)
+									.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(59)
+									.addComponent(label, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
 							.addContainerGap())
 				);
 				gl_panel_1.setVerticalGroup(
 					gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
 							.addComponent(btnNewButton)
-							.addContainerGap())
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(label)
+							.addGap(10))
 				);
 
 				
@@ -278,14 +286,11 @@ public class frmServiser extends JFrame {
 				GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 				gl_panel_5.setHorizontalGroup(
 					gl_panel_5.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNoviZadaci, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-						.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+						.addComponent(btnZadaci, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 				);
 				gl_panel_5.setVerticalGroup(
 					gl_panel_5.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_5.createSequentialGroup()
-							.addComponent(btnNoviZadaci)
-							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnZadaci)
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
@@ -305,18 +310,6 @@ public class frmServiser extends JFrame {
 					.addGap(38))
 		);
 		panel_2.setLayout(gl_panel_2);
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnIzvjetaji, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addComponent(btnIzvjetaji)
-					.addGap(34))
-		);
-		panel_4.setLayout(gl_panel_4);
 		panel_1.setLayout(gl_panel_1);
 	}
 }

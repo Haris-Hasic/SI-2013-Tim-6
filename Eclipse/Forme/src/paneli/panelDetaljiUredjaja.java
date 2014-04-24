@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
-public class panelTraziUredjaj extends JPanel {
+public class panelDetaljiUredjaja extends JPanel {
 	private JTextField txtKorisnik;
 	private JTextField textField_3;
 	private JTextField textField;
@@ -37,11 +37,10 @@ public class panelTraziUredjaj extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public panelTraziUredjaj() {
+	public panelDetaljiUredjaja() {
 		
-		setBorder(BorderFactory.createTitledBorder("Pretraga ure\u0111aja:"));
-		TitledBorder border=(TitledBorder)getBorder();
-		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
+		setBorder(BorderFactory.createTitledBorder("Detalji ure\u0111aja:"));
+		
 		
 		JLabel lblJibKorisnika = new JLabel("IBFU:");
 		lblJibKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);

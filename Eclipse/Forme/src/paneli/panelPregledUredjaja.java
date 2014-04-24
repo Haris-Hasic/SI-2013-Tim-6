@@ -30,8 +30,6 @@ public class panelPregledUredjaja extends JPanel {
 	public panelPregledUredjaja(Boolean _dugmeVidljivo) {
 		
 		setBorder(BorderFactory.createTitledBorder("Pregled ure\u0111aja:"));
-		TitledBorder border=(TitledBorder)getBorder();
-		border.setTitleFont(new Font("Tahoma", Font.PLAIN, 11));
 
 		tabela.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -69,19 +67,18 @@ public class panelPregledUredjaja extends JPanel {
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-						.addComponent(btnIzmjeni, Alignment.TRAILING))
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+						.addComponent(btnIzmjeni))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnIzmjeni)
-					.addContainerGap())
+					.addComponent(btnIzmjeni))
 		);
 		setLayout(groupLayout);
 		btnIzmjeni.setVisible(_dugmeVidljivo);
