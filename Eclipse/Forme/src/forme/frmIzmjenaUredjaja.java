@@ -47,13 +47,13 @@ public class frmIzmjenaUredjaja extends JFrame {
 								//i na osnovu toka popuniti tb
 		setTitle("Izmjena ure\u0111aja");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 441, 268);
+		setBounds(100, 100, 441, 291);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 405, 185);
+		panel.setBounds(10, 11, 405, 196);
 		
 		JLabel label = new JLabel("Tip ure\u0111aja:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -67,8 +67,8 @@ public class frmIzmjenaUredjaja extends JFrame {
 		JLabel label_3 = new JLabel("IBFM:");
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel label_4 = new JLabel("JIB korisnika:");
-		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
+		JLabel lblJibKlijenta = new JLabel("JIB klijenta:");
+		lblJibKlijenta.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -88,32 +88,29 @@ public class frmIzmjenaUredjaja extends JFrame {
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(8)
-							.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+							.addGap(14)
+							.addComponent(lblJibKlijenta, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
+						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+							.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_panel.createSequentialGroup()
+								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 									.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(label, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(119, Short.MAX_VALUE))
+									.addComponent(label, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap(76, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -121,42 +118,36 @@ public class frmIzmjenaUredjaja extends JFrame {
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_4))
+						.addComponent(lblJibKlijenta))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_2)))
-					.addGap(12)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGap(15)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label)))
-					.addGap(11)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label))
+					.addGap(17)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_1)))
-					.addGap(11)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(label_1))
+					.addGap(17)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_3)))
-					.addContainerGap())
+						.addComponent(label_3))
+					.addGap(3))
 		);
 		panel.setLayout(gl_panel);
 		panel.setBorder(BorderFactory.createTitledBorder("Podaci o ure\u0111aju:"));
 		
 		JButton btnStasiIzmjene = new JButton("Spasi izmjene");
-		btnStasiIzmjene.setBounds(297, 202, 118, 23);
+		btnStasiIzmjene.setBounds(297, 218, 118, 23);
 		contentPane.setLayout(null);
 		
 		JButton btnIzbriiUreaj = new JButton("Izbri\u0161i ure\u0111aj");
-		btnIzbriiUreaj.setBounds(175, 202, 116, 23);
+		btnIzbriiUreaj.setBounds(171, 218, 116, 23);
 		contentPane.add(btnIzbriiUreaj);
 		contentPane.add(btnStasiIzmjene);
 		contentPane.add(panel);

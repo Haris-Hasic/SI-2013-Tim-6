@@ -37,7 +37,7 @@ public class panelDodajUredjaj extends JPanel {
 		setBorder(BorderFactory.createTitledBorder("Novi ure\u0111aj:"));
 		
 		
-		JLabel lblJibKorisnika = new JLabel("JIB korisnika:");
+		JLabel lblJibKorisnika = new JLabel("JIB klijenta");
 		lblJibKorisnika.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel lblJibProizvoaa = new JLabel("JIB proizvo\u0111a\u010Da:");

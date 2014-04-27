@@ -55,11 +55,11 @@ public class frmPromjenaSifre extends JFrame {
 		lblStaraifra.setBounds(42, 27, 71, 14);
 		contentPane.add(lblStaraifra);
 		
-		JLabel label = new JLabel("Stara \u0161ifra:");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label.setBounds(42, 58, 71, 14);
-		contentPane.add(label);
+		JLabel lblNovaifra = new JLabel("Nova \u0161ifra:");
+		lblNovaifra.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNovaifra.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNovaifra.setBounds(42, 58, 71, 14);
+		contentPane.add(lblNovaifra);
 		
 		JLabel lblPotvrdaNoveifre = new JLabel("Potvrda nove \u0161ifre:");
 		lblPotvrdaNoveifre.setHorizontalAlignment(SwingConstants.RIGHT);
