@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import forme.frmPromjenaSifre;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 
 public class pregledFormi extends JFrame {
@@ -36,7 +37,7 @@ public class pregledFormi extends JFrame {
 	 */
 	public pregledFormi() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 192, 300);
+		setBounds(100, 100, 449, 306);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
