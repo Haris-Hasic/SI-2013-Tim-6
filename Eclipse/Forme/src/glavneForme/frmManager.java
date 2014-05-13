@@ -1,3 +1,4 @@
+package glavneForme;
 import java.awt.BorderLayout;
 import java.awt.Image;
 
@@ -26,10 +27,11 @@ import javax.swing.JMenuItem;
 
 import paneli.panelDodajKlijenta;
 import paneli.panelDodajUredjaj;
-import paneli.panelKreirajZahtjev;
+import paneli.panelIzvjestaji;
 import paneli.panelPregledKlijenata;
 import paneli.panelPregledUredjaja;
-import paneli.panelPregledZahtjeva;
+import paneli.panelObradiZahtjev;
+import paneli.panelPregledZadatakaMenadzer;
 import paneli.panelDetaljiKlijenta;
 import paneli.panelDetaljiUredjaja;
 
@@ -41,13 +43,13 @@ import javax.swing.JLabel;
 import forme.frmPromjenaSifre;
 
 
-public class frmDispatcher extends JFrame {
+public class frmManager extends JFrame {
 	private JPanel contentPane;
 	private JPanel centralniPanel;
 
-	public frmDispatcher() {
+	public frmManager() {
 		setTitle("Prijavljen kao: Ime Prezime");
-		setBounds(100, 100, 743, 556);
+		setBounds(100, 100, 849, 597);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
@@ -64,11 +66,11 @@ public class frmDispatcher extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		
-		JButton btnIzvjetaji = new JButton("Kreiraj zahtjev");
+		JButton btnIzvjetaji = new JButton("Kreiraj izvještaj");
 		btnIzvjetaji.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelKreirajZahtjev();
+				centralniPanel = new panelIzvjestaji();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -77,14 +79,14 @@ public class frmDispatcher extends JFrame {
 		btnIzvjetaji.setHorizontalAlignment(SwingConstants.LEFT);
 		btnIzvjetaji.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JButton btnZadaci = new JButton("Pregled zahtjeva");
+		JButton btnZadaci = new JButton("Pregled zadataka");
 		btnZadaci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelPregledZahtjeva();
+				centralniPanel = new panelPregledZadatakaMenadzer();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
-				centralniPanel.updateUI();
+				centralniPanel.updateUI();	
 			}
 		});
 		btnZadaci.setHorizontalAlignment(SwingConstants.LEFT);
@@ -180,6 +182,7 @@ public class frmDispatcher extends JFrame {
 		JButton btnNewButton = new JButton("Odjavi se");
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		JButton btnZahtjevi = new JButton("Obradi zahtjev");
 		
 		ImageIcon slika = new ImageIcon(getClass().getResource("NotifIcon.png"));
 		Image sl=slika.getImage();
@@ -240,6 +243,7 @@ public class frmDispatcher extends JFrame {
 		slika=new ImageIcon(getClass().getResource("NotifIcon.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+		btnZahtjevi.setIcon(new ImageIcon(temp));
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -290,6 +294,45 @@ public class frmDispatcher extends JFrame {
 		panel.setLayout(gl_panel);
 				
 				JLabel lblFdss = new JLabel("FDSS \u00A9-copyright");
+				
+			
+		
+		
+
+		
+				GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+				gl_panel_1.setHorizontalGroup(
+					gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+								.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+								.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+							.addContainerGap())
+						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addGap(68)
+							.addComponent(lblFdss, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(78))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+							.addContainerGap())
+				);
+				gl_panel_1.setVerticalGroup(
+					gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+							.addComponent(btnNewButton)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblFdss))
+				);
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -309,55 +352,38 @@ public class frmDispatcher extends JFrame {
 					.addGap(12))
 		);
 		panel_2.setLayout(gl_panel_2);
+		
+		
+		btnZahtjevi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.remove(centralniPanel);
+				centralniPanel = new panelObradiZahtjev();
+				contentPane.add(centralniPanel, BorderLayout.CENTER);
+				centralniPanel.revalidate();
+				centralniPanel.updateUI();
+			}
+		});
+		btnZahtjevi.setHorizontalAlignment(SwingConstants.LEFT);
+		btnZahtjevi.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnIzvjetaji, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addComponent(btnIzvjetaji, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+				.addComponent(btnZahtjevi, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+				.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
 		);
 		gl_panel_4.setVerticalGroup(
 			gl_panel_4.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, gl_panel_4.createSequentialGroup()
-					.addComponent(btnIzvjetaji)
+					.addGap(6)
+					.addComponent(btnZahtjevi)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnZadaci)
-					.addContainerGap(41, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnIzvjetaji)
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		panel_4.setLayout(gl_panel_4);
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(10)
-					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(10)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(12)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(48)
-					.addComponent(lblFdss))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(11)
-					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblFdss))
-		);
 		panel_1.setLayout(gl_panel_1);
 		
 		
