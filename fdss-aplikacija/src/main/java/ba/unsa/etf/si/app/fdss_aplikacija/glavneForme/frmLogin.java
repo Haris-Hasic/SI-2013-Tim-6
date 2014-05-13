@@ -62,7 +62,7 @@ public class frmLogin extends JFrame {
 		lblNewLabel.setBounds(83, 11, 252, 85);
 		getContentPane().add(lblNewLabel);
 		
-		slika = new ImageIcon(getClass().getResource("/logo.jpg"));
+		slika = new ImageIcon(getClass().getResource("/FDSS Logo.jpg"));
 		Image sl=slika.getImage();
 		Image temp=sl.getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), java.awt.Image.SCALE_SMOOTH);
 		slika=new ImageIcon(temp);
