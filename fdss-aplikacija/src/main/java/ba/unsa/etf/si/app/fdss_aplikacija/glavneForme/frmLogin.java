@@ -61,7 +61,7 @@ public class frmLogin extends JFrame {
 		JButton btnPrijaviSe = new JButton("Prijavi se");
 		btnPrijaviSe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmManager man=new frmManager();
+				frmDispatcher man=new frmDispatcher();
 				man.setVisible(true);
 			}
 		});

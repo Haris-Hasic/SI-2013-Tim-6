@@ -36,5 +36,19 @@ public class Zahtjev {
 	public void set_zahtjevPodnesen(Date _zahtjevPodnesen) {
 		this._zahtjevPodnesen = _zahtjevPodnesen;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		 if (this == obj)
+	           return true;
+	       if (obj == null)
+	           return false;
+	       if (getClass() != obj.getClass())
+	           return false;
+	       final Zahtjev other = (Zahtjev) obj;
+	       if (_redniBroj != other.get_redniBroj())
+	           return false;
+	       return true;
+	   }
 
 }

@@ -51,5 +51,19 @@ public class Uredaj {
 	public void set_IBFM(String _IBFM) {
 		this._IBFM = _IBFM;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		 if (this == obj)
+	           return true;
+	       if (obj == null)
+	           return false;
+	       if (getClass() != obj.getClass())
+	           return false;
+	       final Uredaj other = (Uredaj) obj;
+	       if (_IBFU != other.get_IBFU())
+	           return false;
+	       return true;
+	   }
 
 }

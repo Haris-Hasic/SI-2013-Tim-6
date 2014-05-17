@@ -110,5 +110,19 @@ public class Uposlenik {
 	public void set_password(String _password) {
 		this._password = _password;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		 if (this == obj)
+	           return true;
+	       if (obj == null)
+	           return false;
+	       if (getClass() != obj.getClass())
+	           return false;
+	       final Uposlenik other = (Uposlenik) obj;
+	       if (_userName != other.get_userName())
+	           return false;
+	       return true;
+	   }
 
 }

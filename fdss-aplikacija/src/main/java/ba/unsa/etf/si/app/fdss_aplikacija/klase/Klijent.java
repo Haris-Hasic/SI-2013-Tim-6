@@ -89,5 +89,18 @@ public class Klijent {
 	public void set_listaUredaja(List<Uredaj> _listaUredaja) {
 		this._listaUredaja = _listaUredaja;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		 if (this == obj)
+	           return true;
+	       if (obj == null)
+	           return false;
+	       if (getClass() != obj.getClass())
+	           return false;
+	       final Klijent other = (Klijent) obj;
+	       if (_JIB != other.get_JIB())
+	           return false;
+	       return true;
+	   }
 }

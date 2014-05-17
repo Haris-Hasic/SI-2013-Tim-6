@@ -63,4 +63,18 @@ public class Zadatak {
 	public void set_donijetiUredajDo(Date _donijetiUredajDo) {
 		this._donijetiUredajDo = _donijetiUredajDo;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		 if (this == obj)
+	           return true;
+	       if (obj == null)
+	           return false;
+	       if (getClass() != obj.getClass())
+	           return false;
+	       final Zadatak other = (Zadatak) obj;
+	       if (_redniBroj != other.get_redniBroj())
+	           return false;
+	       return true;
+	   }
 }
