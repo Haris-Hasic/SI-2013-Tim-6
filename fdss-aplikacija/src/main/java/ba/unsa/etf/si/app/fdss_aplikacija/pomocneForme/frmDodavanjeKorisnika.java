@@ -22,6 +22,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class frmDodavanjeKorisnika extends JFrame {
 
@@ -182,6 +183,8 @@ public class frmDodavanjeKorisnika extends JFrame {
 				
 				HibernateUposlenik h = new HibernateUposlenik();
 				h.dodajUposlenika(u);
+				
+				List<Uposlenik> l = h.vratiSveUposlenike();
 			}
 		});
 		btnDodajKorisnika.setBounds(300, 377, 124, 23);

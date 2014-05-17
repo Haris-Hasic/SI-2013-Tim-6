@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.hibernate.Session;
@@ -65,6 +66,18 @@ public class HibernateUposlenik {
 			session.close();
 			return true;
 		}
+	}
+	
+	public static List<Uposlenik> vratiSveUposlenike() {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction t = session.beginTransaction();
+		
+		List<Uposlenik> lista = session.createCriteria(Uposlenik.class).list();
+		
+		session.close();
+		return lista;
 	}
 
 }
