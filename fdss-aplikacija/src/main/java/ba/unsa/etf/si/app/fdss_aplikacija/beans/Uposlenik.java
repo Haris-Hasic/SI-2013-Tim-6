@@ -88,11 +88,11 @@ public class Uposlenik implements Serializable{
 		this.email = email;
 	}
 
-	public int getTip() {	//metode getTip i setTip nemojte koristi
-		return tip;			//one sluze da ne bi morali enum ubacivati u bazu vec samo int
-	}						//ukoliko vam treba njegov tip poristite metodu privilegija npr.
-							//if(u.getPrivilegija==TipUposlenika.ADMINISTRATOR)....
-							//ili t.setPrivilegija(TipUposlenika.SERVISER)
+	public int getTip() {	// metode getTip i setTip nemojte koristi
+		return tip;			// one sluze da ne bi morali enum ubacivati u bazu vec samo int
+	}						// ukoliko vam treba njegov tip poristite metodu privilegija npr.
+							// if(u.getPrivilegija==TipUposlenika.ADMINISTRATOR)....
+							// ili t.setPrivilegija(TipUposlenika.SERVISER)
 	
 	public void setTip(int tip) {
 		this.tip = tip;
@@ -100,7 +100,6 @@ public class Uposlenik implements Serializable{
 	
 	public TipUposlenika getPrivilegija()
 	{
-		
 		switch(tip)
 		{
 			case 1:

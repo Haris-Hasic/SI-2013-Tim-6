@@ -13,17 +13,26 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
+import org.hibernate.Transaction;
+import org.hibernate.Session;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class frmDodavanjeKorisnika extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField ime_tb;
+	private JTextField prezime_tb;
+	private JTextField username_tb;
+	private JTextField password_tb;
+	private JTextField adresa_tb;
+	private JTextField grad_tb;
+	private JTextField telefon_tb;
+	private JTextField email_tb;
 
 	/**
 	 * Launch the application.
@@ -87,45 +96,45 @@ public class frmDodavanjeKorisnika extends JFrame {
 		label_7.setBounds(33, 242, 70, 14);
 		panel.add(label_7);
 		
-		textField = new JTextField();
-		textField.setBounds(113, 25, 241, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		ime_tb = new JTextField();
+		ime_tb.setBounds(113, 25, 241, 20);
+		panel.add(ime_tb);
+		ime_tb.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(113, 56, 241, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		prezime_tb = new JTextField();
+		prezime_tb.setBounds(113, 56, 241, 20);
+		panel.add(prezime_tb);
+		prezime_tb.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(113, 87, 241, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		username_tb = new JTextField();
+		username_tb.setBounds(113, 87, 241, 20);
+		panel.add(username_tb);
+		username_tb.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(113, 118, 241, 20);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		password_tb = new JTextField();
+		password_tb.setBounds(113, 118, 241, 20);
+		panel.add(password_tb);
+		password_tb.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(113, 146, 241, 20);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		adresa_tb = new JTextField();
+		adresa_tb.setBounds(113, 146, 241, 20);
+		panel.add(adresa_tb);
+		adresa_tb.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(113, 177, 137, 20);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
+		grad_tb = new JTextField();
+		grad_tb.setBounds(113, 177, 137, 20);
+		panel.add(grad_tb);
+		grad_tb.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(113, 208, 137, 20);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
+		telefon_tb = new JTextField();
+		telefon_tb.setBounds(113, 208, 137, 20);
+		panel.add(telefon_tb);
+		telefon_tb.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(113, 239, 137, 20);
-		panel.add(textField_7);
-		textField_7.setColumns(10);
+		email_tb = new JTextField();
+		email_tb.setBounds(113, 239, 137, 20);
+		panel.add(email_tb);
+		email_tb.setColumns(10);
 		
 		panel.setBorder(BorderFactory.createTitledBorder("Novi korisnik"));
 		
@@ -153,6 +162,34 @@ public class frmDodavanjeKorisnika extends JFrame {
 		panel_1.add(rdbtnDispacher);
 		
 		JButton btnDodajKorisnika = new JButton("Dodaj korisnika");
+		btnDodajKorisnika.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				Uposlenik u = new Uposlenik();
+				u.setId(1);
+				u.setIme(ime_tb.getText());
+				u.setPrezime(prezime_tb.getText());
+				u.setJib("1504992173043"); // fali kontrola za dodavanje JIB broja
+				u.setAdresa(adresa_tb.getText());
+				u.setMjesto(grad_tb.getText());
+				u.setTelefon(telefon_tb.getText());
+				u.setEmail(email_tb.getText());
+				
+				u.setUserName(username_tb.getText());
+				u.setPassword(password_tb.getText());
+				
+				u.setTip(2);
+				
+				Session s = HibernateUtil.getSessionFactory().openSession();
+				Transaction t = s.beginTransaction();
+				
+				Long id = (Long)s.save(u);
+				t.commit();
+				
+				s.close();
+			}
+		});
 		btnDodajKorisnika.setBounds(300, 377, 124, 23);
 		contentPane.add(btnDodajKorisnika);
 	}
