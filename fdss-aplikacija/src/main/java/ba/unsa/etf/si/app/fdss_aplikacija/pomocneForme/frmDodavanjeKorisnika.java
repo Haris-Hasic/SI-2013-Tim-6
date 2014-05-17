@@ -17,6 +17,7 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 
 import java.awt.event.MouseAdapter;
@@ -179,15 +180,8 @@ public class frmDodavanjeKorisnika extends JFrame {
 				u.setUserName(username_tb.getText());
 				u.setPassword(password_tb.getText());
 				
-				u.setTip(2);
-				
-				Session s = HibernateUtil.getSessionFactory().openSession();
-				Transaction t = s.beginTransaction();
-				
-				Long id = (Long)s.save(u);
-				t.commit();
-				
-				s.close();
+				HibernateUposlenik h = new HibernateUposlenik();
+				h.dodajUposlenika(u);
 			}
 		});
 		btnDodajKorisnika.setBounds(300, 377, 124, 23);
