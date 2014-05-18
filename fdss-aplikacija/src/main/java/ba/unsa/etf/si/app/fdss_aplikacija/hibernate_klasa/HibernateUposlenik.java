@@ -1,8 +1,10 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -21,6 +23,17 @@ public class HibernateUposlenik {
 		
 		Transaction t = session.beginTransaction();
 		Long id = (Long)session.save(u);
+		t.commit();
+		
+		session.close();
+	}
+	
+	public static void updateUposlenika(Uposlenik u) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction t = session.beginTransaction();
+		session.update(u);
 		t.commit();
 		
 		session.close();
@@ -47,6 +60,64 @@ public class HibernateUposlenik {
 		}
 	}
 	
+public static Uposlenik dajUposlenika(String userName) {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction t = session.beginTransaction();
+		
+		Query query = session.createQuery("from Uposlenik where userName = :uName");
+		query.setParameter("uName", userName);
+		List<Uposlenik> temp=query.list();
+		
+		if(temp.size() == 0) {
+			
+			session.close();
+			return null;
+		}
+
+		session.close();
+		return (Uposlenik)temp.get(0);
+	
+	}
+	
+public static boolean postojiUposlenik(String userName) {
+	
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	
+	Transaction t = session.beginTransaction();
+	
+	Query query = session.createQuery("from Uposlenik where userName = :uName");
+	query.setParameter("uName", userName);
+	
+	if(query.list().size()==0) {
+		
+		session.close();
+		return false;
+	}
+	
+	else {
+		
+		session.close();
+		return true;
+	}
+}
+
+	public static List<Uposlenik> dajSveUposlenike()
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Uposlenik> temp=new ArrayList<Uposlenik>();
+		Transaction t = session.beginTransaction();
+		
+		temp=session.createCriteria(Uposlenik.class).list();
+		if(temp.size()==0) {
+			
+			session.close();
+			return null;
+		}
+		session.close();
+		return temp;
+	}
 	public static boolean postojiUposlenik(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -73,11 +144,20 @@ public class HibernateUposlenik {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction t = session.beginTransaction();
-		
-		List<Uposlenik> lista = session.createCriteria(Uposlenik.class).list();
+		List<Uposlenik> lista= session.createCriteria(Uposlenik.class).list();
 		
 		session.close();
 		return lista;
 	}
 
-}
+	public static void brisiUposlenika(Uposlenik u) {
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			
+			Transaction t = session.beginTransaction();
+			session.delete(u);
+			t.commit();
+			session.close();
+		}
+	
+	}

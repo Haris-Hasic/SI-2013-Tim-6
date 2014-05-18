@@ -3,7 +3,7 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 import java.io.Serializable;
 import java.util.List;
 
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.TipUposlenika;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 
 public class Uposlenik implements Serializable{
 	
@@ -91,31 +91,31 @@ public class Uposlenik implements Serializable{
 	public int getTip() {	// metode getTip i setTip nemojte koristi
 		return tip;			// one sluze da ne bi morali enum ubacivati u bazu vec samo int
 	}						// ukoliko vam treba njegov tip poristite metodu privilegija npr.
-							// if(u.getPrivilegija==TipUposlenika.ADMINISTRATOR)....
-							// ili t.setPrivilegija(TipUposlenika.SERVISER)
+							// if(u.getPrivilegija==PrivilegijaUposlenika.ADMINISTRATOR)....
+							// ili t.setPrivilegija(PrivilegijaUposlenika.SERVISER)
 	
 	public void setTip(int tip) {
 		this.tip = tip;
 	}
 	
-	public TipUposlenika getPrivilegija()
+	public PrivilegijaUposlenika getPrivilegija()
 	{
 		switch(tip)
 		{
 			case 1:
-				return TipUposlenika.ADMINISTRATOR;
+				return PrivilegijaUposlenika.ADMINISTRATOR;
 			case 2:
-				return TipUposlenika.DISPECER;
+				return PrivilegijaUposlenika.DISPECER;
 			case 3:
-				return TipUposlenika.MENADZER;
+				return PrivilegijaUposlenika.MENADZER;
 			case 4:
-				return TipUposlenika.SERVISER;
+				return PrivilegijaUposlenika.SERVISER;
 			default:
 				return null;
 		}
 	}
 	
-	public void SetPrivilegija(TipUposlenika tipUposlenika)
+	public void SetPrivilegija(PrivilegijaUposlenika tipUposlenika)
 	{
 		switch (tipUposlenika) {
 			case ADMINISTRATOR:
