@@ -4,24 +4,35 @@ import java.io.Serializable;
 
 public class Uredjaj implements Serializable{
 	
-	long Uredjajid;
-	public long getUredjajid() {
-		return Uredjajid;
+	long id;
+	
+	public long getId() {
+		return id;
 	}
 
-	public void setUredjajid(long uredjajid) {
-		Uredjajid = uredjajid;
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	int jibProizvodaca;
 	String tipUredaja;
 	String ibfu;
 	String ibfm;
+	Klijent klijent;
 	
 	public Uredjaj() {
 		
 	}
 
+
+	public Klijent getKlijent() {
+		return klijent;
+	}
+
+	public void setKlijent(Klijent klijent) {
+		this.klijent = klijent;
+	}
 
 	public int getJibProizvodaca() {
 		return jibProizvodaca;

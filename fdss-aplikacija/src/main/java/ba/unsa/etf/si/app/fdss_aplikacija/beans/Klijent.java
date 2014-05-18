@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 
 public class Klijent implements Serializable{
 	
-	long klijentId;
+	long id;
 	String naziv;
 	String tip;
 	String jib;
@@ -22,18 +22,26 @@ public class Klijent implements Serializable{
 	String web;
 	List<Uredjaj> uredjaji;
 
+	public List<Uredjaj> getUredjaji() {
+		return uredjaji;
+	}
+
+
+
+	public void setUredjaji(List<Uredjaj> uredjaji) {
+		this.uredjaji = uredjaji;
+	}
+
+
+
 	public Klijent() {
-		uredjaji=new ArrayList<Uredjaj>();
+		
 	}
 	
-	
 
 
-
-
-
-	public long getKlijentId() {
-		return klijentId;
+	public long getId() {
+		return id;
 	}
 
 
@@ -42,8 +50,8 @@ public class Klijent implements Serializable{
 
 
 
-	public void setKlijentId(long klijentId) {
-		this.klijentId = klijentId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 
@@ -175,38 +183,8 @@ public class Klijent implements Serializable{
 	public void setWeb(String web) {
 		this.web = web;
 	}
-
-
-
-
-
-	public List<Uredjaj> getUredjaji() {
-		return uredjaji;
-	}
-
-
-
-
-
-	public void setUredjaji(List<Uredjaj> uredjaji) {
-		this.uredjaji = uredjaji;
-	}
-
-
-
-
-
-	public void dodajUredjaj(Uredjaj uredjaj)
-	{
-		uredjaji.add(uredjaj);
-	}
 	
-	public void brisiUredjaj(Uredjaj uredjaj)
-	{
-		uredjaji.remove(uredjaj);
-	}
 	
-		
 	
 	@Override
 	public boolean equals(Object obj) {

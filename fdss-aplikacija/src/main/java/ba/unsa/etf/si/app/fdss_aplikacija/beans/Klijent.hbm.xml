@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 3:48:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 19, 2014 12:56:51 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent" table="KLIJENT">
-        <id name="klijentId" type="long">
-            <column name="KLIJENTID" />
+        <id name="id" type="long">
+            <column name="ID" />
             <generator class="native" />
         </id>
         <property name="naziv" type="java.lang.String">
@@ -32,12 +32,5 @@
         <property name="web" type="java.lang.String">
             <column name="WEB" />
         </property>
-        <list name="uredjaji" inverse="false" table="UREDJAJ" cascade="all">
-            <key>
-                <column name="KLIJENTID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj" />
-        </list>
     </class>
 </hibernate-mapping>

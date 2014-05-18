@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 3:48:59 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated May 19, 2014 12:56:51 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj" table="UREDJAJ">
-        <id name="Uredjajid" type="long">
-            <column name="UREDJAJID" />
+        <id name="id" type="long">
+            <column name="ID" />
             <generator class="native" />
         </id>
         <property name="jibProizvodaca" type="int">
@@ -20,5 +20,8 @@
         <property name="ibfm" type="java.lang.String">
             <column name="IBFM" />
         </property>
+        <many-to-one name="klijent" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent" fetch="join">
+            <column name="KLIJENT" />
+        </many-to-one>
     </class>
 </hibernate-mapping>
