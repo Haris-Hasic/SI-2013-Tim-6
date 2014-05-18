@@ -4,8 +4,15 @@ import java.io.Serializable;
 
 public class Uredjaj implements Serializable{
 	
-	long id;
-	int jibKlijenta;
+	long Uredjajid;
+	public long getUredjajid() {
+		return Uredjajid;
+	}
+
+	public void setUredjajid(long uredjajid) {
+		Uredjajid = uredjajid;
+	}
+
 	int jibProizvodaca;
 	String tipUredaja;
 	String ibfu;
@@ -14,91 +21,39 @@ public class Uredjaj implements Serializable{
 	public Uredjaj() {
 		
 	}
-		
-	
-	public long getId() {
-		return id;
-	}
-
-
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
-
-
-	public int getJibKlijenta() {
-		return jibKlijenta;
-	}
-
-
-
-
-	public void setJibKlijenta(int jibKlijenta) {
-		this.jibKlijenta = jibKlijenta;
-	}
-
-
 
 
 	public int getJibProizvodaca() {
 		return jibProizvodaca;
 	}
 
-
-
-
 	public void setJibProizvodaca(int jibProizvodaca) {
 		this.jibProizvodaca = jibProizvodaca;
 	}
-
-
-
 
 	public String getTipUredaja() {
 		return tipUredaja;
 	}
 
-
-
-
 	public void setTipUredaja(String tipUredaja) {
 		this.tipUredaja = tipUredaja;
 	}
-
-
-
 
 	public String getIbfu() {
 		return ibfu;
 	}
 
-
-
-
 	public void setIbfu(String ibfu) {
 		this.ibfu = ibfu;
 	}
-
-
-
 
 	public String getIbfm() {
 		return ibfm;
 	}
 
-
-
-
 	public void setIbfm(String ibfm) {
 		this.ibfm = ibfm;
 	}
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {

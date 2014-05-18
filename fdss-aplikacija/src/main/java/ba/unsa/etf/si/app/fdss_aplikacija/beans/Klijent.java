@@ -2,11 +2,16 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 public class Klijent implements Serializable{
 	
-	long id;
+	long klijentId;
 	String naziv;
 	String tip;
 	String jib;
@@ -16,22 +21,34 @@ public class Klijent implements Serializable{
 	String email;
 	String web;
 	List<Uredjaj> uredjaji;
-	
+
 	public Klijent() {
 		uredjaji=new ArrayList<Uredjaj>();
 	}
 	
 	
-	
-	public long getId() {
-		return id;
+
+
+
+
+
+	public long getKlijentId() {
+		return klijentId;
 	}
 
 
 
-	public void setId(long id) {
-		this.id = id;
+
+
+
+
+	public void setKlijentId(long klijentId) {
+		this.klijentId = klijentId;
 	}
+
+
+
+
 
 
 
@@ -41,9 +58,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
+
+
 
 
 
@@ -53,9 +74,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setTip(String tip) {
 		this.tip = tip;
 	}
+
+
 
 
 
@@ -65,9 +90,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setJib(String jib) {
 		this.jib = jib;
 	}
+
+
 
 
 
@@ -77,9 +106,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
+
+
 
 
 
@@ -89,9 +122,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setMjesto(String mjesto) {
 		this.mjesto = mjesto;
 	}
+
+
 
 
 
@@ -101,9 +138,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
+
+
 
 
 
@@ -113,9 +154,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 
 
 
@@ -125,9 +170,13 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setWeb(String web) {
 		this.web = web;
 	}
+
+
 
 
 
@@ -137,9 +186,15 @@ public class Klijent implements Serializable{
 
 
 
+
+
 	public void setUredjaji(List<Uredjaj> uredjaji) {
 		this.uredjaji = uredjaji;
 	}
+
+
+
+
 
 	public void dodajUredjaj(Uredjaj uredjaj)
 	{
