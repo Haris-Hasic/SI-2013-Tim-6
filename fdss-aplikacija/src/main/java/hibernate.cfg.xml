@@ -11,5 +11,6 @@
   <mapping resource="ba/unsa/etf/si/app/fdss_aplikacija/beans/Uposlenik.hbm.xml"/>
   <mapping resource="ba/unsa/etf/si/app/fdss_aplikacija/beans/Klijent.hbm.xml"/>
   <mapping resource="ba/unsa/etf/si/app/fdss_aplikacija/beans/Uredjaj.hbm.xml"/>
+  <mapping resource="ba/unsa/etf/si/app/fdss_aplikacija/beans/Zahtjev.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>
