@@ -17,6 +17,9 @@
         <property name="redniBroj" type="java.lang.String">
             <column name="REDNIBROJ" />
         </property>
+        <property name="hitnost" type="java.lang.String">
+            <column name="HITNOST" />
+        </property>
         <property name="zavrsitiDo" type="java.sql.Date">
             <column name="ZAVRSITIDO" />
         </property>

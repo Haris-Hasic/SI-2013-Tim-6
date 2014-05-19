@@ -13,11 +13,20 @@ public class Zadatak implements Serializable{
 	Date zavrsitiDo;
 	Date zahtjevPodnesen;
 	Date donijetiUredjajDo;
+	String Hitnost;
 	
 	boolean zavrsen;
 
 	public Zadatak() {
 		
+	}
+
+	public String getHitnost() {
+		return Hitnost;
+	}
+
+	public void setHitnost(String hitnost) {
+		Hitnost = hitnost;
 	}
 
 	public long getId() {
