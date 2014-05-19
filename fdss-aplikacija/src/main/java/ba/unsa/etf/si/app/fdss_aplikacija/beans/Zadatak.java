@@ -21,6 +21,22 @@ public class Zadatak implements Serializable{
 		serviser=new Uposlenik();
 	}
 
+	public Uredjaj getUredaj() {
+		return uredaj;
+	}
+
+	public void setUredaj(Uredjaj uredaj) {
+		this.uredaj = uredaj;
+	}
+
+	public Date getDonijetiUredjajDo() {
+		return donijetiUredjajDo;
+	}
+
+	public void setDonijetiUredjajDo(Date donijetiUredjajDo) {
+		this.donijetiUredjajDo = donijetiUredjajDo;
+	}
+
 	public boolean isZavrsen() {
 		return zavrsen;
 	}

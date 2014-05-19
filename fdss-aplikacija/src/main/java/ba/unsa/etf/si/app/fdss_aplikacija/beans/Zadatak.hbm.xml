@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 19, 2014 11:02:44 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak" table="ZADATAK">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="uredaj" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj" fetch="join">
+            <column name="UREDAJ" />
+        </many-to-one>
+        <many-to-one name="serviser" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik" fetch="join">
+            <column name="SERVISER" />
+        </many-to-one>
+        <property name="redniBroj" type="java.lang.String">
+            <column name="REDNIBROJ" />
+        </property>
+        <property name="zavrsitiDo" type="java.sql.Date">
+            <column name="ZAVRSITIDO" />
+        </property>
+        <property name="zahtjevPodnesen" type="java.sql.Date">
+            <column name="ZAHTJEVPODNESEN" />
+        </property>
+        <property name="donijetiUredjajDo" type="java.sql.Date">
+            <column name="DONIJETIUREDJAJDO" />
+        </property>
+        <property name="zavrsen" type="boolean">
+            <column name="ZAVRSEN" />
+        </property>
+    </class>
+</hibernate-mapping>
