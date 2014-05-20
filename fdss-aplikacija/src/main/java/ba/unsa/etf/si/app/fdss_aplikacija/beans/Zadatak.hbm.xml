@@ -14,9 +14,6 @@
         <many-to-one name="serviser" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik" fetch="join">
             <column name="SERVISER" />
         </many-to-one>
-        <property name="redniBroj" type="java.lang.String">
-            <column name="REDNIBROJ" />
-        </property>
         <property name="hitnost" type="java.lang.String">
             <column name="HITNOST" />
         </property>

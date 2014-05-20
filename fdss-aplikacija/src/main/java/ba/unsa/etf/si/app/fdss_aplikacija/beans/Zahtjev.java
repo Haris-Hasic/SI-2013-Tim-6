@@ -7,8 +7,6 @@ public class Zahtjev implements Serializable {
 	
 	long id;
 	Uredjaj uredjaj;
-	
-	int redniBroj;
 	Date zahtjevPodnesen;
 	
 	boolean zavrsen;
@@ -35,16 +33,6 @@ public class Zahtjev implements Serializable {
 
 	public void setUredjaj(Uredjaj uredjaj) {
 		this.uredjaj = uredjaj;
-	}
-
-
-	public int getRedniBroj() {
-		return redniBroj;
-	}
-
-
-	public void setRedniBroj(int redniBroj) {
-		this.redniBroj = redniBroj;
 	}
 
 

@@ -8,8 +8,7 @@ public class Zadatak implements Serializable{
 	long id;
 	Zahtjev zahtjev;
 	Uposlenik serviser;
-	
-	String redniBroj;
+
 	Date zavrsitiDo;
 	Date zahtjevPodnesen;
 	Date donijetiUredjajDo;
@@ -53,13 +52,6 @@ public class Zadatak implements Serializable{
 		this.serviser = serviser;
 	}
 
-	public String getRedniBroj() {
-		return redniBroj;
-	}
-
-	public void setRedniBroj(String redniBroj) {
-		this.redniBroj = redniBroj;
-	}
 
 	public Date getZavrsitiDo() {
 		return zavrsitiDo;
