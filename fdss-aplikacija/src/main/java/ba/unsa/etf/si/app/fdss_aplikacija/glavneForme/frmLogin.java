@@ -16,6 +16,7 @@ public class frmLogin extends JFrame {
 	
 	private JPanel contentPane;
 	private JPasswordField password_tb;
+	public static frmLogin pocetna;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -32,6 +33,7 @@ public class frmLogin extends JFrame {
 
 	public frmLogin() {
 		
+		pocetna = this;
 		setResizable(false);
 		setTitle("FDSS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,9 +67,9 @@ public class frmLogin extends JFrame {
 
 				if ( userName_tb.getText().compareTo("administrator") == 0 ) {
 					
-					frmAdministrator fa=new frmAdministrator();
+					frmAdministrator fa = new frmAdministrator();
 					fa.setVisible(true);
-					setVisible(false);
+					dispose();
 				}
 				
 				else if ( userName_tb.getText().compareTo("menadzer") == 0 ) {

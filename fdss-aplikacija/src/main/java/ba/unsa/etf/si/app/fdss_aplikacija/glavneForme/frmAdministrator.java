@@ -7,9 +7,11 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Window;
 
 import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -25,13 +27,17 @@ import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmDodavanjeKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPregledKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 public class frmAdministrator extends JFrame {
 	public frmAdministrator() {
+		
 		setResizable(false);
 		setTitle("Administrator");
 		setBounds(100, 100, 280, 219);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
@@ -88,6 +94,14 @@ public class frmAdministrator extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 		
 		JButton btnOdjaviSe = new JButton("Odjavi se");
+		btnOdjaviSe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				frmLogin.pocetna.setVisible(true);
+				dispose();
+			}
+		});
 		btnOdjaviSe.setHorizontalAlignment(SwingConstants.LEFT);
 		btnOdjaviSe.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnOdjaviSe.setBounds(10, 125, 244, 29);

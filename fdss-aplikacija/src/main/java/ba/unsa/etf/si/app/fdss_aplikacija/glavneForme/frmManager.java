@@ -40,6 +40,8 @@ import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledKlijenata;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledZadatakaMenadzer;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class frmManager extends JFrame {
@@ -47,9 +49,10 @@ public class frmManager extends JFrame {
 	private JPanel centralniPanel;
 
 	public frmManager() {
+		
 		setTitle("Prijavljen kao: Ime Prezime");
 		setBounds(100, 100, 849, 597);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -179,6 +182,13 @@ public class frmManager extends JFrame {
 		btnPretraga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnNewButton = new JButton("Odjavi se");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmLogin.pocetna.setVisible(true);
+				dispose();
+			}
+		});
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		JButton btnZahtjevi = new JButton("Obradi zahtjev");
