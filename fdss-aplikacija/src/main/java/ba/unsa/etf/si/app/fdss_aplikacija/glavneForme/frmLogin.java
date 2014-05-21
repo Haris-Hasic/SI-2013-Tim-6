@@ -11,11 +11,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class frmLogin extends JFrame {
 	
-	private JTextField textField;
+	private JTextField userName_tb;
 	private ImageIcon slika;
 	
 	private JPanel contentPane;
-	private JPasswordField passwordField;
+	private JPasswordField password_tb;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -53,21 +53,51 @@ public class frmLogin extends JFrame {
 		lblKorisnikaifra.setBounds(34, 130, 105, 14);
 		getContentPane().add(lblKorisnikaifra);
 		
-		textField = new JTextField();
-		textField.setBounds(149, 99, 219, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		userName_tb = new JTextField();
+		userName_tb.setBounds(149, 99, 219, 20);
+		getContentPane().add(userName_tb);
+		userName_tb.setColumns(10);
 		
-		JButton btnPrijaviSe = new JButton("Prijavi se");
-		btnPrijaviSe.addActionListener(new ActionListener() {
+		JButton PrijaviSe_btn = new JButton("Prijavi se");
+		PrijaviSe_btn.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
-				frmDispatcher man=new frmDispatcher();
-				man.setVisible(true);
+
+				if ( userName_tb.getText().compareTo("administrator") == 0 ) {
+					
+					frmAdministrator fa=new frmAdministrator();
+					fa.setVisible(true);
+					setVisible(false);
+				}
+				
+				else if ( userName_tb.getText().compareTo("menadzer") == 0 ) {
+					frmManager fm=new frmManager();
+					fm.setVisible(true);
+					setVisible(false);
+			    }
+				
+				else if ( userName_tb.getText().compareTo("serviser") == 0 ) {
+					frmServiser fs=new frmServiser();
+					fs.setVisible(true);
+					setVisible(false);
+				}
+				
+				else if ( userName_tb.getText().compareTo("dispecer") == 0 ) {
+					
+					frmDispatcher fd=new frmDispatcher();
+					fd.setVisible(true);
+					setVisible(false);
+				}
+				
+				else {
+					
+				}
 			}
 		});
-		btnPrijaviSe.setFont(new Font("Cambria", Font.PLAIN, 14));
-		btnPrijaviSe.setBounds(263, 159, 105, 33);
-		getContentPane().add(btnPrijaviSe);
+		
+		PrijaviSe_btn.setFont(new Font("Cambria", Font.PLAIN, 14));
+		PrijaviSe_btn.setBounds(263, 159, 105, 33);
+		getContentPane().add(PrijaviSe_btn);
 		
 		
 		
@@ -81,8 +111,8 @@ public class frmLogin extends JFrame {
 		slika=new ImageIcon(temp);
 		lblNewLabel.setIcon(slika);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(149, 128, 219, 20);
-		contentPane.add(passwordField);
+		password_tb = new JPasswordField();
+		password_tb.setBounds(149, 128, 219, 20);
+		contentPane.add(password_tb);
 	}
 }
