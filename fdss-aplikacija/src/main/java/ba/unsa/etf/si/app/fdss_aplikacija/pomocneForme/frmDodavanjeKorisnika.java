@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -18,6 +19,7 @@ import org.hibernate.Session;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 
 import java.awt.event.MouseAdapter;
@@ -187,6 +189,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 				List<Uposlenik> l = h.vratiSveUposlenike();
 			}
 		});
+		
 		btnDodajKorisnika.setBounds(300, 377, 124, 23);
 		contentPane.add(btnDodajKorisnika);
 	}
