@@ -287,22 +287,35 @@ public class frmManager extends JFrame {
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnDodajKlijenta, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnPregled, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnDodajKlijenta, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnPregled, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+							.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+							.addContainerGap())))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(btnDodajKlijenta)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(btnPregled)
-					.addGap(7)
-					.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnPretraga)
+					.addGap(13))
 		);
 		panel.setLayout(gl_panel);
 				
-				JLabel lblFdss = new JLabel("FDSS \u00A9-copyright");
+				JLabel lblFdss = new JLabel("FDSS © – All rights reserved.");
+				lblFdss.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblFdss.setHorizontalAlignment(SwingConstants.CENTER);
 				
 			
 		
@@ -311,54 +324,59 @@ public class frmManager extends JFrame {
 		
 				GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 				gl_panel_1.setHorizontalGroup(
-					gl_panel_1.createParallelGroup(Alignment.TRAILING)
+					gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-								.addComponent(panel_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
-							.addContainerGap())
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-							.addGap(68)
-							.addComponent(lblFdss, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(78))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(29)
+									.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addContainerGap()
+									.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(panel_4, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+										.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+										.addComponent(lblFdss, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+								.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
 							.addContainerGap())
 				);
 				gl_panel_1.setVerticalGroup(
 					gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
 							.addComponent(btnNewButton)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblFdss))
+							.addComponent(lblFdss)
+							.addGap(5))
 				);
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnPregledUreaja, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnPretragaUreaja, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+						.addComponent(btnPregledUreaja, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+						.addComponent(btnPretragaUreaja, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(4)
+					.addContainerGap()
 					.addComponent(btnNewButton_1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnPregledUreaja)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnPretragaUreaja)
-					.addGap(12))
+					.addGap(7))
 		);
 		panel_2.setLayout(gl_panel_2);
 		
@@ -377,20 +395,29 @@ public class frmManager extends JFrame {
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnIzvjetaji, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-				.addComponent(btnZahtjevi, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-				.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_panel_4.createSequentialGroup()
+							.addComponent(btnIzvjetaji, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_panel_4.createSequentialGroup()
+							.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_panel_4.createSequentialGroup()
+							.addComponent(btnZahtjevi, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+							.addContainerGap())))
 		);
 		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_4.createSequentialGroup()
-					.addGap(6)
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(btnZahtjevi)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnZadaci)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnIzvjetaji)
-					.addContainerGap(35, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_4.setLayout(gl_panel_4);
 		panel_1.setLayout(gl_panel_1);

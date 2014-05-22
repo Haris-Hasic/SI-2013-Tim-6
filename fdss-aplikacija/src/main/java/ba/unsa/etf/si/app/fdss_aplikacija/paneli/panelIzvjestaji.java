@@ -1,6 +1,7 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -12,15 +13,26 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
+import javax.swing.border.TitledBorder;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+
+import javax.swing.UIManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.toedter.calendar.JDateChooser;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class panelIzvjestaji extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField ti_ibfu_tb;
+	private JTextField ured_idUred_tb;
 
 	/**
 	 * Create the panel.
@@ -28,187 +40,293 @@ public class panelIzvjestaji extends JPanel {
 	public panelIzvjestaji() {
 		setBorder(BorderFactory.createTitledBorder("Kreiranje izvje\u0161taja"));
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Tehni\u010Dki izvje\u0161taj");
-		rdbtnNewRadioButton.setSelected(true);
+		final JRadioButton tehIzv_rdbtn = new JRadioButton("Tehnički Izvještaj");
+		tehIzv_rdbtn.setSelected(false);
 		
-		JLabel lblOd = new JLabel("Od:");
-		lblOd.setHorizontalAlignment(SwingConstants.RIGHT);
+		final JRadioButton hrmIzv_rdbtn = new JRadioButton("HRM Izvještaj");
 		
-		JLabel lblDo = new JLabel("Do:");
-		lblDo.setHorizontalAlignment(SwingConstants.RIGHT);
+		final JRadioButton posIzv_rdbtn = new JRadioButton("Poslovni Izvještaj");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		JButton btnKreirajIzvjestaj = new JButton("Kreiraj Izvještaj");
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		final JPanel ti_panel = new JPanel();
+		ti_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		final JPanel hrm_panel = new JPanel();
+		hrm_panel.setLayout(null);
+		hrm_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		JLabel lblIbfu = new JLabel("IBFU:");
-		lblIbfu.setHorizontalAlignment(SwingConstants.RIGHT);
-		
-		JRadioButton rdbtnHrmIzvjetaj = new JRadioButton("HRM izvje\u0161taj");
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		
-		JLabel label = new JLabel("Od:");
+		JLabel label = new JLabel("Od :");
+		label.setEnabled(false);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setBounds(42, 21, 29, 20);
+		hrm_panel.add(label);
 		
-		JLabel label_1 = new JLabel("Do:");
+		JLabel label_1 = new JLabel("Do :");
+		label_1.setEnabled(false);
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_1.setBounds(42, 52, 29, 20);
+		hrm_panel.add(label_1);
 		
-		JLabel lblKorisnik = new JLabel("Korisnik:");
-		lblKorisnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		JLabel lblUposlenik = new JLabel("Uposlenik :");
+		lblUposlenik.setEnabled(false);
+		lblUposlenik.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUposlenik.setBounds(-2, 83, 73, 20);
+		hrm_panel.add(lblUposlenik);
 		
-		JComboBox comboBox = new JComboBox();
+		JDateChooser hrm_od_dateC = new JDateChooser();
+		hrm_od_dateC.setBounds(81, 21, 157, 20);
+		hrm_panel.add(hrm_od_dateC);
+		hrm_od_dateC.setEnabled(false);
 		
-		JRadioButton rdbtnPoslovniIzvjetaj = new JRadioButton("Poslovni izvje\u0161taj");
+		JDateChooser hrm_do_dateC = new JDateChooser();
+		hrm_do_dateC.setBounds(81, 52, 157, 20);
+		hrm_panel.add(hrm_do_dateC);
+		hrm_do_dateC.setEnabled(false);
 		
-		JLabel label_2 = new JLabel("Od:");
+		final JPanel pos_panel = new JPanel();
+		pos_panel.setLayout(null);
+		pos_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		JLabel label_2 = new JLabel("Od :");
+		label_2.setEnabled(false);
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_2.setBounds(22, 21, 29, 20);
+		pos_panel.add(label_2);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		
-		JLabel label_3 = new JLabel("Do:");
+		JLabel label_3 = new JLabel("Do :");
+		label_3.setEnabled(false);
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_3.setBounds(22, 52, 29, 20);
+		pos_panel.add(label_3);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		JDateChooser pos_od_dateC = new JDateChooser();
+		pos_od_dateC.setBounds(61, 21, 177, 20);
+		pos_panel.add(pos_od_dateC);
+		pos_od_dateC.setEnabled(false);
 		
-		JButton btnNewButton = new JButton("Kreiraj izvje\u0161taj");
+		JDateChooser pos_do_dateC = new JDateChooser();
+		pos_do_dateC.setBounds(61, 52, 177, 20);
+		pos_panel.add(pos_do_dateC);
+		pos_do_dateC.setEnabled(false);
 		
-		JSeparator separator = new JSeparator();
+		final JRadioButton uredIzv_rdbtn = new JRadioButton("Izvještaj o Uređaju");
+		final JPanel ured_panel = new JPanel();
+		ured_panel.setLayout(null);
+		ured_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		JLabel label_5 = new JLabel("Od :");
+		label_5.setEnabled(false);
+		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_5.setBounds(51, 21, 29, 20);
+		ured_panel.add(label_5);
+		
+		JLabel label_6 = new JLabel("Do :");
+		label_6.setEnabled(false);
+		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_6.setBounds(43, 52, 37, 20);
+		ured_panel.add(label_6);
+		
+		JLabel lblIdUreaja = new JLabel("ID uređaja :");
+		lblIdUreaja.setEnabled(false);
+		lblIdUreaja.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblIdUreaja.setBounds(10, 83, 70, 20);
+		ured_panel.add(lblIdUreaja);
+		
+		JDateChooser ured_od_dateC = new JDateChooser();
+		ured_od_dateC.setBounds(90, 21, 148, 20);
+		ured_panel.add(ured_od_dateC);
+		ured_od_dateC.setEnabled(false);
+		
+		JDateChooser ured_do_dateC = new JDateChooser();
+		ured_do_dateC.setBounds(90, 52, 148, 20);
+		ured_panel.add(ured_do_dateC);
+		ured_do_dateC.setEnabled(false);
+		
+		ured_idUred_tb = new JTextField();
+		ured_idUred_tb.setEnabled(false);
+		ured_idUred_tb.setColumns(10);
+		ured_idUred_tb.setBounds(90, 83, 148, 20);
+		ured_panel.add(ured_idUred_tb);
+		
+		JButton btnNazad = new JButton("Nazad");
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(rdbtnNewRadioButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(lblOd, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(lblDo, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(lblIbfu, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(rdbtnHrmIzvjetaj, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(44)
-					.addComponent(lblKorisnik, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(34)
-					.addComponent(rdbtnPoslovniIzvjetaj, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(84)
-					.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-					.addGap(3)
-					.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(310, Short.MAX_VALUE)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(separator, GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-					.addContainerGap())
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(tehIzv_rdbtn, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+								.addComponent(ti_panel, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
+								.addComponent(posIzv_rdbtn, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(uredIzv_rdbtn, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+								.addComponent(hrm_panel, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
+								.addComponent(hrmIzv_rdbtn, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(pos_panel, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(ured_panel, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(298, Short.MAX_VALUE)
+					.addComponent(btnNazad, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnKreirajIzvjestaj, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+					.addGap(8))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(17)
-					.addComponent(rdbtnNewRadioButton)
-					.addGap(4)
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(hrmIzv_rdbtn)
+						.addComponent(tehIzv_rdbtn))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(hrm_panel, 0, 0, Short.MAX_VALUE)
+						.addComponent(ti_panel, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(posIzv_rdbtn)
+						.addComponent(uredIzv_rdbtn))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(pos_panel, 0, 0, Short.MAX_VALUE)
+						.addComponent(ured_panel, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblOd))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(8)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblDo))
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(8)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblIbfu))
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(9)
-					.addComponent(rdbtnHrmIzvjetaj)
-					.addGap(8)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label))
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(9)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_1))
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblKorisnik))
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(14)
-					.addComponent(rdbtnPoslovniIzvjetaj)
-					.addGap(4)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_2))
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(8)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_3))
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton))
+						.addComponent(btnNazad, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnKreirajIzvjestaj, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+					.addGap(125))
 		);
+		
+		JComboBox hrm_uposlenik_cb = new JComboBox();
+		hrm_uposlenik_cb.setEnabled(false);
+		hrm_uposlenik_cb.setBounds(81, 83, 157, 20);
+		hrm_panel.add(hrm_uposlenik_cb);
+		ti_panel.setLayout(null);
+		
+		JLabel lblOd = new JLabel("Od :");
+		lblOd.setEnabled(false);
+		lblOd.setBounds(22, 21, 29, 20);
+		ti_panel.add(lblOd);
+		lblOd.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		JLabel lblDo = new JLabel("Do :");
+		lblDo.setEnabled(false);
+		lblDo.setBounds(22, 52, 29, 20);
+		ti_panel.add(lblDo);
+		lblDo.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		JLabel lblIbfu = new JLabel("IBFU :");
+		lblIbfu.setEnabled(false);
+		lblIbfu.setBounds(16, 83, 35, 20);
+		ti_panel.add(lblIbfu);
+		lblIbfu.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		JDateChooser ti_od_dateC = new JDateChooser();
+		ti_od_dateC.setBounds(61, 21, 177, 20);
+		ti_panel.add(ti_od_dateC);
+		ti_od_dateC.setEnabled(false);
+		
+		JDateChooser ti_do_dateC = new JDateChooser();
+		ti_do_dateC.setBounds(61, 52, 177, 20);
+		ti_panel.add(ti_do_dateC);
+		ti_do_dateC.setEnabled(false);
+		
+		ti_ibfu_tb = new JTextField();
+		ti_ibfu_tb.setEnabled(false);
+		ti_ibfu_tb.setBounds(61, 83, 177, 20);
+		ti_panel.add(ti_ibfu_tb);
+		ti_ibfu_tb.setColumns(10);
 		setLayout(groupLayout);
+		
+	    ButtonGroup grupa = new ButtonGroup();
+	    grupa.add(tehIzv_rdbtn);
+	    grupa.add(hrmIzv_rdbtn);
+	    grupa.add(posIzv_rdbtn);
+	    grupa.add(uredIzv_rdbtn);
+	    
+		final ArrayList<Component> list_ti = new ArrayList<Component>(Arrays.asList(((Container)ti_panel).getComponents()));
+		final ArrayList<Component> list_hrm = new ArrayList<Component>(Arrays.asList(((Container)hrm_panel).getComponents()));
+		final ArrayList<Component> list_pos = new ArrayList<Component>(Arrays.asList(((Container)pos_panel).getComponents()));
+		final ArrayList<Component> list_ured = new ArrayList<Component>(Arrays.asList(((Container)ured_panel).getComponents()));
+	    
+		tehIzv_rdbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				for(Component component : list_ti)
+					component.setEnabled(true);
+				
+				for(Component component : list_hrm)
+					component.setEnabled(false);
+				
+				for(Component component : list_pos)
+					component.setEnabled(false);
+				
+				for(Component component : list_ured)
+					component.setEnabled(false);
+			}
+		});
+		
+		hrmIzv_rdbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				for(Component component : list_ti)
+					component.setEnabled(false);
+				
+				for(Component component : list_hrm)
+					component.setEnabled(true);
+				
+				for(Component component : list_pos)
+					component.setEnabled(false);
+				
+				for(Component component : list_ured)
+					component.setEnabled(false);
+			}
+		});
+		
+		posIzv_rdbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				for(Component component : list_ti)
+					component.setEnabled(false);
+				
+				for(Component component : list_hrm)
+					component.setEnabled(false);
+				
+				for(Component component : list_pos)
+					component.setEnabled(true);
+				
+				for(Component component : list_ured)
+					component.setEnabled(false);
+			}
+		});
+		
+		uredIzv_rdbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				for(Component component : list_ti)
+					component.setEnabled(false);
+				
+				for(Component component : list_hrm)
+					component.setEnabled(false);
+				
+				for(Component component : list_pos)
+					component.setEnabled(false);
+				
+				for(Component component : list_ured)
+					component.setEnabled(true);
+			}
+		});
 
 	}
 }

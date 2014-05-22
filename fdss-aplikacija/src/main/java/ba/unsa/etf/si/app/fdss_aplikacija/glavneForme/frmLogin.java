@@ -43,20 +43,20 @@ public class frmLogin extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		JLabel lblKorisnikoIme = new JLabel("Korisni\u010Dko ime:");
+		JLabel lblKorisnikoIme = new JLabel("Korisničko ime :");
 		lblKorisnikoIme.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnikoIme.setFont(new Font("Cambria", Font.PLAIN, 14));
-		lblKorisnikoIme.setBounds(34, 98, 105, 20);
+		lblKorisnikoIme.setBounds(35, 102, 105, 20);
 		getContentPane().add(lblKorisnikoIme);
 		
-		JLabel lblKorisnikaifra = new JLabel("Korisni\u010Dka \u0161ifra:");
+		JLabel lblKorisnikaifra = new JLabel("Lozinka :");
 		lblKorisnikaifra.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKorisnikaifra.setFont(new Font("Cambria", Font.PLAIN, 14));
-		lblKorisnikaifra.setBounds(34, 130, 105, 14);
+		lblKorisnikaifra.setBounds(35, 136, 105, 14);
 		getContentPane().add(lblKorisnikaifra);
 		
 		userName_tb = new JTextField();
-		userName_tb.setBounds(149, 99, 219, 20);
+		userName_tb.setBounds(150, 102, 228, 20);
 		getContentPane().add(userName_tb);
 		userName_tb.setColumns(10);
 		
@@ -98,13 +98,13 @@ public class frmLogin extends JFrame {
 		});
 		
 		PrijaviSe_btn.setFont(new Font("Cambria", Font.PLAIN, 14));
-		PrijaviSe_btn.setBounds(263, 159, 105, 33);
+		PrijaviSe_btn.setBounds(273, 164, 105, 30);
 		getContentPane().add(PrijaviSe_btn);
 		
 		
 		
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(83, 11, 252, 85);
+		lblNewLabel.setBounds(94, 11, 252, 85);
 		getContentPane().add(lblNewLabel);
 		
 		slika = new ImageIcon(getClass().getResource("/FDSS Logo.jpg"));
@@ -114,7 +114,7 @@ public class frmLogin extends JFrame {
 		lblNewLabel.setIcon(slika);
 		
 		password_tb = new JPasswordField();
-		password_tb.setBounds(149, 128, 219, 20);
+		password_tb.setBounds(150, 133, 228, 20);
 		contentPane.add(password_tb);
 	}
 }

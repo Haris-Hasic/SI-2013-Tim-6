@@ -129,8 +129,9 @@ public class frmAdministrator extends JFrame {
 		btnOdjaviSe.setIcon(new ImageIcon(temp));
 		
 		JLabel lblNewLabel = new JLabel("FDSS © – All rights reserved.");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(55, 180, 173, 14);
+		lblNewLabel.setBounds(10, 180, 244, 14);
 		panel.add(lblNewLabel);
 		getContentPane().setLayout(groupLayout);
 		

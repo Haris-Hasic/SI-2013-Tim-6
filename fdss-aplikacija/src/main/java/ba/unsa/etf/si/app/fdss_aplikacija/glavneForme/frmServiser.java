@@ -233,20 +233,27 @@ public class frmServiser extends JFrame {
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnPregled, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+						.addComponent(btnPregled, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(btnPregled)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnPretraga, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnPretraga)
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 				
-				JLabel label = new JLabel("FDSS �-copyright");
+				JLabel lblFdss = new JLabel("FDSS © – All rights reserved.");
+				lblFdss.setFont(new Font("Tahoma", Font.BOLD, 11));
+				lblFdss.setHorizontalAlignment(SwingConstants.CENTER);
 				
 			
 		
@@ -260,35 +267,37 @@ public class frmServiser extends JFrame {
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGap(12)
+									.addComponent(panel_2, 0, 0, Short.MAX_VALUE))
+								.addGroup(gl_panel_1.createSequentialGroup()
+									.addGap(12)
 									.addComponent(panel, 0, 0, Short.MAX_VALUE))
 								.addGroup(gl_panel_1.createSequentialGroup()
 									.addGap(12)
-									.addComponent(panel_2, 0, 0, Short.MAX_VALUE))
-								.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-									.addGap(12)
-									.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addGap(59)
-									.addComponent(label, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+									.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
 							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblFdss, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addContainerGap(29, Short.MAX_VALUE)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+							.addGap(26))
 				);
 				gl_panel_1.setVerticalGroup(
 					gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
 							.addComponent(btnNewButton)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label)
-							.addGap(10))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblFdss)
+							.addContainerGap())
 				);
 
 				
@@ -297,11 +306,15 @@ public class frmServiser extends JFrame {
 				GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 				gl_panel_5.setHorizontalGroup(
 					gl_panel_5.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnZadaci, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+						.addGroup(gl_panel_5.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnZadaci, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+							.addContainerGap())
 				);
 				gl_panel_5.setVerticalGroup(
 					gl_panel_5.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_5.createSequentialGroup()
+							.addContainerGap()
 							.addComponent(btnZadaci)
 							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				);
@@ -309,16 +322,21 @@ public class frmServiser extends JFrame {
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnPregledUreaja, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-				.addComponent(btnPretragaUreaja, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnPregledUreaja, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+						.addComponent(btnPretragaUreaja, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(btnPregledUreaja)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnPretragaUreaja)
-					.addGap(38))
+					.addGap(8))
 		);
 		panel_2.setLayout(gl_panel_2);
 		panel_1.setLayout(gl_panel_1);
