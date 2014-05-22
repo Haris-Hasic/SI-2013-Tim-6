@@ -37,7 +37,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 	private JTextField username_tb;
 	private JTextField password_tb;
 	private JTextField adresa_tb;
-	private JTextField grad_tb;
+	private JTextField mjesto_tb;
 	private JTextField telefon_tb;
 	private JTextField email_tb;
 	private JTextField jmbg_tb;
@@ -89,7 +89,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 		lblAdresa.setBounds(50, 182, 70, 14);
 		panel.add(lblAdresa);
 		
-		JLabel lblGrad = new JLabel("Grad :");
+		JLabel lblGrad = new JLabel("Mjesto :");
 		lblGrad.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGrad.setBounds(50, 213, 70, 14);
 		panel.add(lblGrad);
@@ -129,10 +129,10 @@ public class frmDodavanjeKorisnika extends JFrame {
 		panel.add(adresa_tb);
 		adresa_tb.setColumns(10);
 		
-		grad_tb = new JTextField();
-		grad_tb.setBounds(130, 210, 241, 20);
-		panel.add(grad_tb);
-		grad_tb.setColumns(10);
+		mjesto_tb = new JTextField();
+		mjesto_tb.setBounds(130, 210, 241, 20);
+		panel.add(mjesto_tb);
+		mjesto_tb.setColumns(10);
 		
 		telefon_tb = new JTextField();
 		telefon_tb.setBounds(130, 241, 241, 20);
@@ -237,7 +237,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 		u.setPrezime(prezime_tb.getText());
 		u.setJib(jmbg_tb.getText());
 		u.setAdresa(adresa_tb.getText());
-		u.setMjesto(grad_tb.getText());
+		u.setMjesto(mjesto_tb.getText());
 		u.setTelefon(telefon_tb.getText());
 		u.setEmail(email_tb.getText());
 		
@@ -251,7 +251,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 		prezime_tb.setText("");
 		jmbg_tb.setText("");
 		adresa_tb.setText("");
-		grad_tb.setText("");
+		mjesto_tb.setText("");
 		telefon_tb.setText("");
 		email_tb.setText("");
 		
