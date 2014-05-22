@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 
@@ -17,7 +18,7 @@ public class HibernateZahtjev {
 		
 	}
 	
-	public static void dodajZahtjev(Zahtjev z) {
+	public void dodajZahtjev(Zahtjev z) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -28,7 +29,7 @@ public class HibernateZahtjev {
 		session.close();
 	}
 	
-	public static void updateZahtjev(Zahtjev z) {
+	public void updateZahtjev(Zahtjev z) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -39,7 +40,7 @@ public class HibernateZahtjev {
 		session.close();
 	}
 	
-	public static Zahtjev dajZahtjev(long id) {
+	public Zahtjev dajZahtjev(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -61,7 +62,7 @@ public class HibernateZahtjev {
 	}
 	
 	
-public static boolean postojiZahtjev(int redniBroj) {
+public boolean postojiZahtjev(int redniBroj) {
 	
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	
@@ -83,7 +84,7 @@ public static boolean postojiZahtjev(int redniBroj) {
 	}
 }
 
-	public static List<Zahtjev> dajSveZahtjeve()
+	public List<Zahtjev> dajSveZahtjeve()
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Zahtjev> temp=new ArrayList<Zahtjev>();
@@ -98,7 +99,28 @@ public static boolean postojiZahtjev(int redniBroj) {
 		session.close();
 		return temp;
 	}
-	public static boolean postojiZahtjev(long id) {
+public  List<Zahtjev> dajSveNezavrseneZahtjeve() {
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		Transaction t = session.beginTransaction();
+		
+		Query query = session.createQuery("from Zahtjev where zavrsen = :tZavrsen");
+		query.setParameter("tZavrsen", false);
+		List<Zahtjev> temp=query.list();
+		
+		if(temp.size() == 0) {
+			
+			session.close();
+			return new ArrayList<Zahtjev>();
+		}
+
+		session.close();
+		return temp ;
+
+	}
+
+	public boolean postojiZahtjev(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -119,7 +141,7 @@ public static boolean postojiZahtjev(int redniBroj) {
 		}
 	}
 	
-	public static List<Zahtjev> vratiSveZahtjeve() {
+	public List<Zahtjev> vratiSveZahtjeve() {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -130,7 +152,7 @@ public static boolean postojiZahtjev(int redniBroj) {
 		return lista;
 	}
 
-	public static void brisiZahtjev(Zahtjev u) {
+	public void brisiZahtjev(Zahtjev u) {
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			

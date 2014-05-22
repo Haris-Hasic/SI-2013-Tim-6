@@ -65,26 +65,26 @@ public class frmLogin extends JFrame {
 			
 			public void actionPerformed(ActionEvent arg0) {
 
-				if ( userName_tb.getText().compareTo("administrator") == 0 ) {
+				if ( userName_tb.getText().compareTo("a") == 0 ) {
 					
 					frmAdministrator fa = new frmAdministrator();
 					fa.setVisible(true);
 					dispose();
 				}
 				
-				else if ( userName_tb.getText().compareTo("menadzer") == 0 ) {
+				else if ( userName_tb.getText().compareTo("m") == 0 ) {
 					frmManager fm=new frmManager();
 					fm.setVisible(true);
 					setVisible(false);
 			    }
 				
-				else if ( userName_tb.getText().compareTo("serviser") == 0 ) {
+				else if ( userName_tb.getText().compareTo("s") == 0 ) {
 					frmServiser fs=new frmServiser();
 					fs.setVisible(true);
 					setVisible(false);
 				}
 				
-				else if ( userName_tb.getText().compareTo("dispecer") == 0 ) {
+				else if ( userName_tb.getText().compareTo("d") == 0 ) {
 					
 					frmDispatcher fd=new frmDispatcher();
 					fd.setVisible(true);

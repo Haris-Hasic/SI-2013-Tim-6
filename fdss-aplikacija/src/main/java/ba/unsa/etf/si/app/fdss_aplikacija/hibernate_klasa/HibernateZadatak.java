@@ -21,7 +21,7 @@ public class HibernateZadatak {
 	}
 	
 	
-	public static void dodajZadatak(Zadatak z) {
+	public void dodajZadatak(Zadatak z) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -53,7 +53,7 @@ public class HibernateZadatak {
 
 	}
 	
-	public static void updateZadatak(Zadatak z) {
+	public void updateZadatak(Zadatak z) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -64,7 +64,7 @@ public class HibernateZadatak {
 		session.close();
 	}
 	
-	public static Zadatak dajZadatak(long id) {
+	public Zadatak dajZadatak(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -86,7 +86,7 @@ public class HibernateZadatak {
 	}
 	
 
-	public static List<Zadatak> dajSveZadatke()
+	public List<Zadatak> dajSveZadatke()
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Zadatak> temp=new ArrayList<Zadatak>();
@@ -101,7 +101,7 @@ public class HibernateZadatak {
 		session.close();
 		return temp;
 	}
-	public static boolean postojiZadatak(long id) {
+	public boolean postojiZadatak(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -122,7 +122,7 @@ public class HibernateZadatak {
 		}
 	}
 	
-	public static List<Zadatak> vratiSveZadatke() {
+	public List<Zadatak> vratiSveZadatke() {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -133,7 +133,7 @@ public class HibernateZadatak {
 		return lista;
 	}
 
-	public static void brisiZadatak(Zadatak u) {
+	public void brisiZadatak(Zadatak u) {
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			

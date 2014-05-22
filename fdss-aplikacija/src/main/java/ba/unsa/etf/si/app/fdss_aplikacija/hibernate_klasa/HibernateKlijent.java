@@ -53,7 +53,7 @@ public class HibernateKlijent{
 		
 		if(k == null) {
 			session.close();
-			return null;
+			return new Klijent();
 			
 		}
 		
@@ -75,7 +75,7 @@ public class HibernateKlijent{
 		
 		if(temp.size() == 0) {
 			session.close();
-			return null;
+			return new Klijent();
 		}
 		session.close();
 		Klijent k=(Klijent)temp.get(0);
@@ -112,9 +112,13 @@ public class HibernateKlijent{
 		temp=session.createCriteria(Klijent.class).list();
 		if(temp.size()==0) {
 			session.close();
-			return null;
+			return new ArrayList<Klijent>();
 		}
 			session.close();
+			for(Klijent k:temp)
+			{
+				k.setUredjaji(new HibernateUredjaj().dajSveUredjaje(k));
+			}
 		return temp;
 	}
 	

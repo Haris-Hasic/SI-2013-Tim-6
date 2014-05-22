@@ -1,11 +1,9 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.klase;
 
-
-public enum PrivilegijaUposlenika{
-	
-	ADMINISTRATOR("Administrator"), MENADZER("Menadzer"), SERVISER("Serviser"), DISPECER("Dispecer");
+public enum Hitnost {
+	NISKA("Niska"),SREDNJA("Srednja"),VELIKA("Velika");
 	private final String display;
-    private PrivilegijaUposlenika(String s) {
+    private Hitnost(String s) {
         display = s;
     }
     
@@ -14,5 +12,5 @@ public enum PrivilegijaUposlenika{
     {
     	return display;
     }
-    
+
 }

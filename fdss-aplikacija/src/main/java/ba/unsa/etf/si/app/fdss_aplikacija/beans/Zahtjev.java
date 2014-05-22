@@ -3,19 +3,65 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 import java.io.Serializable;
 import java.sql.Date;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
+
 public class Zahtjev implements Serializable {
 	
 	long id;
 	Uredjaj uredjaj;
 	Date zahtjevPodnesen;
-	
+	Date rok;
 	boolean zavrsen;
-	
+	int hitno;
 	public Zahtjev() {
 		uredjaj=new Uredjaj();
 	}
 	
 	
+	public Date getRok() {
+		return rok;
+	}
+
+
+	public void setRok(Date rok) {
+		this.rok = rok;
+	}
+
+
+	public int getHitno() {
+		return hitno;
+	}
+
+
+	public void setHitno(int hitno) {
+		this.hitno = hitno;
+	}
+
+	public Hitnost getHitnost() {
+		switch (hitno) {
+		case 0:
+			return Hitnost.NISKA;
+		case 1:
+			return Hitnost.SREDNJA;
+		default:
+			return Hitnost.VELIKA;
+		}
+	}
+
+
+	public void setHitnost(Hitnost hit) {
+		switch (hit) {
+		case NISKA:
+			hitno=0;
+			break;
+		case SREDNJA:
+			hitno=1;
+			break;
+		default:
+			hitno=2;
+			break;
+		}
+	}
 	public long getId() {
 		return id;
 	}

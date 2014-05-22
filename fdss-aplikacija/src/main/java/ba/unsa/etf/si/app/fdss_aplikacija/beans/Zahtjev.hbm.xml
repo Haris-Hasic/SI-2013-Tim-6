@@ -8,14 +8,20 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="uredjaj" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj" fetch="join">
+        <many-to-one lazy="false" name="uredjaj" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj" fetch="join">
             <column name="UREDJAJ" />
         </many-to-one>
         <property name="zahtjevPodnesen" type="java.sql.Date">
             <column name="ZAHTJEVPODNESEN" />
         </property>
+        <property name="rok" type="java.sql.Date">
+            <column name="ROK" />
+        </property>
         <property name="zavrsen" type="boolean">
             <column name="ZAVRSEN" />
+        </property>
+        <property name="hitno" type="int">
+            <column name="HITNO" />
         </property>
     </class>
 </hibernate-mapping>

@@ -164,5 +164,10 @@ public class Uposlenik implements Serializable{
 	           return false;
 	       return true;
 	   }
+	@Override
+	public String toString()
+	{
+		return ime+" "+prezime;
+	}
 
 }

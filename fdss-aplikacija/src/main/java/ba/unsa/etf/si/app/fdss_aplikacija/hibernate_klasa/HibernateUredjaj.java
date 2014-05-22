@@ -19,7 +19,7 @@ public class HibernateUredjaj {
 		
 	}
 	
-	public static void dodajUredjaj(Uredjaj u) {
+	public void dodajUredjaj(Uredjaj u) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -30,7 +30,7 @@ public class HibernateUredjaj {
 		session.close();
 	}
 	
-	public static void updateUredjaj(Uredjaj u) {
+	public void updateUredjaj(Uredjaj u) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -42,7 +42,7 @@ public class HibernateUredjaj {
 	}
 	
 	
-	public static Uredjaj dajUredjaj(long id) {
+	public Uredjaj dajUredjaj(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -53,7 +53,7 @@ public class HibernateUredjaj {
 		if(u == null) {
 			
 			session.close();
-			return null;
+			return new Uredjaj();
 		}
 		
 		else {
@@ -63,7 +63,7 @@ public class HibernateUredjaj {
 		}
 	}
 	
-public static Uredjaj dajUredjaj(String ibfu) {
+public Uredjaj dajUredjaj(String ibfu) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -76,7 +76,7 @@ public static Uredjaj dajUredjaj(String ibfu) {
 		if(temp.size() == 0) {
 			
 			session.close();
-			return null;
+			return new Uredjaj();
 		}
 
 		session.close();
@@ -97,7 +97,7 @@ public static Uredjaj dajUredjaj(String ibfu) {
 	if(temp.size() == 0) {
 		
 		session.close();
-		return null;
+		return new ArrayList<Uredjaj>();
 	}
 
 	session.close();
@@ -105,7 +105,7 @@ public static Uredjaj dajUredjaj(String ibfu) {
 
 }
 	
-public static boolean postojiUredjaj(String ibfu) {
+public boolean postojiUredjaj(String ibfu) {
 	
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	
@@ -127,7 +127,7 @@ public static boolean postojiUredjaj(String ibfu) {
 	}
 }
 
-	public static List<Uredjaj> dajSveUredjaje()
+	public List<Uredjaj> dajSveUredjaje()
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Uredjaj> temp=new ArrayList<Uredjaj>();
@@ -137,12 +137,12 @@ public static boolean postojiUredjaj(String ibfu) {
 		if(temp.size()==0) {
 			
 			session.close();
-			return null;
+			return new ArrayList<Uredjaj>();
 		}
 		session.close();
 		return temp;
 	}
-	public static boolean postojiUredjaj(long id) {
+	public boolean postojiUredjaj(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -163,18 +163,21 @@ public static boolean postojiUredjaj(String ibfu) {
 		}
 	}
 	
-	public static List<Uredjaj> vratiSveUredjaje() {
+	public List<Uredjaj> vratiSveUredjaje() {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		Transaction t = session.beginTransaction();
 		List<Uredjaj> lista= session.createCriteria(Uredjaj.class).list();
-		
+		if(lista==null)
+		{
+			return new ArrayList<Uredjaj>();
+		}
 		session.close();
 		return lista;
 	}
 
-	public static void brisiUredjaj(Uredjaj u) {
+	public void brisiUredjaj(Uredjaj u) {
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			

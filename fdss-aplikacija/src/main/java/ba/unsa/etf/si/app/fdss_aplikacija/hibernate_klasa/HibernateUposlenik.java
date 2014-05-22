@@ -17,7 +17,7 @@ public class HibernateUposlenik {
 		
 	}
 	
-	public static void dodajUposlenika(Uposlenik u) {
+	public void dodajUposlenika(Uposlenik u) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -28,7 +28,7 @@ public class HibernateUposlenik {
 		session.close();
 	}
 	
-	public static void updateUposlenika(Uposlenik u) {
+	public void updateUposlenika(Uposlenik u) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -39,7 +39,7 @@ public class HibernateUposlenik {
 		session.close();
 	}
 	
-	public static Uposlenik dajUposlenika(long id) {
+	public Uposlenik dajUposlenika(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -60,7 +60,7 @@ public class HibernateUposlenik {
 		}
 	}
 	
-public static Uposlenik dajUposlenika(String userName) {
+public Uposlenik dajUposlenika(String userName) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -81,7 +81,7 @@ public static Uposlenik dajUposlenika(String userName) {
 	
 	}
 	
-public static boolean postojiUposlenik(String userName) {
+public boolean postojiUposlenik(String userName) {
 	
 	Session session = HibernateUtil.getSessionFactory().openSession();
 	
@@ -103,7 +103,7 @@ public static boolean postojiUposlenik(String userName) {
 	}
 }
 
-	public static List<Uposlenik> dajSveUposlenike()
+	public List<Uposlenik> dajSveUposlenike()
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Uposlenik> temp=new ArrayList<Uposlenik>();
@@ -118,7 +118,7 @@ public static boolean postojiUposlenik(String userName) {
 		session.close();
 		return temp;
 	}
-	public static boolean postojiUposlenik(long id) {
+	public boolean postojiUposlenik(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -139,7 +139,7 @@ public static boolean postojiUposlenik(String userName) {
 		}
 	}
 	
-	public static List<Uposlenik> vratiSveUposlenike() {
+	public List<Uposlenik> vratiSveUposlenike() {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
@@ -150,7 +150,7 @@ public static boolean postojiUposlenik(String userName) {
 		return lista;
 	}
 
-	public static void brisiUposlenika(Uposlenik u) {
+	public void brisiUposlenika(Uposlenik u) {
 			
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			

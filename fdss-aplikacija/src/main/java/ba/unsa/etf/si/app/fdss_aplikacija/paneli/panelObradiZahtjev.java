@@ -11,35 +11,59 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 
+import antlr.Parser;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Servis;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmKreirajZadatak;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 public class panelObradiZahtjev extends JPanel {
 	 private JTable tabela=new JTable();
-	 private DefaultTableModel model=new DefaultTableModel();//model se koristi za unos podataka u tabelu(model.add ili nesto slicno)
-	 
-	 
+	 private DefaultTableModel model;//model se koristi za unos podataka u tabelu(model.add ili nesto slicno)
+	 	 
 	/**
 	 * Create the panel.
 	 */
 	public panelObradiZahtjev() {
+		initialize();
+		popuniPodatke();
+	}
+	public void popuniPodatke()
+	{
+		
+		for(Zahtjev z:new Servis().get_zahthevi())
+		{	
+			int count=0;
+
+			model.addRow(new Object[]{ String.valueOf(count++),String.valueOf(z.getId()),z.getUredjaj().getKlijent(),z.getUredjaj().getIbfu(),z.getUredjaj().getTipUredaja()
+					,z.getHitnost(),z.getRok(),z.getUredjaj().getKlijent().getTelefon()});
+		}
+	}
+	private void initialize()
+	{
 		setBorder(BorderFactory.createTitledBorder("Pregled zahtjeva"));
-		tabela.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Br.", "Naziv firme", "IBFU", "Tip ure\u0111aja", "Hitnost", "Rok", "Telefon"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class, String.class, String.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		model=new DefaultTableModel(
+				new Object[][] {},
+					new String[] {
+						"Br.", "Zahtjev", "Naziv firme", "IBFU", "Tip ure\u0111aja", "Hitnost", "Rok", "Telefon"
+					}
+				) {
+					Class[] columnTypes = new Class[] {
+						String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
+					};
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+					boolean[] columnEditables = new boolean[] {
+						false, false, false, false, false, false, false, false
+					};
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				};
+		tabela.setModel(model);
+			
 		tabela.getColumnModel().getColumn(0).setPreferredWidth(33);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -49,7 +73,7 @@ public class panelObradiZahtjev extends JPanel {
 		JButton btnNewButton = new JButton("Kreiraj zadatak");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmKreirajZadatak fk=new frmKreirajZadatak();
+				frmKreirajZadatak fk=new frmKreirajZadatak(tabela);
 				fk.setVisible(true);
 			}
 		});

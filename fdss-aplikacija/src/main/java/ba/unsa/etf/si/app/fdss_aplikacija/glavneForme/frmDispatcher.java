@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Servis;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiKlijenta;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDodajKlijenta;
@@ -39,6 +40,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledKlijenata;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledZahtjeva;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -46,9 +48,9 @@ import java.awt.event.MouseEvent;
 public class frmDispatcher extends JFrame {
 	private JPanel contentPane;
 	private JPanel centralniPanel;
-
+	private Servis _servis;
 	public frmDispatcher() {
-		
+		_servis=new Servis();
 		setTitle("Prijavljen kao: Ime Prezime");
 		setBounds(100, 100, 743, 556);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,7 +73,7 @@ public class frmDispatcher extends JFrame {
 		btnIzvjetaji.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelKreirajZahtjev();
+				centralniPanel = new panelKreirajZahtjev(_servis.get_klijenti());
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
@@ -84,7 +86,7 @@ public class frmDispatcher extends JFrame {
 		btnZadaci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelPregledZahtjeva();
+				centralniPanel = new panelPregledZahtjeva(_servis.get_zahthevi());
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();
