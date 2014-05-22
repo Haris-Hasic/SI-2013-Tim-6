@@ -3,7 +3,9 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 import java.io.Serializable;
 import java.util.List;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 public class Uposlenik implements Serializable{
 	
@@ -22,6 +24,19 @@ public class Uposlenik implements Serializable{
 	
 	public Uposlenik() {
 		
+	}
+	
+	public Uposlenik(long i, String im, String pr, String j, String a, String m, String t, String e, int tp) throws GeneralniException {
+		
+			setId(i);
+			setIme(im);
+			setPrezime(pr);
+			setJib(j);
+			setAdresa(a);
+			setMjesto(m);
+			setTelefon(t);
+			setEmail(e);
+			setTip(tp);	
 	}
 
 	public long getId() {
@@ -49,11 +64,17 @@ public class Uposlenik implements Serializable{
 	}
 
 	public String getJib() {
+		
 		return jib;
 	}
 
-	public void setJib(String jib) {
-		this.jib = jib;
+	public void setJib(String jib) throws GeneralniException {
+		
+		if(Validacija.validirajJMBG(jib))
+			this.jib = jib;
+		
+		else
+			throw new GeneralniException("Nepravilan format JMBG !");
 	}
 
 	public String getAdresa() {

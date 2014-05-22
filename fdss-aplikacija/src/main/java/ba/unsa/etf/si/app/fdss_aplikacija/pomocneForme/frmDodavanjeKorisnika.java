@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -18,7 +19,9 @@ import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.glavneForme.frmAdministrator;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 
@@ -37,6 +40,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 	private JTextField grad_tb;
 	private JTextField telefon_tb;
 	private JTextField email_tb;
+	private JTextField jmbg_tb;
 
 	/**
 	 * Launch the application.
@@ -49,148 +53,209 @@ public class frmDodavanjeKorisnika extends JFrame {
 		setResizable(false);
 		setTitle("Dodaj korisnika");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 442, 438);
+		setBounds(100, 100, 442, 448);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(3, 11, 431, 270);
+		panel.setBounds(10, 11, 416, 310);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("Ime:");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(33, 28, 70, 14);
-		panel.add(label);
+		JLabel lblIme = new JLabel("Ime :");
+		lblIme.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblIme.setBounds(50, 28, 70, 14);
+		panel.add(lblIme);
 		
-		JLabel label_1 = new JLabel("Prezime:");
-		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setBounds(33, 59, 70, 14);
-		panel.add(label_1);
+		JLabel lblPrezime = new JLabel("Prezime :");
+		lblPrezime.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPrezime.setBounds(50, 59, 70, 14);
+		panel.add(lblPrezime);
 		
-		JLabel label_2 = new JLabel("Korisni\u010Dko ime:");
-		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setBounds(10, 90, 93, 14);
-		panel.add(label_2);
+		JLabel lblKorisnikoIme = new JLabel("Korisničko ime :");
+		lblKorisnikoIme.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKorisnikoIme.setBounds(27, 123, 93, 14);
+		panel.add(lblKorisnikoIme);
 		
-		JLabel label_3 = new JLabel("\u0160ifra:");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setBounds(33, 121, 70, 14);
-		panel.add(label_3);
+		JLabel lblLozinka = new JLabel("Lozinka :");
+		lblLozinka.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblLozinka.setBounds(50, 154, 70, 14);
+		panel.add(lblLozinka);
 		
-		JLabel label_4 = new JLabel("Adresa:");
-		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setBounds(33, 149, 70, 14);
-		panel.add(label_4);
+		JLabel lblAdresa = new JLabel("Adresa :");
+		lblAdresa.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAdresa.setBounds(50, 182, 70, 14);
+		panel.add(lblAdresa);
 		
-		JLabel label_5 = new JLabel("Grad:");
-		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_5.setBounds(33, 180, 70, 14);
-		panel.add(label_5);
+		JLabel lblGrad = new JLabel("Grad :");
+		lblGrad.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblGrad.setBounds(50, 213, 70, 14);
+		panel.add(lblGrad);
 		
-		JLabel label_6 = new JLabel("Telefon:");
-		label_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_6.setBounds(33, 211, 70, 14);
-		panel.add(label_6);
+		JLabel lblTelefon = new JLabel("Telefon :");
+		lblTelefon.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTelefon.setBounds(50, 244, 70, 14);
+		panel.add(lblTelefon);
 		
-		JLabel label_7 = new JLabel("Email:");
-		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_7.setBounds(33, 242, 70, 14);
-		panel.add(label_7);
+		JLabel lblEmail = new JLabel("Email :");
+		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEmail.setBounds(50, 275, 70, 14);
+		panel.add(lblEmail);
 		
 		ime_tb = new JTextField();
-		ime_tb.setBounds(113, 25, 241, 20);
+		ime_tb.setBounds(130, 25, 241, 20);
 		panel.add(ime_tb);
 		ime_tb.setColumns(10);
 		
 		prezime_tb = new JTextField();
-		prezime_tb.setBounds(113, 56, 241, 20);
+		prezime_tb.setBounds(130, 56, 241, 20);
 		panel.add(prezime_tb);
 		prezime_tb.setColumns(10);
 		
 		username_tb = new JTextField();
-		username_tb.setBounds(113, 87, 241, 20);
+		username_tb.setBounds(130, 120, 241, 20);
 		panel.add(username_tb);
 		username_tb.setColumns(10);
 		
 		password_tb = new JTextField();
-		password_tb.setBounds(113, 118, 241, 20);
+		password_tb.setBounds(130, 151, 241, 20);
 		panel.add(password_tb);
 		password_tb.setColumns(10);
 		
 		adresa_tb = new JTextField();
-		adresa_tb.setBounds(113, 146, 241, 20);
+		adresa_tb.setBounds(130, 179, 241, 20);
 		panel.add(adresa_tb);
 		adresa_tb.setColumns(10);
 		
 		grad_tb = new JTextField();
-		grad_tb.setBounds(113, 177, 137, 20);
+		grad_tb.setBounds(130, 210, 241, 20);
 		panel.add(grad_tb);
 		grad_tb.setColumns(10);
 		
 		telefon_tb = new JTextField();
-		telefon_tb.setBounds(113, 208, 137, 20);
+		telefon_tb.setBounds(130, 241, 241, 20);
 		panel.add(telefon_tb);
 		telefon_tb.setColumns(10);
 		
 		email_tb = new JTextField();
-		email_tb.setBounds(113, 239, 137, 20);
+		email_tb.setBounds(130, 272, 241, 20);
 		panel.add(email_tb);
 		email_tb.setColumns(10);
 		
 		panel.setBorder(BorderFactory.createTitledBorder("Novi korisnik"));
 		
+		jmbg_tb = new JTextField();
+		jmbg_tb.setBounds(130, 87, 241, 20);
+		panel.add(jmbg_tb);
+		jmbg_tb.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("JMBG :");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(74, 90, 46, 14);
+		panel.add(lblNewLabel);
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(2, 283, 429, 83);
+		panel_1.setBounds(10, 324, 416, 49);
 		panel_1.setBorder(BorderFactory.createTitledBorder("Privilegija"));
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JRadioButton rdbtnAdministrator = new JRadioButton("Administrator");
-		rdbtnAdministrator.setSelected(true);
-		rdbtnAdministrator.setBounds(41, 23, 109, 23);
-		panel_1.add(rdbtnAdministrator);
+		JRadioButton administrator_rdbtn = new JRadioButton("Administrator");
+		administrator_rdbtn.setSelected(true);
+		administrator_rdbtn.setBounds(118, 18, 109, 23);
+		panel_1.add(administrator_rdbtn);
 		
-		JRadioButton rdbtnMenader = new JRadioButton("Menad\u017Eer");
-		rdbtnMenader.setBounds(41, 49, 109, 23);
-		panel_1.add(rdbtnMenader);
+		JRadioButton menadzer_rdbtn = new JRadioButton("Menad\u017Eer");
+		menadzer_rdbtn.setBounds(24, 18, 92, 23);
+		panel_1.add(menadzer_rdbtn);
 		
-		JRadioButton rdbtnServiser = new JRadioButton("Serviser");
-		rdbtnServiser.setBounds(192, 23, 109, 23);
-		panel_1.add(rdbtnServiser);
+		JRadioButton serviser_rdbtn = new JRadioButton("Serviser");
+		serviser_rdbtn.setBounds(323, 18, 77, 23);
+		panel_1.add(serviser_rdbtn);
 		
-		JRadioButton rdbtnDispacher = new JRadioButton("Dispacher");
-		rdbtnDispacher.setBounds(192, 49, 109, 23);
-		panel_1.add(rdbtnDispacher);
+		JRadioButton dispecer_rdbtn = new JRadioButton("Dispečer");
+		dispecer_rdbtn.setBounds(229, 18, 92, 23);
+		panel_1.add(dispecer_rdbtn);
+		
+	    ButtonGroup grupa = new ButtonGroup();
+	    grupa.add(administrator_rdbtn);
+	    grupa.add(menadzer_rdbtn);
+	    grupa.add(dispecer_rdbtn);
+	    grupa.add(serviser_rdbtn);
 		
 		JButton btnDodajKorisnika = new JButton("Dodaj korisnika");
 		btnDodajKorisnika.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				Uposlenik u = new Uposlenik();
-				u.setId(1);
-				u.setIme(ime_tb.getText());
-				u.setPrezime(prezime_tb.getText());
-				u.setJib("1504992173043"); // fali kontrola za dodavanje JIB broja
-				u.setAdresa(adresa_tb.getText());
-				u.setMjesto(grad_tb.getText());
-				u.setTelefon(telefon_tb.getText());
-				u.setEmail(email_tb.getText());
+				try {
+					
+					Uposlenik u = new Uposlenik();
+					
+					pokupiPodatke(u); // Ovdje baca exception ako podaci nisu ispravni 
+					
+					ocistiPoljaZaUnos();
+					JOptionPane.showMessageDialog(null, "Korisnik uspješno unesen !");
+					
+					//HibernateUposlenik h = new HibernateUposlenik();
+					//h.dodajUposlenika(u);
+					
+					//List<Uposlenik> l = h.vratiSveUposlenike();
+				}
 				
-				u.setUserName(username_tb.getText());
-				u.setPassword(password_tb.getText());
-				
-				HibernateUposlenik h = new HibernateUposlenik();
-				h.dodajUposlenika(u);
-				
-				List<Uposlenik> l = h.vratiSveUposlenike();
+				catch (GeneralniException g) {
+					// TODO Auto-generated catch block
+					
+					JOptionPane.showMessageDialog(null, g.getMessage());
+				}
 			}
 		});
 		
-		btnDodajKorisnika.setBounds(300, 377, 124, 23);
+		btnDodajKorisnika.setBounds(301, 380, 124, 31);
 		contentPane.add(btnDodajKorisnika);
+		
+		JButton btnNazad = new JButton("Nazad");
+		btnNazad.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				frmAdministrator fa = new frmAdministrator();
+				fa.setVisible(true);
+				dispose();
+			}
+		});
+		btnNazad.setBounds(167, 380, 124, 31);
+		contentPane.add(btnNazad);
+	}
+	
+	private void pokupiPodatke(Uposlenik u) throws GeneralniException {
+		
+		u.setId(1);
+		u.setIme(ime_tb.getText());
+		u.setPrezime(prezime_tb.getText());
+		u.setJib(jmbg_tb.getText());
+		u.setAdresa(adresa_tb.getText());
+		u.setMjesto(grad_tb.getText());
+		u.setTelefon(telefon_tb.getText());
+		u.setEmail(email_tb.getText());
+		
+		u.setUserName(username_tb.getText());
+		u.setPassword(password_tb.getText());
+	}
+	
+	private void ocistiPoljaZaUnos() {
+		
+		ime_tb.setText("");
+		prezime_tb.setText("");
+		jmbg_tb.setText("");
+		adresa_tb.setText("");
+		grad_tb.setText("");
+		telefon_tb.setText("");
+		email_tb.setText("");
+		
+		username_tb.setText("");
+		password_tb.setText("");
 	}
 }
