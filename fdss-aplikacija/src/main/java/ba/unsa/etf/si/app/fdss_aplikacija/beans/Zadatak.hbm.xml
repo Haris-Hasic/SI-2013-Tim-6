@@ -8,10 +8,10 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="zahtjev" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev" fetch="join">
+        <many-to-one name="zahtjev" lazy="false" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev" fetch="join">
             <column name="ZAHTJEV" />
         </many-to-one>
-        <many-to-one name="serviser" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik" fetch="join">
+        <many-to-one name="serviser" lazy="false" class="ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik" fetch="join">
             <column name="SERVISER" />
         </many-to-one>
         <property name="hitnost" type="java.lang.String">

@@ -28,9 +28,9 @@ public class frmPregledKorisnika extends JFrame {
 	private JTextField pretraga_tb;
 	private DefaultListModel model=new DefaultListModel();
 	private HibernateUposlenik h = new HibernateUposlenik();
-	
-	public frmPregledKorisnika() {
-		
+	Uposlenik uposlenik;
+	public frmPregledKorisnika(Uposlenik u) {
+		uposlenik=u;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		
@@ -49,7 +49,7 @@ public class frmPregledKorisnika extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				frmAdministrator fa = new frmAdministrator();
+				frmAdministrator fa = new frmAdministrator(uposlenik);
 				fa.setVisible(true);
 				
 				dispose();

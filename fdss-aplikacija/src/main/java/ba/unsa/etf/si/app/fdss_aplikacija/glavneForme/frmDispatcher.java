@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Servis;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiKlijenta;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiUredjaja;
@@ -49,7 +50,9 @@ public class frmDispatcher extends JFrame {
 	private JPanel contentPane;
 	private JPanel centralniPanel;
 	private Servis _servis;
-	public frmDispatcher() {
+	Uposlenik uposlenik;
+	public frmDispatcher(Uposlenik uposlenik) {
+		this.uposlenik=uposlenik;
 		_servis=new Servis();
 		setTitle("Prijavljen kao: Ime Prezime");
 		setBounds(100, 100, 743, 556);

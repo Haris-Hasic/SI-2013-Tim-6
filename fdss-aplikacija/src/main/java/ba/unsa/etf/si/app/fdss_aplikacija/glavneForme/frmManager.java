@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JLabel;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiKlijenta;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDodajKlijenta;
@@ -40,6 +41,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledKlijenata;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledZadatakaMenadzer;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -47,8 +49,9 @@ import java.awt.event.MouseEvent;
 public class frmManager extends JFrame {
 	private JPanel contentPane;
 	private JPanel centralniPanel;
-
-	public frmManager() {
+	Uposlenik uposlenik;
+	public frmManager(Uposlenik uposlenik) {
+		this.uposlenik=uposlenik;
 		
 		setTitle("Prijavljen kao: Ime Prezime");
 		setBounds(100, 100, 849, 597);

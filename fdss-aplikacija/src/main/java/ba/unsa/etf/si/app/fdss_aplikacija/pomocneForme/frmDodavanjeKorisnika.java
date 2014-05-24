@@ -23,6 +23,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.glavneForme.frmAdministrator;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 
@@ -42,7 +43,11 @@ public class frmDodavanjeKorisnika extends JFrame {
 	private JTextField telefon_tb;
 	private JTextField email_tb;
 	private JTextField jmbg_tb;
-
+	JRadioButton administrator_rdbtn;
+	JRadioButton dispecer_rdbtn;
+	JRadioButton serviser_rdbtn;
+	JRadioButton menadzer_rdbtn;
+	Uposlenik uposlenik;
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +55,8 @@ public class frmDodavanjeKorisnika extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmDodavanjeKorisnika() {
+	public frmDodavanjeKorisnika(Uposlenik u) {
+		uposlenik=u;
 		setResizable(false);
 		setTitle("Dodaj korisnika");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -163,20 +169,20 @@ public class frmDodavanjeKorisnika extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JRadioButton administrator_rdbtn = new JRadioButton("Administrator");
+		administrator_rdbtn = new JRadioButton("Administrator");
 		administrator_rdbtn.setSelected(true);
 		administrator_rdbtn.setBounds(118, 18, 109, 23);
 		panel_1.add(administrator_rdbtn);
 		
-		JRadioButton menadzer_rdbtn = new JRadioButton("Menad\u017Eer");
+		menadzer_rdbtn = new JRadioButton("Menad\u017Eer");
 		menadzer_rdbtn.setBounds(24, 18, 92, 23);
 		panel_1.add(menadzer_rdbtn);
 		
-		JRadioButton serviser_rdbtn = new JRadioButton("Serviser");
+		serviser_rdbtn = new JRadioButton("Serviser");
 		serviser_rdbtn.setBounds(323, 18, 77, 23);
 		panel_1.add(serviser_rdbtn);
 		
-		JRadioButton dispecer_rdbtn = new JRadioButton("Dispečer");
+		dispecer_rdbtn = new JRadioButton("Dispečer");
 		dispecer_rdbtn.setBounds(229, 18, 92, 23);
 		panel_1.add(dispecer_rdbtn);
 		
@@ -222,7 +228,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				frmAdministrator fa = new frmAdministrator();
+				frmAdministrator fa = new frmAdministrator(uposlenik);
 				fa.setVisible(true);
 				dispose();
 			}
@@ -244,6 +250,19 @@ public class frmDodavanjeKorisnika extends JFrame {
 		u.setUserName(username_tb.getText());
 		u.setPassword(password_tb.getText());
 		
+		if(menadzer_rdbtn.isSelected())
+		{
+			u.SetPrivilegija(PrivilegijaUposlenika.MENADZER);
+		}else if(administrator_rdbtn.isSelected())
+		{
+			u.SetPrivilegija(PrivilegijaUposlenika.ADMINISTRATOR);
+		}else if(serviser_rdbtn.isSelected())
+		{
+			u.SetPrivilegija(PrivilegijaUposlenika.SERVISER);
+		}else
+		{
+			u.SetPrivilegija(PrivilegijaUposlenika.DISPECER);
+		}
 	}
 	
 	private void ocistiPoljaZaUnos() {

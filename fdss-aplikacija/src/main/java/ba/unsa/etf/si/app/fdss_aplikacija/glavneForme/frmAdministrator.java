@@ -23,18 +23,21 @@ import java.awt.Color;
 
 import javax.swing.JMenu;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmDodavanjeKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPregledKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JLabel;
 
 
 public class frmAdministrator extends JFrame {
-	public frmAdministrator() {
-		
+	Uposlenik uposlenik;
+	public frmAdministrator(Uposlenik u) {
+		uposlenik=u;
 		setResizable(false);
 		setTitle("Administrator");
 		setBounds(100, 100, 270, 254);
@@ -56,7 +59,7 @@ public class frmAdministrator extends JFrame {
 		btnDodajUposlenika.setHorizontalAlignment(SwingConstants.LEFT);
 		btnDodajUposlenika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmDodavanjeKorisnika frmKor = new frmDodavanjeKorisnika();
+				frmDodavanjeKorisnika frmKor = new frmDodavanjeKorisnika(uposlenik);
 				frmKor.setVisible(true);
 				dispose();
 			}
@@ -69,7 +72,7 @@ public class frmAdministrator extends JFrame {
 		btnPregledUposlenika.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				frmPregledKorisnika uposlenici = new frmPregledKorisnika();
+				frmPregledKorisnika uposlenici = new frmPregledKorisnika(uposlenik);
 				uposlenici.setVisible(true);
 				dispose();
 			}

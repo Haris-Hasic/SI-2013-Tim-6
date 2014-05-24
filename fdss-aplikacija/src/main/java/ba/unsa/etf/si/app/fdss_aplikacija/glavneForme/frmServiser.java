@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JCheckBoxMenuItem;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiKlijenta;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDetaljiUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelDodajKlijenta;
@@ -38,6 +39,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledKlijenata;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledZadatakaServiser;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -45,8 +47,9 @@ import java.awt.event.MouseEvent;
 public class frmServiser extends JFrame {
 	private JPanel contentPane;
 	private JPanel centralniPanel;
-	
-	public frmServiser() {
+	final Uposlenik uposlenik;
+	public frmServiser(final Uposlenik uposlenik) {
+		this.uposlenik=uposlenik;
 		
 		setTitle("Prijavljen kao: Ime Prezime");
 		setBounds(100, 100, 743, 550);
@@ -137,7 +140,7 @@ public class frmServiser extends JFrame {
 		btnZadaci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelPregledZadatakaServiser();
+				centralniPanel = new panelPregledZadatakaServiser(uposlenik);
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();

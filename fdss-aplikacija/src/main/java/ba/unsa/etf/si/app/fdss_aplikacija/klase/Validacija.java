@@ -3,6 +3,8 @@ package ba.unsa.etf.si.app.fdss_aplikacija.klase;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Validacija {
 	
 	public static boolean validirajJMBG(String jmbg) {
@@ -56,5 +58,10 @@ public class Validacija {
 			return false;
 		
 		return true;
+	}
+	
+	public void poruka(String poruka)
+	{
+		JOptionPane.showMessageDialog(null, poruka);
 	}
 }
