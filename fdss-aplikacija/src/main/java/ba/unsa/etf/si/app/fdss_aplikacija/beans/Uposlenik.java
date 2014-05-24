@@ -26,7 +26,7 @@ public class Uposlenik implements Serializable{
 		
 	}
 	
-	public Uposlenik(long i, String im, String pr, String j, String a, String m, String t, String e, int tp) throws GeneralniException {
+	public Uposlenik(long i, String im, String pr, String j, String a, String m, String t, String e, int tp, String un, String p) throws GeneralniException {
 		
 			setId(i);
 			setIme(im);
@@ -36,7 +36,9 @@ public class Uposlenik implements Serializable{
 			setMjesto(m);
 			setTelefon(t);
 			setEmail(e);
-			setTip(tp);	
+			setTip(tp);
+			setUserName(un);
+			setPassword(p);
 	}
 
 	public long getId() {
