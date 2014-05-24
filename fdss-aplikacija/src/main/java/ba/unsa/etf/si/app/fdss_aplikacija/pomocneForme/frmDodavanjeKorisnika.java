@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -119,7 +120,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 		panel.add(username_tb);
 		username_tb.setColumns(10);
 		
-		password_tb = new JTextField();
+		password_tb = new JPasswordField();
 		password_tb.setBounds(130, 151, 241, 20);
 		panel.add(password_tb);
 		password_tb.setColumns(10);
@@ -199,8 +200,8 @@ public class frmDodavanjeKorisnika extends JFrame {
 					ocistiPoljaZaUnos();
 					JOptionPane.showMessageDialog(null, "Korisnik uspješno unesen !");
 					
-					//HibernateUposlenik h = new HibernateUposlenik();
-					//h.dodajUposlenika(u);
+					HibernateUposlenik h = new HibernateUposlenik();
+					h.dodajUposlenika(u);
 					
 					//List<Uposlenik> l = h.vratiSveUposlenike();
 				}
@@ -232,7 +233,6 @@ public class frmDodavanjeKorisnika extends JFrame {
 	
 	private void pokupiPodatke(Uposlenik u) throws GeneralniException {
 		
-		u.setId(1);
 		u.setIme(ime_tb.getText());
 		u.setPrezime(prezime_tb.getText());
 		u.setJib(jmbg_tb.getText());

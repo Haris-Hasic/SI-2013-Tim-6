@@ -1,6 +1,7 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme;
 import java.awt.Image;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,12 +10,20 @@ import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 
 
 public class frmPregledKorisnika extends JFrame {
 	private JTextField textField;
+	private DefaultListModel model=new DefaultListModel();
 	
 	public frmPregledKorisnika() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -33,7 +42,7 @@ public class frmPregledKorisnika extends JFrame {
 		btnHome.setBounds(10, 11, 52, 45);
 		panel.add(btnHome);
 		
-		ImageIcon slika = new ImageIcon(getClass().getResource("..\\home.png"));
+		ImageIcon slika = new ImageIcon(getClass().getResource("/home.png"));
 		Image sl=slika.getImage();
 		Image temp=sl.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 		slika=new ImageIcon(temp);
@@ -51,7 +60,7 @@ public class frmPregledKorisnika extends JFrame {
 		JButton btnTrazi = new JButton("Tra\u017Ei");
 		btnTrazi.setBounds(257, 20, 100, 29);
 		panel.add(btnTrazi);
-		slika=new ImageIcon(getClass().getResource("..\\search.png"));
+		slika=new ImageIcon(getClass().getResource("/search.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnTrazi.setIcon(new ImageIcon(temp));
@@ -61,15 +70,7 @@ public class frmPregledKorisnika extends JFrame {
 		panel.add(separator_1);
 		
 		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Korisnik Ime Prezime 1", "Korisnik Ime Prezime 2", "Korisnik Ime Prezime 3"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		list.setModel(model);
 		list.setBounds(10, 72, 347, 60);
 		panel.add(list);
 		
@@ -82,17 +83,37 @@ public class frmPregledKorisnika extends JFrame {
 		});
 		btnUredi.setBounds(147, 143, 100, 28);
 		panel.add(btnUredi);
-		slika=new ImageIcon(getClass().getResource("..\\edit.png"));
+		slika=new ImageIcon(getClass().getResource("/edit.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnUredi.setIcon(new ImageIcon(temp));
 		
 		JButton btnIzbrisi = new JButton("Izbri\u0161i");
+		btnIzbrisi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				
+			}
+		});
 		btnIzbrisi.setBounds(257, 143, 100, 28);
 		panel.add(btnIzbrisi);
-		slika=new ImageIcon(getClass().getResource("..\\delete.png"));
+		slika=new ImageIcon(getClass().getResource("/delete.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnIzbrisi.setIcon(new ImageIcon(temp));
+		
+		ispisiListu();
+	}
+	
+	public void ispisiListu()
+	{
+		HibernateUposlenik h = new HibernateUposlenik();
+		List<Uposlenik> l = h.vratiSveUposlenike();
+		
+		model.clear();
+		
+		for(Uposlenik u:l)
+			model.addElement(u);
 	}
 }
