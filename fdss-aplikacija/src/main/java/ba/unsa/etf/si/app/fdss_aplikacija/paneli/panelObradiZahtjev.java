@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -13,31 +14,41 @@ import javax.swing.JButton;
 
 import antlr.Parser;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Servis;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmKreirajZadatak;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-public class panelObradiZahtjev extends JPanel {
+
+
+public final class panelObradiZahtjev extends JPanel {
 	 private JTable tabela=new JTable();
 	 private DefaultTableModel model;//model se koristi za unos podataka u tabelu(model.add ili nesto slicno)
-	 	 
+	 panelObradiZahtjev ovajPanel;	 
 	/**
 	 * Create the panel.
 	 */
 	public panelObradiZahtjev() {
 		initialize();
 		popuniPodatke();
+		ovajPanel=this;
 	}
 	public void popuniPodatke()
 	{
-		
+		if (model.getRowCount() > 0) {
+		    for (int i = model.getRowCount() - 1; i > -1; i--) {
+		        model.removeRow(i);
+		    }
+		}
+		int count=0;
 		for(Zahtjev z:new Servis().get_zahthevi())
 		{	
-			int count=0;
+			
 
 			model.addRow(new Object[]{ String.valueOf(count++),String.valueOf(z.getId()),z.getUredjaj().getKlijent(),z.getUredjaj().getIbfu(),z.getUredjaj().getTipUredaja()
 					,z.getHitnost(),z.getRok(),z.getUredjaj().getKlijent().getTelefon()});
+			
 		}
 	}
 	private void initialize()
@@ -73,7 +84,10 @@ public class panelObradiZahtjev extends JPanel {
 		JButton btnNewButton = new JButton("Kreiraj zadatak");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmKreirajZadatak fk=new frmKreirajZadatak(tabela);
+				int redTabele=tabela.getSelectedRow();
+				
+				
+				frmKreirajZadatak fk=new frmKreirajZadatak(model,tabela.getSelectedRow());
 				fk.setVisible(true);
 			}
 		});
@@ -98,4 +112,6 @@ public class panelObradiZahtjev extends JPanel {
 		);
 		setLayout(groupLayout);
 	}
+	
+	
 }

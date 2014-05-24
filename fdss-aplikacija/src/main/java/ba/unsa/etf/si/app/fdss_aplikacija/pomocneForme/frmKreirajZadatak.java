@@ -27,9 +27,11 @@ import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
+import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelObradiZahtjev;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -38,7 +40,8 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 
 import java.awt.Color;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmKreirajZadatak extends JFrame {
 
@@ -53,12 +56,16 @@ public class frmKreirajZadatak extends JFrame {
 	JComboBox cbServiser;
 	JDateChooser dcRok;
 	JDateChooser dcPokupitiDo;
-	JTable tabela;
+	
+	DefaultTableModel model;
 	Zahtjev zahtjev;
-	public frmKreirajZadatak(JTable tabela) {
-		tabela.getSelectedRow();
-		int brojZahtjeva=Integer.valueOf(tabela.getModel().getValueAt(tabela.getSelectedRow(), 1).toString());
-		zahtjev=new HibernateZahtjev().dajZahtjev(brojZahtjeva);
+	int redniBroj;
+	public frmKreirajZadatak(DefaultTableModel model,int redniBroj) {
+		this.model=model;
+		this.zahtjev=zahtjev;
+		this.redniBroj=redniBroj;
+		int  brojZahtjeva=Integer.valueOf(model.getValueAt(redniBroj, 1).toString());
+		 zahtjev=new HibernateZahtjev().dajZahtjev(brojZahtjeva);
 		
 		initialize();
 		popuniPodatke();
@@ -66,13 +73,14 @@ public class frmKreirajZadatak extends JFrame {
 	}
 	private void popuniPodatke()
 	{
-		List<Uposlenik> temp=new HibernateUposlenik().dajSveUposlenike();
-		for(int i=0;i<temp.size();i++)
-		{
-			System.out.println("aa");
-			Uposlenik u=(Uposlenik)temp.get(i);
-			if(u.getPrivilegija()==PrivilegijaUposlenika.SERVISER) cbServiser.addItem(u);
-		}
+		
+			List<Uposlenik> temp=new HibernateUposlenik().dajSveUposlenike();
+			for(int i=0;i<temp.size();i++)
+			{
+				Uposlenik u=(Uposlenik)temp.get(i);
+				if(u.getPrivilegija()==PrivilegijaUposlenika.SERVISER) cbServiser.addItem(u);
+			}
+		
 		
 		
 		
@@ -96,6 +104,7 @@ public class frmKreirajZadatak extends JFrame {
 		datumSQL=zahtjev.getRok();
 		datum=new java.util.Date(datumSQL.getTime());
 		dcRok.setDate(datum);
+		
 	}
 	
 	private void initialize() {
@@ -186,10 +195,27 @@ public class frmKreirajZadatak extends JFrame {
 		lblServiser.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		cbServiser = new JComboBox();
+		cbServiser.setBackground(Color.WHITE);
 		cbServiser.setBounds(129, 309, 139, 20);
 		contentPane.setLayout(null);
 		
 		JButton btnKreirajZadatak = new JButton("Kreiraj zadatak");
+		btnKreirajZadatak.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					Zadatak z=kreirajZadatak(new Date(dcPokupitiDo.getDate().getTime()),(Hitnost) cbHitnost.getSelectedItem(),(Uposlenik) cbServiser.getSelectedItem(), new Date(dcRok.getDate().getTime()));
+					model.removeRow(redniBroj);
+					new HibernateZadatak().dodajZadatak(z);
+					zahtjev.setZavrsen(true);
+					new HibernateZahtjev().updateZahtjev(zahtjev);
+					zatvoriFormu();
+				}
+				catch(Exception e)
+				{
+					System.out.println(e.getMessage());
+				}
+			}
+		});
 		btnKreirajZadatak.setBounds(355, 376, 137, 23);
 		contentPane.add(btnKreirajZadatak);
 		contentPane.add(panel);
@@ -220,6 +246,33 @@ public class frmKreirajZadatak extends JFrame {
 		dcPokupitiDo = new JDateChooser();
 		dcPokupitiDo.setBounds(129, 278, 139, 20);
 		panel.add(dcPokupitiDo);
+		
+		dcPokupitiDo.setDate(new java.util.Date());
+	
+		
+		
+	}
+	
+	public Zadatak kreirajZadatak(Date donijetiUredjajDo,Hitnost hitnost,Uposlenik serviser,Date rok) throws Exception
+	{
+		try{
+			Zadatak z=new Zadatak();
+			z.setDonijetiUredjajDo(donijetiUredjajDo);
+			z.setHitnost(hitnost.toString());
+			z.setServiser(serviser);
+			z.setZahtjev(zahtjev);
+			z.setZahtjevPodnesen(zahtjev.getZahtjevPodnesen());
+			z.setZavrsitiDo(rok);
+			return z;
+		}
+		catch(Exception e)
+		{
+			throw new Exception();
+		}
+	}
+	
+	private void zatvoriFormu() {
+		this.dispose();
 		
 	}
 }
