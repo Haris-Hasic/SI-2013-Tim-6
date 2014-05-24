@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -36,6 +37,11 @@ public class frmIzmjenaKorisnika extends JFrame {
 	private JTextField email_tb;
 	private JTextField jmbg_tb;
 	private Uposlenik up;
+	
+	JRadioButton administrator_rdbtn;
+	JRadioButton menadzer_rdbtn;
+	JRadioButton dispecer_rdbtn;
+	JRadioButton serviser_rdbtn;
 
 	/**
 	 * Launch the application.
@@ -63,20 +69,20 @@ public class frmIzmjenaKorisnika extends JFrame {
 		panel_1.setBounds(10, 322, 416, 49);
 		contentPane.add(panel_1);
 		
-		JRadioButton administrator_rdbtn = new JRadioButton("Administrator");
+		administrator_rdbtn = new JRadioButton("Administrator");
 		administrator_rdbtn.setSelected(true);
 		administrator_rdbtn.setBounds(118, 18, 109, 23);
 		panel_1.add(administrator_rdbtn);
 		
-		JRadioButton menadzer_rdbtn = new JRadioButton("Menadžer");
+		menadzer_rdbtn = new JRadioButton("Menadžer");
 		menadzer_rdbtn.setBounds(24, 18, 92, 23);
 		panel_1.add(menadzer_rdbtn);
 		
-		JRadioButton serviser_rdbtn = new JRadioButton("Serviser");
+		serviser_rdbtn = new JRadioButton("Serviser");
 		serviser_rdbtn.setBounds(323, 18, 77, 23);
 		panel_1.add(serviser_rdbtn);
 		
-		JRadioButton dispecer_rdbtn = new JRadioButton("Dispečer");
+		dispecer_rdbtn = new JRadioButton("Dispečer");
 		dispecer_rdbtn.setBounds(229, 18, 92, 23);
 		panel_1.add(dispecer_rdbtn);
 		
@@ -193,7 +199,7 @@ public class frmIzmjenaKorisnika extends JFrame {
 					
 					HibernateUposlenik h = new HibernateUposlenik();
 					h.updateUposlenika(up);
-					JOptionPane.showMessageDialog(null, "Korisnik uspješno unesen !");
+					JOptionPane.showMessageDialog(null, "Izmjene izvršene !");
 					
 					dispose();
 				}
@@ -223,7 +229,18 @@ public class frmIzmjenaKorisnika extends JFrame {
 		
 		u.setUserName(username_tb.getText());
 		u.setPassword(password_tb.getText());
-
+		
+		if(true)
+			u.SetPrivilegija(PrivilegijaUposlenika.MENADZER);
+		
+		else if(administrator_rdbtn.isSelected())
+			u.SetPrivilegija(PrivilegijaUposlenika.ADMINISTRATOR);
+		
+		else if(serviser_rdbtn.isSelected())
+			u.SetPrivilegija(PrivilegijaUposlenika.SERVISER);
+		
+		else
+			u.SetPrivilegija(PrivilegijaUposlenika.DISPECER);
 	}
 	
 	private void upisiPodatke() {
