@@ -93,7 +93,7 @@ public class frmPregledKorisnika extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				
+				// komentar
 			}
 		});
 		btnIzbrisi.setBounds(257, 143, 100, 28);
