@@ -243,6 +243,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 		
 		u.setUserName(username_tb.getText());
 		u.setPassword(password_tb.getText());
+		
 	}
 	
 	private void ocistiPoljaZaUnos() {

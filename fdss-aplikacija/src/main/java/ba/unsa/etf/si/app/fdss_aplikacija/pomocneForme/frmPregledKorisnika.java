@@ -4,6 +4,7 @@ import java.awt.Image;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -12,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.glavneForme.frmAdministrator;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 
 import java.awt.event.ActionListener;
@@ -22,11 +24,15 @@ import java.util.List;
 
 
 public class frmPregledKorisnika extends JFrame {
-	private JTextField textField;
+	
+	private JTextField pretraga_tb;
 	private DefaultListModel model=new DefaultListModel();
+	private HibernateUposlenik h = new HibernateUposlenik();
 	
 	public frmPregledKorisnika() {
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setResizable(false);
 		
 		setTitle("Korisnici");
 		setBounds(100, 100, 386, 220);
@@ -39,6 +45,16 @@ public class frmPregledKorisnika extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnHome = new JButton("");
+		btnHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				frmAdministrator fa = new frmAdministrator();
+				fa.setVisible(true);
+				
+				dispose();
+			}
+		});
 		btnHome.setBounds(10, 11, 52, 45);
 		panel.add(btnHome);
 		
@@ -52,10 +68,10 @@ public class frmPregledKorisnika extends JFrame {
 		separator.setBounds(160, 15, 0, 2);
 		panel.add(separator);
 		
-		textField = new JTextField();
-		textField.setBounds(97, 20, 150, 28);
-		panel.add(textField);
-		textField.setColumns(10);
+		pretraga_tb = new JTextField();
+		pretraga_tb.setBounds(97, 20, 150, 28);
+		panel.add(pretraga_tb);
+		pretraga_tb.setColumns(10);
 		
 		JButton btnTrazi = new JButton("Tra\u017Ei");
 		btnTrazi.setBounds(257, 20, 100, 29);
@@ -69,7 +85,7 @@ public class frmPregledKorisnika extends JFrame {
 		separator_1.setBounds(10, 59, 347, 2);
 		panel.add(separator_1);
 		
-		JList list = new JList();
+		final JList list = new JList();
 		list.setModel(model);
 		list.setBounds(10, 72, 347, 60);
 		panel.add(list);
@@ -77,10 +93,36 @@ public class frmPregledKorisnika extends JFrame {
 		JButton btnUredi = new JButton("Uredi");
 		btnUredi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmIzmjenaKorisnika fi=new frmIzmjenaKorisnika();
-				fi.setVisible(true);
+				
+				if(list.getSelectedIndex() > -1)
+				{
+					Uposlenik u = (Uposlenik)model.getElementAt(list.getSelectedIndex());
+					frmIzmjenaKorisnika fi = new frmIzmjenaKorisnika(u);
+					fi.setVisible(true);
+				}
+				
+				ispisiListu();
 			}
 		});
+		
+		btnTrazi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+								
+				model.clear();
+				
+				String unos = pretraga_tb.getText().toLowerCase();
+				List<Uposlenik> upos = h.dajSveUposlenike();
+				
+				for(Uposlenik u:upos)
+				{
+					String temp = u.getIme().toLowerCase() + " " + u.getPrezime().toLowerCase();
+					if(temp.contains(unos))
+						model.addElement(u);
+				}
+			}
+		});
+		
 		btnUredi.setBounds(147, 143, 100, 28);
 		panel.add(btnUredi);
 		slika=new ImageIcon(getClass().getResource("/edit.png"));
@@ -93,7 +135,23 @@ public class frmPregledKorisnika extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				// komentar
+				if(list.getSelectedIndex() > -1)
+				{
+					Uposlenik u = (Uposlenik)model.getElementAt(list.getSelectedIndex());
+					
+					if(h.postojiUposlenik(u.getId())) {
+						
+						h.brisiUposlenika(u);
+						JOptionPane.showMessageDialog(null, "Uposlenik uspješno obrisan !");
+						ispisiListu();
+					}
+					
+					else {
+						
+						JOptionPane.showMessageDialog(null, "Greška pri brisanju uposlenika !");
+					}
+				}
+
 			}
 		});
 		btnIzbrisi.setBounds(257, 143, 100, 28);
@@ -108,7 +166,6 @@ public class frmPregledKorisnika extends JFrame {
 	
 	public void ispisiListu()
 	{
-		HibernateUposlenik h = new HibernateUposlenik();
 		List<Uposlenik> l = h.vratiSveUposlenike();
 		
 		model.clear();

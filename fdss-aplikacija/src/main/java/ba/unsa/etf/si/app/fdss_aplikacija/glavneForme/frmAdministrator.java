@@ -38,7 +38,7 @@ public class frmAdministrator extends JFrame {
 		setResizable(false);
 		setTitle("Administrator");
 		setBounds(100, 100, 270, 254);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		

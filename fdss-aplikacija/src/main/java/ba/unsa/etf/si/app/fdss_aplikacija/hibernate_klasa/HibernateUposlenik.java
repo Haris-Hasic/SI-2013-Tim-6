@@ -80,7 +80,28 @@ public Uposlenik dajUposlenika(String userName) {
 		return (Uposlenik)temp.get(0);
 	
 	}
+
+public Uposlenik dajUposlenikaJMBG(String jmbg) {
 	
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	
+	Transaction t = session.beginTransaction();
+	
+	Query query = session.createQuery("from Uposlenik where jib = :jmbg");
+	query.setParameter("jmbg", jmbg);
+	List<Uposlenik> temp=query.list();
+	
+	if(temp.size() == 0) {
+		
+		session.close();
+		return null;
+	}
+
+	session.close();
+	return (Uposlenik)temp.get(0);
+
+}
+
 public boolean postojiUposlenik(String userName) {
 	
 	Session session = HibernateUtil.getSessionFactory().openSession();

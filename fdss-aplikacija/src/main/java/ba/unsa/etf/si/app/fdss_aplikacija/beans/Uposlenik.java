@@ -188,7 +188,7 @@ public class Uposlenik implements Serializable{
 	@Override
 	public String toString()
 	{
-		return ime+" "+prezime;
+		return id + ". " + ime + " " + prezime + " - " + jib;
 	}
 
 }
