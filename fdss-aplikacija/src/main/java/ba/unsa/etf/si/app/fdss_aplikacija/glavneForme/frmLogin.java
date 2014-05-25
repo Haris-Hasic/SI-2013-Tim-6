@@ -8,15 +8,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 
 import org.hibernate.HibernateError;
+import org.hibernate.HibernateException;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.ConnectException;
 public class frmLogin extends JFrame {
 	
 	private JTextField userName_tb;
@@ -29,11 +32,35 @@ public class frmLogin extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+
 				try {
-					frmLogin frame = new frmLogin();
-					frame.setVisible(true);
+					
+					final frmSplashScreen fsp = new frmSplashScreen();
+					fsp.setVisible(true);
+					
+					Timer timer = new Timer(1000, new ActionListener() {
+					        public void actionPerformed(ActionEvent e) {
+					        	
+					    		HibernateUposlenik u = new HibernateUposlenik();
+					    		u.dajSveUposlenike();
+					    		HibernateKlijent k = new HibernateKlijent();
+					    		k.dajSveKlijente();
+
+					    		fsp.setVisible(false);
+					            fsp.dispose();
+					            
+								final frmLogin frame = new frmLogin();
+								frame.setVisible(true);
+					        }
+					    });
+					
+					    timer.setRepeats(false);
+					    timer.start();
+					
 				} catch (Exception e) {
-					e.printStackTrace();
+
+					final frmLogin frame = new frmLogin();
+					frame.setVisible(true);
 				}
 			}
 		});
@@ -50,6 +77,7 @@ public class frmLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 		
 		JLabel lblKorisnikoIme = new JLabel("Korisničko ime :");
 		lblKorisnikoIme.setHorizontalAlignment(SwingConstants.RIGHT);

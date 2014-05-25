@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -103,11 +104,11 @@ public class HibernateKlijent{
 		}
 	}
 
-	public List<Klijent> dajSveKlijente()
+	public List<Klijent> dajSveKlijente() throws HibernateException
 	{
 		session= HibernateUtil.getSessionFactory().openSession();
 		t= session.beginTransaction();
-		
+			
 		List<Klijent> temp=new ArrayList<Klijent>();
 		temp=session.createCriteria(Klijent.class).list();
 		if(temp.size()==0) {

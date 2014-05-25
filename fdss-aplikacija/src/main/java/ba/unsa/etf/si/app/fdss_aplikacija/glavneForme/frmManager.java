@@ -47,9 +47,11 @@ import java.awt.event.MouseEvent;
 
 
 public class frmManager extends JFrame {
+	
 	private JPanel contentPane;
 	private JPanel centralniPanel;
 	Uposlenik uposlenik;
+	
 	public frmManager(Uposlenik uposlenik) {
 		this.uposlenik=uposlenik;
 		
