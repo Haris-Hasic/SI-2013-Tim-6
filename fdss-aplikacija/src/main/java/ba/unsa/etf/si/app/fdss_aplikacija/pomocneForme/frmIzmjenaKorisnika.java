@@ -221,7 +221,7 @@ public class frmIzmjenaKorisnika extends JFrame {
 		
 		u.setIme(ime_tb.getText());
 		u.setPrezime(prezime_tb.getText());
-		u.setJib(jmbg_tb.getText());
+		u.setJmbg(jmbg_tb.getText());
 		u.setAdresa(adresa_tb.getText());
 		u.setMjesto(mjesto_tb.getText());
 		u.setTelefon(telefon_tb.getText());
@@ -247,7 +247,7 @@ public class frmIzmjenaKorisnika extends JFrame {
 		
 		ime_tb.setText(up.getIme());
 		prezime_tb.setText(up.getPrezime());
-		jmbg_tb.setText(up.getJib());
+		jmbg_tb.setText(up.getJmbg());
 		adresa_tb.setText(up.getAdresa());
 		mjesto_tb.setText(up.getMjesto());
 		telefon_tb.setText(up.getTelefon());

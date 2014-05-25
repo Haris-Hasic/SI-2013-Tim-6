@@ -9,6 +9,9 @@ import java.util.Set;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+
 public class Klijent implements Serializable{
 	
 	long id;
@@ -26,164 +29,117 @@ public class Klijent implements Serializable{
 		return uredjaji;
 	}
 
-
-
 	public void setUredjaji(List<Uredjaj> uredjaji) {
 		this.uredjaji = uredjaji;
 	}
 
-
-
 	public Klijent() {
 		
+		List<Uredjaj> uredjaji;
 	}
 	
-
-
+	public Klijent(String n, String j, String a, String m, String t, String e, String w) throws GeneralniException {
+		
+		setNaziv(n);
+		setJib(j);
+		setAdresa(a);
+		setMjesto(m);
+		setTelefon(t);
+		setEmail(e);
+		setWeb(w);
+	}
+	
 	public long getId() {
 		return id;
 	}
-
-
-
-
-
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-
-
-
-
-
 	public String getNaziv() {
 		return naziv;
 	}
-
-
-
-
 
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
 
-
-
-
-
 	public String getTip() {
 		return tip;
 	}
-
-
-
-
 
 	public void setTip(String tip) {
 		this.tip = tip;
 	}
 
-
-
-
-
 	public String getJib() {
 		return jib;
 	}
 
+	public void setJib(String jib) throws GeneralniException {
 
-
-
-
-	public void setJib(String jib) {
-		this.jib = jib;
+		if(Validacija.validirajJMBG(jib))
+			this.jib = jib;
+		
+		else
+			throw new GeneralniException("Nepravilan format JIB !");
 	}
-
-
-
-
 
 	public String getAdresa() {
 		return adresa;
 	}
 
-
-
-
-
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-
-
-
-
 
 	public String getMjesto() {
 		return mjesto;
 	}
 
-
-
-
-
 	public void setMjesto(String mjesto) {
 		this.mjesto = mjesto;
 	}
-
-
-
-
 
 	public String getTelefon() {
 		return telefon;
 	}
 
+	public void setTelefon(String telefon) throws GeneralniException {
 
-
-
-
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
+		if(Validacija.validirajTelefon(telefon))
+			this.telefon = telefon;
+		
+		else
+			throw new GeneralniException("Nepravilan format telefona !");
 	}
-
-
-
-
 
 	public String getEmail() {
 		return email;
 	}
 
+	public void setEmail(String email) throws GeneralniException {
 
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
+		if(Validacija.validirajEmail(email))
+			this.email = email;
+		
+		else
+			throw new GeneralniException("Nepravilan format e-maila !");
 	}
-
-
-
-
 
 	public String getWeb() {
 		return web;
 	}
 
-
-
-
-
-	public void setWeb(String web) {
-		this.web = web;
+	public void setWeb(String web) throws GeneralniException {
+		
+		if(Validacija.validirajWeb(web))
+			this.web = web;
+		
+		else
+			throw new GeneralniException("Nepravilan format web adrese !");
 	}
-	
 	
 	
 	@Override

@@ -12,7 +12,7 @@ public class Uposlenik implements Serializable{
 	long id;
 	String ime;
 	String prezime;
-	String jib;
+	String jmbg;
 	String adresa;
 	String mjesto;
 	String telefon;
@@ -26,12 +26,11 @@ public class Uposlenik implements Serializable{
 		
 	}
 	
-	public Uposlenik(long i, String im, String pr, String j, String a, String m, String t, String e, int tp, String un, String p) throws GeneralniException {
-		
-			setId(i);
+	public Uposlenik(String im, String pr, String j, String a, String m, String t, String e, int tp, String un, String p) throws GeneralniException {
+
 			setIme(im);
 			setPrezime(pr);
-			setJib(j);
+			setJmbg(j);
 			setAdresa(a);
 			setMjesto(m);
 			setTelefon(t);
@@ -65,15 +64,15 @@ public class Uposlenik implements Serializable{
 		this.prezime = prezime;
 	}
 
-	public String getJib() {
+	public String getJmbg() {
 		
-		return jib;
+		return jmbg;
 	}
 
-	public void setJib(String jib) throws GeneralniException {
+	public void setJmbg(String jmbg) throws GeneralniException {
 		
-		if(Validacija.validirajJMBG(jib))
-			this.jib = jib;
+		if(Validacija.validirajJMBG(jmbg))
+			this.jmbg = jmbg;
 		
 		else
 			throw new GeneralniException("Nepravilan format JMBG !");
@@ -99,16 +98,26 @@ public class Uposlenik implements Serializable{
 		return telefon;
 	}
 
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
+	public void setTelefon(String telefon) throws GeneralniException {
+		
+		if(Validacija.validirajTelefon(telefon))
+			this.telefon = telefon;
+		
+		else
+			throw new GeneralniException("Nepravilan format telefona !");
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String email) throws GeneralniException {
+		
+		if(Validacija.validirajEmail(email))
+			this.email = email;
+		
+		else
+			throw new GeneralniException("Nepravilan format e-maila !");
 	}
 
 	public int getTip() {	// metode getTip i setTip nemojte koristi
@@ -190,7 +199,7 @@ public class Uposlenik implements Serializable{
 	@Override
 	public String toString()
 	{
-		return id + ". " + ime + " " + prezime + " - " + jib;
+		return id + ". " + ime + " " + prezime + " - " + jmbg;
 	}
 
 }

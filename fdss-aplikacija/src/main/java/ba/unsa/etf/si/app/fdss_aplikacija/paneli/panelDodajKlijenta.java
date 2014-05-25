@@ -19,6 +19,7 @@ import java.awt.Component;
 import javax.swing.JSeparator;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -92,12 +93,19 @@ public class panelDodajKlijenta extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
+				try {
 				Klijent k = new Klijent();
 				
 				pokupiPodatke(k);
 				JOptionPane.showMessageDialog(null, "Klijent " + k.getNaziv() + " uspješno unesen !");
 				
 				ocistiPoljaZaUnos();
+				}
+				
+				catch(GeneralniException ge) {
+					
+					JOptionPane.showMessageDialog(null, ge.getMessage());
+				}
 			}
 		});
 		
@@ -186,7 +194,7 @@ public class panelDodajKlijenta extends JPanel {
 		
 	}
 	
-	private void pokupiPodatke(Klijent k) {
+	private void pokupiPodatke(Klijent k) throws GeneralniException {
 		
 		k.setNaziv(naziv_tb.getText());
 		k.setTip(tip_tb.getText());

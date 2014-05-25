@@ -241,7 +241,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 		
 		u.setIme(ime_tb.getText());
 		u.setPrezime(prezime_tb.getText());
-		u.setJib(jmbg_tb.getText());
+		u.setJmbg(jmbg_tb.getText());
 		u.setAdresa(adresa_tb.getText());
 		u.setMjesto(mjesto_tb.getText());
 		u.setTelefon(telefon_tb.getText());

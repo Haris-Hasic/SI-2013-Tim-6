@@ -60,6 +60,21 @@ public class Validacija {
 		return true;
 	}
 	
+	public static boolean validirajWeb(String w) {
+		
+		return w.matches("/^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$/");
+	}
+	
+	public static boolean validirajEmail(String em) {
+		
+		return em.matches("/^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$/");
+	}
+	
+	public static boolean validirajTelefon(String tel) {
+		
+		return tel.matches("[+][0-9]{9,15}");
+	}
+	
 	public void poruka(String poruka)
 	{
 		JOptionPane.showMessageDialog(null, poruka);
