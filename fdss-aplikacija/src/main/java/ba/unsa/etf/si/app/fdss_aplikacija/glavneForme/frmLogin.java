@@ -14,12 +14,16 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.net.ConnectException;
+import java.security.MessageDigest;
+import java.util.List;
+
 public class frmLogin extends JFrame {
 	
 	private JTextField userName_tb;
@@ -28,6 +32,9 @@ public class frmLogin extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField password_tb;
 	public static frmLogin pocetna;
+	private static List<Uposlenik> uposlenici;
+	private static HibernateUposlenik hu;
+	private static HibernateKlijent hk;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -41,10 +48,10 @@ public class frmLogin extends JFrame {
 					Timer timer = new Timer(1000, new ActionListener() {
 					        public void actionPerformed(ActionEvent e) {
 					        	
-					    		HibernateUposlenik u = new HibernateUposlenik();
-					    		u.dajSveUposlenike();
-					    		HibernateKlijent k = new HibernateKlijent();
-					    		k.dajSveKlijente();
+					        	hu = new HibernateUposlenik();
+					        	hk = new HibernateKlijent();
+					    		uposlenici = hu.dajSveUposlenike();
+					    		hk.dajSveKlijente();
 
 					    		fsp.setVisible(false);
 					            fsp.dispose();
@@ -111,36 +118,32 @@ public class frmLogin extends JFrame {
 				else if ( userName_tb.getText().compareTo("m") == 0 ) {
 					frmManager fm=new frmManager(null);
 					fm.setVisible(true);
-					setVisible(false);
+					dispose();
 			    }
 				
 				else if ( userName_tb.getText().compareTo("s") == 0 ) {
 					frmServiser fs=new frmServiser(null);
 					fs.setVisible(true);
-					setVisible(false);
+					dispose();
 				}
 				
 				else if ( userName_tb.getText().compareTo("d") == 0 ) {
 					
 					frmDispatcher fd=new frmDispatcher(null);
 					fd.setVisible(true);
-					setVisible(false);
+					dispose();
 				}
 				
 				else {
 					
-				}
-				provjeriPodatke(userName_tb.getText(), new String(password_tb.getPassword()));
-				
-				
+					provjeriPodatke(userName_tb.getText(), password_tb.getText());
+				}		
 			}
 		});
 		
 		PrijaviSe_btn.setFont(new Font("Cambria", Font.PLAIN, 14));
 		PrijaviSe_btn.setBounds(273, 164, 105, 30);
 		getContentPane().add(PrijaviSe_btn);
-		
-		
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(94, 11, 252, 85);
@@ -158,39 +161,46 @@ public class frmLogin extends JFrame {
 	}
 	
 	private void provjeriPodatke(String userName,String password)
-	{
+	{	
 		if(new HibernateUposlenik().postojiUposlenik(userName))
 		{
-			Uposlenik u=new HibernateUposlenik().dajUposlenika(userName);
-			if(u.getPassword().equals(password))
-			{
-				
-				switch(u.getPrivilegija())
+			Uposlenik up = hu.dajUposlenika(userName_tb.getText());			
+			if(up.getPassword().compareTo(Validacija.HesirajMD5(Validacija.HesirajMD5(password_tb.getText()))) == 0) {
+
+				switch(up.getPrivilegija())
 				{
-				case ADMINISTRATOR:
-					frmAdministrator fa=new frmAdministrator(u);
-					fa.setVisible(true);
-					setVisible(false);
-					break;
-				case SERVISER:
-					frmServiser fs=new frmServiser(u);
-					fs.setVisible(true);
-					setVisible(false);
-					break;
-				case DISPECER:
-					frmDispatcher fd=new frmDispatcher(u);
-					fd.setVisible(true);
-					setVisible(false);
-					break;
-				case MENADZER:
-					frmManager fm=new frmManager(u);
-					fm.setVisible(true);
-					setVisible(false);
+				
+					case ADMINISTRATOR:
+						frmAdministrator fa=new frmAdministrator(up);
+						fa.setVisible(true);
+						dispose();
+						break;
+						
+					case MENADZER:
+						frmManager fm=new frmManager(up);
+						fm.setVisible(true);
+						dispose();
+						break;
+						
+					case DISPECER:
+						frmDispatcher fd=new frmDispatcher(up);
+						fd.setVisible(true);
+						dispose();
+						break;
+						
+					case SERVISER:
+						frmServiser fs=new frmServiser(up);
+						fs.setVisible(true);
+						dispose();
+						break;
 				}
 			}
-			else new Validacija().poruka("Pogresni login podaci!");
+			
+			else 
+				new Validacija().poruka("Pogrešni login podaci !");
 		}
-		else new Validacija().poruka("Pogresni login podaci!");
 		
+		else 
+			new Validacija().poruka("Pogrešni login podaci !");
 	}
 }

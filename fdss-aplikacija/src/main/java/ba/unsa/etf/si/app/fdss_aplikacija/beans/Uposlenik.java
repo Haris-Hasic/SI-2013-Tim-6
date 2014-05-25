@@ -179,9 +179,10 @@ public class Uposlenik implements Serializable{
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		
+		String hash = Validacija.HesirajMD5(password);
+		this.password = hash;
 	}
-
 	
 	@Override
 	public boolean equals(Object obj) {

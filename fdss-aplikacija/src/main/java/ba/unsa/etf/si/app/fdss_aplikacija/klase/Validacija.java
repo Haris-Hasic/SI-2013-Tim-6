@@ -1,7 +1,12 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.klase;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -67,12 +72,45 @@ public class Validacija {
 	
 	public static boolean validirajEmail(String em) {
 		
-		return em.matches("/^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$/");
+		//return em.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+		return true;
 	}
 	
 	public static boolean validirajTelefon(String tel) {
 		
 		return tel.matches("[+][0-9]{9,15}");
+	}
+	
+	public static String HesirajMD5(String message){ 
+		
+		String digest = null; 
+		
+		try { 
+			
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] hash = md.digest(message.getBytes("UTF-8")); //converting byte array to Hexadecimal String
+			
+			StringBuilder sb = new StringBuilder(2*hash.length);
+			
+			for(byte b : hash)
+				sb.append(String.format("%02x", b&0xff));
+			
+			digest = sb.toString();
+		}
+		
+		catch (UnsupportedEncodingException ex) { 
+			
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+			//Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE, null, ex);
+		} 
+		
+		catch (NoSuchAlgorithmException ex) { 
+			
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+			//Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE, null, ex);
+		} 
+		
+		return digest; 
 	}
 	
 	public void poruka(String poruka)

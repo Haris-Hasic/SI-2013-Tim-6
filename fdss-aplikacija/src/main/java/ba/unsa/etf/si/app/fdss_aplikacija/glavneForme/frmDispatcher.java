@@ -54,7 +54,7 @@ public class frmDispatcher extends JFrame {
 	public frmDispatcher(Uposlenik uposlenik) {
 		this.uposlenik=uposlenik;
 		_servis=new Servis();
-		setTitle("Prijavljen kao: Ime Prezime");
+		setTitle("Prijavljen kao: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
 		setBounds(100, 100, 743, 556);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
