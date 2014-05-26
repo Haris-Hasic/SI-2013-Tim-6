@@ -31,6 +31,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelObradiZahtjev;
 
 import com.toedter.calendar.JDateChooser;
@@ -89,7 +90,7 @@ public class frmKreirajZadatak extends JFrame {
 		
 		Date datumSQL=zahtjev.getZahtjevPodnesen();
 		java.util.Date datum=new java.util.Date(datumSQL.getTime());
-		
+	
 		SimpleDateFormat format=new SimpleDateFormat("dd.MM.yyyy.");
 		tZahtjevPodnesen.setText(format.format(datum));
 		
@@ -199,17 +200,24 @@ public class frmKreirajZadatak extends JFrame {
 		JButton btnKreirajZadatak = new JButton("Kreiraj zadatak");
 		btnKreirajZadatak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{
-					Zadatak z=kreirajZadatak(new Date(dcPokupitiDo.getDate().getTime()),(Hitnost) cbHitnost.getSelectedItem(),(Uposlenik) cbServiser.getSelectedItem(), new Date(dcRok.getDate().getTime()));
-					model.removeRow(redniBroj);
-					new HibernateZadatak().dodajZadatak(z);
-					zahtjev.setZavrsen(true);
-					new HibernateZahtjev().updateZahtjev(zahtjev);
-					zatvoriFormu();
-				}
-				catch(Exception e)
+				if(cbServiser.getSelectedIndex()>=0)
 				{
-					System.out.println(e.getMessage());
+					try{
+						Zadatak z=kreirajZadatak(new Date(dcPokupitiDo.getDate().getTime()),(Hitnost) cbHitnost.getSelectedItem(),(Uposlenik) cbServiser.getSelectedItem(), new Date(dcRok.getDate().getTime()));
+						model.removeRow(redniBroj);
+						new HibernateZadatak().dodajZadatak(z);
+						zahtjev.setZavrsen(true);
+						new HibernateZahtjev().updateZahtjev(zahtjev);
+						zatvoriFormu();
+					}
+					catch(Exception e)
+					{
+						System.out.println(e.getMessage());
+					}
+				}
+				else
+				{
+					new Validacija().poruka("Serviser nije izabran");
 				}
 			}
 		});
