@@ -45,7 +45,7 @@ public class HibernateZadatak {
 		if(temp.size() == 0) {
 			
 			session.close();
-			return null;
+			return new ArrayList<Zadatak>();
 		}
 
 		session.close();

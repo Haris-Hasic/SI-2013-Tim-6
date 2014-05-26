@@ -19,6 +19,7 @@ import java.awt.Component;
 import javax.swing.JSeparator;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 import java.awt.event.MouseAdapter;
@@ -99,6 +100,7 @@ public class panelDodajKlijenta extends JPanel {
 				pokupiPodatke(k);
 				JOptionPane.showMessageDialog(null, "Klijent " + k.getNaziv() + " uspješno unesen !");
 				
+				new HibernateKlijent().dodajKlijenta(k);
 				ocistiPoljaZaUnos();
 				}
 				

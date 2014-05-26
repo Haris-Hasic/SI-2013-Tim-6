@@ -10,6 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -19,6 +20,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 
 import com.toedter.calendar.JDateChooser;
@@ -66,7 +68,13 @@ public class panelKreirajZahtjev extends JPanel {
 		JButton btnKreirajZahtjev = new JButton("Kreiraj zahtjev");
 		btnKreirajZahtjev.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				kreirajZahtjev((Uredjaj)cbIBFU.getSelectedItem(), (Hitnost)cbHitnost.getSelectedItem(),new Date(dateChooser.getDate().getTime()));
+				try{
+					kreirajZahtjev((Uredjaj)cbIBFU.getSelectedItem(), (Hitnost)cbHitnost.getSelectedItem(),new Date(dateChooser.getDate().getTime()));
+				}
+				catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
 			}
 		});
 		
@@ -177,7 +185,7 @@ public class panelKreirajZahtjev extends JPanel {
 		}
 	}
 	
-	public void kreirajZahtjev(Uredjaj u,Hitnost h,Date d)
+	public void kreirajZahtjev(Uredjaj u,Hitnost h,Date d) throws GeneralniException
 	{
 		Zahtjev z=new Zahtjev();
 		z.setHitnost(h);

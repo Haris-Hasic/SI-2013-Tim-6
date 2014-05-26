@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <property name="jibProizvodaca" type="int">
+        <property name="jibProizvodaca" type="java.lang.String">
             <column name="JIBPROIZVODACA" />
         </property>
         <property name="tipUredaja" type="java.lang.String">

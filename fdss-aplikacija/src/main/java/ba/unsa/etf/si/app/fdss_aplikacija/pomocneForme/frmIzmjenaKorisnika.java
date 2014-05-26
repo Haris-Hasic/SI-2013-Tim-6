@@ -267,9 +267,12 @@ public class frmIzmjenaKorisnika extends JFrame {
 			case SERVISER:
 				serviser_rdbtn.setSelected(true);
 				break;
-			default:
+			case DISPECER:
 				dispecer_rdbtn.setSelected(true);
 				break;
+			default:
+				break;
+					
 		}
 	}
 	

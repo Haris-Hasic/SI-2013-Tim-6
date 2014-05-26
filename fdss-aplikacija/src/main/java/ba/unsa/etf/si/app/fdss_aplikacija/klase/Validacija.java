@@ -67,7 +67,8 @@ public class Validacija {
 	
 	public static boolean validirajWeb(String w) {
 		
-		return w.matches("/^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$/");
+		return true;
+		//return w.matches("/^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$/");
 	}
 	
 	public static boolean validirajEmail(String em) {

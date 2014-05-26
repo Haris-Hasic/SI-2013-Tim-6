@@ -2,6 +2,9 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 
 import java.io.Serializable;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+
 public class Uredjaj implements Serializable{
 	
 	long id;
@@ -15,7 +18,7 @@ public class Uredjaj implements Serializable{
 		this.id = id;
 	}
 
-	int jibProizvodaca;
+	String jibProizvodaca;
 	String tipUredaja;
 	String ibfu;
 	String ibfm;
@@ -34,12 +37,15 @@ public class Uredjaj implements Serializable{
 		this.klijent = klijent;
 	}
 
-	public int getJibProizvodaca() {
+	public String getJibProizvodaca() {
 		return jibProizvodaca;
 	}
 
-	public void setJibProizvodaca(int jibProizvodaca) {
-		this.jibProizvodaca = jibProizvodaca;
+	public void setJibProizvodaca(String jibProizvodaca) throws GeneralniException{
+		if(new Validacija().validirajJMBG(jibProizvodaca))
+		{
+			this.jibProizvodaca = jibProizvodaca;
+		}else throw new GeneralniException("Nepravilan JIB proizvođaća.");
 	}
 
 	public String getTipUredaja() {
@@ -54,16 +60,22 @@ public class Uredjaj implements Serializable{
 		return ibfu;
 	}
 
-	public void setIbfu(String ibfu) {
-		this.ibfu = ibfu;
+	public void setIbfu(String ibfu) throws GeneralniException {
+		if(new Validacija().validirajIBFU(ibfu))
+		{
+			this.ibfu = ibfu;
+		}else throw new GeneralniException("Nepravilan IBFU.");
 	}
 
 	public String getIbfm() {
 		return ibfm;
 	}
 
-	public void setIbfm(String ibfm) {
-		this.ibfm = ibfm;
+	public void setIbfm(String ibfm) throws GeneralniException{
+		if(new Validacija().validirajIBFM(ibfm))
+		{
+			this.ibfm = ibfm;
+		}else throw new GeneralniException("Nepravilan IBFM");
 	}
 
 	@Override

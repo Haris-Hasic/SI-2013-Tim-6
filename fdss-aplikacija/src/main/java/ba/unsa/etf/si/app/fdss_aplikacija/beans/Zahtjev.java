@@ -3,6 +3,7 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 import java.io.Serializable;
 import java.sql.Date;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 
 public class Zahtjev implements Serializable {
@@ -24,7 +25,9 @@ public class Zahtjev implements Serializable {
 
 
 	public void setRok(Date rok) {
-		this.rok = rok;
+
+			this.rok = rok;
+		
 	}
 
 
@@ -77,7 +80,8 @@ public class Zahtjev implements Serializable {
 	}
 
 
-	public void setUredjaj(Uredjaj uredjaj) {
+	public void setUredjaj(Uredjaj uredjaj) throws GeneralniException {
+		if(uredjaj==null) throw new GeneralniException("Neispravan unos za uređaj.");
 		this.uredjaj = uredjaj;
 	}
 
