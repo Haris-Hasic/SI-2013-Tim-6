@@ -121,6 +121,7 @@ public class panelPregledZadatakaServiser extends JPanel {
 				String hitnost=zadatak.getHitnost();
 				
 				model.addRow(new Object[]{i,nazivFirme,podnesen,pokupiti,rok,hitnost});
+				
 			}
 		}
 	}

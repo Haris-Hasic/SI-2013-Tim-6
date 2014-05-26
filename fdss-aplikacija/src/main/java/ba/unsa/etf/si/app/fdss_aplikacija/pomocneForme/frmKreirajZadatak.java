@@ -80,10 +80,7 @@ public class frmKreirajZadatak extends JFrame {
 				Uposlenik u=(Uposlenik)temp.get(i);
 				if(u.getPrivilegija()==PrivilegijaUposlenika.SERVISER) cbServiser.addItem(u);
 			}
-		
-		
-		
-		
+
 		tNaziv.setText(zahtjev.getUredjaj().getKlijent().getNaziv());
 		tTip.setText(zahtjev.getUredjaj().getKlijent().getTip());
 		tTipUredjaja.setText(zahtjev.getUredjaj().getTipUredaja());

@@ -56,9 +56,10 @@ public class HibernateZadatak {
 	public  List<Zadatak> dajSveNezavrseneZadatke(Uposlenik serviser)
 	{
 		List<Zadatak> temp=dajSveNezavrseneZadatke();
-		if(temp.size() == 0) {
+		if(temp==null) {
 			
-			new ArrayList<Zadatak>();
+			return new ArrayList<Zadatak>();
+			
 		}
 		List<Zadatak> lista=new ArrayList<Zadatak>();
 		for(Zadatak z:temp)

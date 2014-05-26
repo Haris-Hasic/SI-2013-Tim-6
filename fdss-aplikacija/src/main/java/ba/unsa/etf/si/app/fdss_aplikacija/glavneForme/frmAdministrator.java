@@ -40,7 +40,7 @@ public class frmAdministrator extends JFrame {
 		
 		this.uposlenik = u;
 		setResizable(false);
-		setTitle("Administrator: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
+		//setTitle("Administrator: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
 		setBounds(100, 100, 270, 254);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();

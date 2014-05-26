@@ -84,11 +84,13 @@ public final class panelObradiZahtjev extends JPanel {
 		JButton btnNewButton = new JButton("Kreiraj zadatak");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int redTabele=tabela.getSelectedRow();
-				
-				
-				frmKreirajZadatak fk=new frmKreirajZadatak(model,tabela.getSelectedRow());
-				fk.setVisible(true);
+				if(tabela.getSelectedRow()>=0)
+				{
+					int redTabele=tabela.getSelectedRow();
+					frmKreirajZadatak fk=new frmKreirajZadatak(model,tabela.getSelectedRow());
+					fk.setVisible(true);
+				}
+					
 			}
 		});
 		

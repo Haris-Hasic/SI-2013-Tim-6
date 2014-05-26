@@ -255,6 +255,22 @@ public class frmIzmjenaKorisnika extends JFrame {
 		
 		username_tb.setText(up.getUserName());
 		password_tb.setText(up.getPassword());
+		
+		switch(up.getPrivilegija())
+		{
+			case ADMINISTRATOR:
+				administrator_rdbtn.setSelected(true);
+				break;
+			case MENADZER:
+				menadzer_rdbtn.setSelected(true);
+				break;
+			case SERVISER:
+				serviser_rdbtn.setSelected(true);
+				break;
+			default:
+				dispecer_rdbtn.setSelected(true);
+				break;
+		}
 	}
 	
 	private void ocistiPoljaZaUnos() {
