@@ -89,7 +89,7 @@ public class frmDispatcher extends JFrame {
 		btnZadaci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelPregledZahtjeva(_servis.get_zahthevi());
+				centralniPanel = new panelPregledZahtjeva();
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();

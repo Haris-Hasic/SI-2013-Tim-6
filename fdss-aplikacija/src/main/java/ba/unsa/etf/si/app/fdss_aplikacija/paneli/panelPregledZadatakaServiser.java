@@ -23,10 +23,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 
+
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmDetaljnijeZadatakServiser;
 
 import java.awt.event.ActionListener;
@@ -46,17 +48,22 @@ public class panelPregledZadatakaServiser extends JPanel {
 		this.uposlenik=uposlenik;
 		setBorder(BorderFactory.createTitledBorder("Pregled zadataka"));
 		model=new DefaultTableModel(
-				new Object[][] {
-						},
+				new Object[][] {},
 					new String[] {
-						"Br.", "Naziv firme", "Podne\u0161en", "Pokupiti do", "Rok", "Hitnost"
+						"Br.", "Zadatak", "Naziv firme", "Podne\u0161en", "Pokupiti do", "Rok", "Hitnost"
 					}
 				) {
 					Class[] columnTypes = new Class[] {
-						Integer.class, String.class, String.class, Object.class, String.class, String.class
+						Integer.class, String.class, String.class, String.class, Object.class, String.class, String.class
 					};
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
+					}
+					boolean[] columnEditables = new boolean[] {
+						true, false, true, true, true, true, true
+					};
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
 					}
 				};
 		tabela.setModel(model);
@@ -69,12 +76,36 @@ public class panelPregledZadatakaServiser extends JPanel {
 		JButton btnDetaljno = new JButton("Detaljno");
 		btnDetaljno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmDetaljnijeZadatakServiser fd=new frmDetaljnijeZadatakServiser();
-				fd.setVisible(true);
+				if(tabela.getSelectedRow()>=0)
+				{
+					int red=tabela.getSelectedRow();
+					String redniBrojZadatka=(String)model.getValueAt(red, 1);
+					HibernateZadatak hz=new HibernateZadatak();
+					Zadatak z=hz.dajZadatak(Long.valueOf(redniBrojZadatka));
+					frmDetaljnijeZadatakServiser fd=new frmDetaljnijeZadatakServiser(z);
+					fd.setVisible(true);
+				}
+				
 			}
 		});
 		
 		JButton btnZavri = new JButton("Zavr\u0161i");
+		btnZavri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tabela.getSelectedRow()>=0)
+				{
+					int red=tabela.getSelectedRow();
+					String redniBrojZadatka=(String)model.getValueAt(red, 1);
+					HibernateZadatak hz=new HibernateZadatak();
+					Zadatak z=hz.dajZadatak(Long.valueOf(redniBrojZadatka));
+					z.setZavrsen(true);
+					hz.updateZadatak(z);
+					new Validacija().poruka("Zadatak završen.");
+					ocistiTabelu();
+					popuniPodatke();
+				}
+			}
+		});
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -119,10 +150,19 @@ public class panelPregledZadatakaServiser extends JPanel {
 				String pokupiti=format.format(zadatak.getDonijetiUredjajDo());
 				String rok=format.format(zadatak.getZavrsitiDo());
 				String hitnost=zadatak.getHitnost();
-				
-				model.addRow(new Object[]{i,nazivFirme,podnesen,pokupiti,rok,hitnost});
+				String zadatakBr=String.valueOf(zadatak.getId());
+				model.addRow(new Object[]{i,zadatakBr,nazivFirme,podnesen,pokupiti,rok,hitnost});
 				
 			}
+		}
+	}
+	
+	private void ocistiTabelu()
+	{
+		if (model.getRowCount() > 0) {
+		    for (int i = model.getRowCount() - 1; i > -1; i--) {
+		        model.removeRow(i);
+		    }
 		}
 	}
 }

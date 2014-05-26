@@ -14,6 +14,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 
 public class panelPregledZahtjeva extends JPanel {
 	 private JTable tabela=new JTable();
@@ -23,17 +24,21 @@ public class panelPregledZahtjeva extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public panelPregledZahtjeva(List<Zahtjev> zahtjevi) {
-		this.zahtjevi=zahtjevi;
+	public panelPregledZahtjeva() {
+		
 		initialize();
 		popuniPodatke();
 	}
 	public void popuniPodatke() {
 		int count=1;
-		for(Zahtjev z:zahtjevi)
+		zahtjevi=new HibernateZahtjev().dajSveNezavrseneZahtjeve();
+		if(zahtjevi.size()!=0)
 		{
-			model.addRow(new Object[]{count++,z.getUredjaj().getKlijent(),z.getUredjaj().getIbfu(),z.getUredjaj().getTipUredaja()
-					,z.getHitnost(),z.getRok(),z.getUredjaj().getKlijent().getTelefon()});
+			for(Zahtjev z:zahtjevi)
+			{
+				model.addRow(new Object[]{count++,z.getUredjaj().getKlijent(),z.getUredjaj().getIbfu(),z.getUredjaj().getTipUredaja()
+						,z.getHitnost(),z.getRok(),z.getUredjaj().getKlijent().getTelefon()});
+			}
 		}
 		
 	}
@@ -85,4 +90,8 @@ public class panelPregledZahtjeva extends JPanel {
 		
 	}
 	
+	private void popuniTabelu()
+	{
+		
+	}
 }
