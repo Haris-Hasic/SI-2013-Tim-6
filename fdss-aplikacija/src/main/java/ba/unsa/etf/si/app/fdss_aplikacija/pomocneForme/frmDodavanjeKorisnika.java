@@ -30,6 +30,8 @@ import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmDodavanjeKorisnika extends JFrame {
 
@@ -193,6 +195,10 @@ public class frmDodavanjeKorisnika extends JFrame {
 	    grupa.add(serviser_rdbtn);
 		
 		JButton btnDodajKorisnika = new JButton("Dodaj korisnika");
+		btnDodajKorisnika.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnDodajKorisnika.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -224,15 +230,12 @@ public class frmDodavanjeKorisnika extends JFrame {
 		contentPane.add(btnDodajKorisnika);
 		
 		JButton btnNazad = new JButton("Nazad");
-		btnNazad.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				frmAdministrator fa = new frmAdministrator(uposlenik);
-				fa.setVisible(true);
+		btnNazad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
+		
 		btnNazad.setBounds(167, 380, 124, 31);
 		contentPane.add(btnNazad);
 	}

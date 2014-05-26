@@ -32,11 +32,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class frmAdministrator extends JFrame {
 	Uposlenik uposlenik;
 	public frmAdministrator(Uposlenik u) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				frmLogin.pocetna.setVisible(true);
+				dispose();
+			}
+		});
 		
 		this.uposlenik = u;
 		setResizable(false);
@@ -62,7 +71,6 @@ public class frmAdministrator extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frmDodavanjeKorisnika frmKor = new frmDodavanjeKorisnika(uposlenik);
 				frmKor.setVisible(true);
-				dispose();
 			}
 		});
 		btnDodajUposlenika.setFont(new Font("Tahoma", Font.PLAIN, 11));
