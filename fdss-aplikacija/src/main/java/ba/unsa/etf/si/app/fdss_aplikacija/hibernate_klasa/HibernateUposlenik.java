@@ -124,6 +124,30 @@ public boolean postojiUposlenik(String userName) {
 	}
 }
 
+
+public boolean postojiUposlenikJMBG(String jmbg) {
+	
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	
+	Transaction t = session.beginTransaction();
+	
+	Query query = session.createQuery("from Uposlenik where jmbg = :jmbg");
+	query.setParameter("jmbg", jmbg);
+	
+	if(query.list().size() == 0) {
+		
+		session.close();
+		return false;
+	}
+	
+	else {
+		
+		session.close();
+		return true;
+	}
+}
+
+
 	public List<Uposlenik> dajSveUposlenike()
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -139,6 +163,8 @@ public boolean postojiUposlenik(String userName) {
 		session.close();
 		return temp;
 	}
+	
+	
 	public boolean postojiUposlenik(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();

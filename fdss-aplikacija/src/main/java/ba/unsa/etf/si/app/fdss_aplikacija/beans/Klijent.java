@@ -133,12 +133,8 @@ public class Klijent implements Serializable{
 	}
 
 	public void setWeb(String web) throws GeneralniException {
-		
-		if(Validacija.validirajWeb(web))
+
 			this.web = web;
-		
-		else
-			throw new GeneralniException("Nepravilan format web adrese !");
 	}
 	
 	

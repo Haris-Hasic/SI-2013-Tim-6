@@ -206,19 +206,25 @@ public class frmDodavanjeKorisnika extends JFrame {
 				try {
 					
 					Uposlenik u = new Uposlenik();
-					
 					pokupiPodatke(u); // Ovdje baca exception ako podaci nisu ispravni 
 					
-					ocistiPoljaZaUnos();
-					JOptionPane.showMessageDialog(null, "Korisnik uspješno unesen !");
-					
 					HibernateUposlenik h = new HibernateUposlenik();
-					h.dodajUposlenika(u);
+
+					if(!h.postojiUposlenik(u.getUserName()) && !h.postojiUposlenikJMBG(u.getJmbg())) {
+						
+						h.dodajUposlenika(u);
+						ocistiPoljaZaUnos();
+						JOptionPane.showMessageDialog(null, "Korisnik uspješno unesen !");
+					}
 					
-					//List<Uposlenik> l = h.vratiSveUposlenike();
+					else if(h.postojiUposlenik(u.getUserName()))
+						throw new GeneralniException("Username već postoji !");
+					
+					else
+						throw new GeneralniException("Korisnik sa datim JMBG je već unesen u bazu !");
 				}
 				
-				catch (GeneralniException g) {
+				catch (Exception g) {
 					// TODO Auto-generated catch block
 					
 					JOptionPane.showMessageDialog(null, g.getMessage());

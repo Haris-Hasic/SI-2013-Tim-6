@@ -65,16 +65,9 @@ public class Validacija {
 		return true;
 	}
 	
-	public static boolean validirajWeb(String w) {
-		
-		return true;
-		//return w.matches("/^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$/");
-	}
-	
 	public static boolean validirajEmail(String em) {
 		
-		//return em.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
-		return true;
+		return em.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	}
 	
 	public static boolean validirajTelefon(String tel) {
