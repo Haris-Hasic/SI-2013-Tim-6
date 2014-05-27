@@ -7,12 +7,16 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 
 public class frmIzmjenaKlijenta extends JFrame {
 
@@ -26,26 +30,12 @@ public class frmIzmjenaKlijenta extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmIzmjenaKlijenta frame = new frmIzmjenaKlijenta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public frmIzmjenaKlijenta() {
+	private DefaultTableModel model;
+	private Klijent klijent;
+	public frmIzmjenaKlijenta(DefaultTableModel model,String jib) {
+		this.model=model;
+		klijent=new HibernateKlijent().dajKlijenta(jib);
+		
 		setResizable(false);
 		setTitle("Izmjena klijenta");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
