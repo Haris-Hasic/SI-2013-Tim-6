@@ -19,23 +19,35 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmIzmjenaUredjaja;
 
-public class panelDetaljiKlijenta extends JPanel {
-	private JTextField textField;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_1;
-	private JTable table;
+import javax.swing.JComboBox;
 
+import java.awt.Color;
+import java.util.List;
+
+public class panelDetaljiKlijenta extends JPanel {
+	private JTextField tJib;
+	private JTextField tAdresa;
+	private JTextField tWeb;
+	private JTextField tEmail;
+	private JTextField tGrad;
+	private JTextField tTip;
+	private JTable table;
+	DefaultTableModel model;
+	JComboBox cbNaziv;
 	/**
 	 * Create the panel.
 	 */
@@ -43,13 +55,15 @@ public class panelDetaljiKlijenta extends JPanel {
 		
 		setBorder(BorderFactory.createTitledBorder("Detalji klijenta"));
 				
-		textField = new JTextField();
-		textField.setColumns(10);
+		tJib = new JTextField();
+		tJib.setBackground(Color.WHITE);
+		tJib.setEditable(false);
+		tJib.setColumns(10);
 		
-		JLabel lblNazivKlijenta = new JLabel("Naziv klijenta:");
+		JLabel lblNazivKlijenta = new JLabel("JIB klijenta:");
 		lblNazivKlijenta.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblGrad = new JLabel("Grad:");
+		JLabel lblGrad = new JLabel("Mjesto:");
 		lblGrad.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel lblWeb = new JLabel("Web:");
@@ -61,52 +75,48 @@ public class panelDetaljiKlijenta extends JPanel {
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		JLabel lblJibKlijenta = new JLabel("JIB klijenta:");
+		JLabel lblJibKlijenta = new JLabel("Naziv:");
 		lblJibKlijenta.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		tAdresa = new JTextField();
+		tAdresa.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		tWeb = new JTextField();
+		tWeb.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		tEmail = new JTextField();
+		tEmail.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
+		tGrad = new JTextField();
+		tGrad.setColumns(10);
 		
 		JSeparator separator = new JSeparator();
 		
 		JLabel label = new JLabel("Tip:");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		tTip = new JTextField();
+		tTip.setColumns(10);
 		
 		JSeparator separator_1 = new JSeparator();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
-		JButton btnTrai = new JButton("Tra\u017Ei");
+		cbNaziv = new JComboBox();
+		cbNaziv.setBackground(Color.WHITE);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-						.addComponent(separator, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+						.addComponent(separator_1, GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+						.addComponent(separator, GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblJibKlijenta, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnTrai))
+							.addComponent(cbNaziv, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(31)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -114,14 +124,14 @@ public class panelDetaljiKlijenta extends JPanel {
 								.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(tEmail, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+								.addComponent(tWeb, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(lblNazivKlijenta, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField))
-							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+								.addComponent(tJib))
+							.addGroup(groupLayout.createSequentialGroup()
 								.addGap(10)
 								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 									.addComponent(lblAdresaKlijenta, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
@@ -129,9 +139,9 @@ public class panelDetaljiKlijenta extends JPanel {
 									.addComponent(lblGrad, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(textField_1)
-									.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-									.addComponent(textField_8, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))))
+									.addComponent(tTip)
+									.addComponent(tAdresa, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+									.addComponent(tGrad, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -140,59 +150,114 @@ public class panelDetaljiKlijenta extends JPanel {
 					.addGap(6)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblJibKlijenta)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnTrai))
+						.addComponent(cbNaziv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(14)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tJib, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNazivKlijenta))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblAdresaKlijenta)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tAdresa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tTip, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tGrad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblGrad))
 					.addGap(11)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblWeb)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tWeb, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblEmail))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, 3, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+					.addGap(8))
 		);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-			},
-			new String[] {
-				"JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, Object.class, String.class
+		model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
+				}
+			) {
+				Class[] columnTypes = new Class[] {
+					String.class, String.class, String.class, String.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+				boolean[] columnEditables = new boolean[] {
+					false, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
 			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 		setLayout(groupLayout);
-
+		
+		cbNaziv.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				try{
+					if(cbNaziv.getSelectedIndex()!=-1 && arg0.getStateChange()==ItemEvent.SELECTED){
+						cbUpisiPodatke((Klijent)cbNaziv.getSelectedItem());
+					}
+				}catch(Exception e)
+				{
+					new Validacija().poruka(e.getMessage());
+				}
+			}
+		});
+		upisiPodatke();
+	}
+	
+	private void upisiPodatke() {
+		List<Klijent> klijenti=new HibernateKlijent().dajSveKlijente();
+		if(klijenti.size()>0)
+		{
+			for(Klijent k:klijenti)
+			{
+				cbNaziv.addItem(k);
+			}
+		}
+	}
+	
+	private void cbUpisiPodatke(Klijent k)
+	{
+		tAdresa.setText(k.getAdresa());
+		tEmail.setText(k.getEmail());
+		tGrad.setText(k.getMjesto());
+		tJib.setText(k.getJib());
+		tTip.setText(k.getTip());
+		tWeb.setText(k.getWeb());
+		
+		if (model.getRowCount() > 0) {
+		    for (int i = model.getRowCount() - 1; i > -1; i--) {
+		        model.removeRow(i);
+		    }
+		}
+		
+		if(k.getUredjaji().size()>0)
+		{
+			//"JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
+			for(Uredjaj u:k.getUredjaji())
+			{
+				model.addRow(new Object[]{u.getJibProizvodaca(),u.getTipUredaja(),u.getIbfu(),u.getIbfm()});
+			}
+		}
+		
 	}
 }
