@@ -57,161 +57,103 @@ public class frmDetaljnijeZadatakServiser extends JFrame {
 		panel.setBorder(BorderFactory.createTitledBorder("Podaci o zadataku"));
 		
 		JLabel label = new JLabel("Br. telefona:");
+		label.setBounds(52, 56, 73, 14);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_2 = new JLabel("Tip ure\u0111aja:");
+		label_2.setBounds(52, 108, 73, 14);
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_3 = new JLabel("Naziv firme:");
+		label_3.setBounds(52, 30, 73, 14);
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_4 = new JLabel("IBFU:");
+		label_4.setBounds(52, 82, 73, 14);
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_5 = new JLabel("Hitnost:");
+		label_5.setBounds(52, 134, 73, 14);
 		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tTip = new JTextField();
+		tTip.setBounds(129, 105, 139, 20);
 		tTip.setBackground(Color.WHITE);
 		tTip.setEditable(false);
 		tTip.setColumns(10);
 		
 		tIbfu = new JTextField();
+		tIbfu.setBounds(129, 79, 139, 20);
 		tIbfu.setBackground(Color.WHITE);
 		tIbfu.setEditable(false);
 		tIbfu.setColumns(10);
 		
 		tNaziv = new JTextField();
+		tNaziv.setBounds(129, 27, 200, 20);
 		tNaziv.setBackground(Color.WHITE);
 		tNaziv.setEditable(false);
 		tNaziv.setColumns(10);
 		
 		tTelefon = new JTextField();
+		tTelefon.setBounds(129, 53, 139, 20);
 		tTelefon.setBackground(Color.WHITE);
 		tTelefon.setEditable(false);
 		tTelefon.setColumns(10);
 		
 		JLabel lblZahtjevPodnesen = new JLabel("Zahtjev podne\u0161en:");
+		lblZahtjevPodnesen.setBounds(16, 160, 109, 14);
 		lblZahtjevPodnesen.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tPodensen = new JTextField();
+		tPodensen.setBounds(129, 157, 139, 20);
 		tPodensen.setBackground(Color.WHITE);
 		tPodensen.setEditable(false);
 		tPodensen.setColumns(10);
 		
 		JLabel lblRokDo = new JLabel("Rok do:");
+		lblRokDo.setBounds(16, 186, 109, 14);
 		lblRokDo.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tRok = new JTextField();
+		tRok.setBounds(129, 183, 139, 20);
 		tRok.setBackground(Color.WHITE);
 		tRok.setEditable(false);
 		tRok.setColumns(10);
 		
 		tPokupiti = new JTextField();
+		tPokupiti.setBounds(129, 208, 139, 20);
 		tPokupiti.setBackground(Color.WHITE);
 		tPokupiti.setEditable(false);
 		tPokupiti.setColumns(10);
 		
 		JLabel lblPokupitiDo = new JLabel("Pokupiti do:");
+		lblPokupitiDo.setBounds(16, 211, 109, 14);
 		lblPokupitiDo.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		tHitnost = new JTextField();
+		tHitnost.setBounds(129, 131, 139, 20);
 		tHitnost.setBackground(Color.WHITE);
 		tHitnost.setEditable(false);
 		tHitnost.setColumns(10);
 		contentPane.setLayout(null);
 		contentPane.add(panel);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(46)
-					.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tNaziv, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(46)
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addGap(4)
-					.addComponent(tTelefon, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(46)
-					.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addGap(4)
-					.addComponent(tIbfu, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(46)
-					.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addGap(4)
-					.addComponent(tTip, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(46)
-					.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tHitnost, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblZahtjevPodnesen, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(tPodensen, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblRokDo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					.addGap(4)
-					.addComponent(tRok, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblPokupitiDo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-					.addGap(4)
-					.addComponent(tPokupiti, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(tNaziv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_3))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label))
-						.addComponent(tTelefon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_4))
-						.addComponent(tIbfu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_2))
-						.addComponent(tTip, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(tHitnost, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_5))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(tPodensen, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblZahtjevPodnesen))
-					.addGap(6)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblRokDo))
-						.addComponent(tRok, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(5)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblPokupitiDo))
-						.addComponent(tPokupiti, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-		);
-		panel.setLayout(gl_panel);
+		panel.setLayout(null);
+		panel.add(label_3);
+		panel.add(tNaziv);
+		panel.add(label);
+		panel.add(tTelefon);
+		panel.add(label_4);
+		panel.add(tIbfu);
+		panel.add(label_2);
+		panel.add(tTip);
+		panel.add(label_5);
+		panel.add(tHitnost);
+		panel.add(lblZahtjevPodnesen);
+		panel.add(tPodensen);
+		panel.add(lblRokDo);
+		panel.add(tRok);
+		panel.add(lblPokupitiDo);
+		panel.add(tPokupiti);
 		upisiPodatke();
 	}
 	
