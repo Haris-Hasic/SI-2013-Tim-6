@@ -12,24 +12,32 @@ import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class frmIzmjenaKlijenta extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-
+	private JTextField tWeb;
+	private JTextField tTip;
+	private JTextField tJib;
+	private JTextField tAdresa;
+	private JTextField tMjesto;
+	private JTextField tEmail;
+	private JTextField tTelefon;
+	private JTextField tNaziv;
+	
+	JButton btnNewButton;
 	private DefaultTableModel model;
 	private Klijent klijent;
 	public frmIzmjenaKlijenta(DefaultTableModel model,String jib) {
@@ -74,29 +82,29 @@ public class frmIzmjenaKlijenta extends JFrame {
 		JLabel label_7 = new JLabel("JIB:");
 		label_7.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		tWeb = new JTextField();
+		tWeb.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		tTip = new JTextField();
+		tTip.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		tJib = new JTextField();
+		tJib.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		tAdresa = new JTextField();
+		tAdresa.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		tMjesto = new JTextField();
+		tMjesto.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		tEmail = new JTextField();
+		tEmail.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		tTelefon = new JTextField();
+		tTelefon.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
+		tNaziv = new JTextField();
+		tNaziv.setColumns(10);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -106,39 +114,39 @@ public class frmIzmjenaKlijenta extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tNaziv, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 							.addGap(19)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tTip, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(11)
 							.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tJib, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(11)
 							.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tAdresa, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(11)
 							.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tMjesto, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(11)
 							.addComponent(label, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tTelefon, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
+							.addComponent(tEmail, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(tWeb, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(118, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -149,59 +157,179 @@ public class frmIzmjenaKlijenta extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_2))
-						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tNaziv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_1))
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tTip, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_7))
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tJib, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_6))
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tAdresa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_4))
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tMjesto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(9)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label))
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tTelefon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(9)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_3))
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(11)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(label_5))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tWeb, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		
-		JButton btnNewButton = new JButton("Spasi izmjene");
+		btnNewButton = new JButton("Spasi izmjene");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try
+				{
+					boolean promjena=false;
+					if(!klijent.getAdresa().equals(tAdresa.getText()))
+					{
+						klijent.setAdresa(tAdresa.getText());promjena=true;
+					}
+					
+					if(!klijent.getEmail().equals(tEmail.getText()))
+					{
+						klijent.setEmail(tEmail.getText());promjena=true;
+					}
+					
+					if(!klijent.getJib().equals(tJib.getText()))
+					{
+						klijent.setJib(tJib.getText());promjena=true;
+					}
+					if(!klijent.getMjesto().equals(tMjesto.getText()))
+					{
+						klijent.setMjesto(tMjesto.getText());promjena=true;
+					}
+					if(!klijent.getNaziv().equals(tNaziv.getText()))
+					{
+						klijent.setNaziv(tNaziv.getText());promjena=true;
+					}
+					if(!klijent.getTelefon().equals(tTelefon.getText()))
+					{
+						klijent.setTelefon(tTelefon.getText());promjena=true;
+					}
+					if(!klijent.getTip().equals(tTip.getText()))
+					{
+						klijent.setTip(tTip.getText());promjena=true;
+					}
+					if(!klijent.getWeb().equals(tWeb.getText()))
+					{
+						klijent.setWeb(tWeb.getText());promjena=true;
+					}
+					
+					if(promjena)
+					{
+						new HibernateKlijent().updateKlijenta(klijent);
+						popuniTabeluUFormi();
+						new Validacija().poruka("Promjene spasene!");
+						dispose();
+					}
+					else{
+						new Validacija().poruka("Promjene nisu napravljene!");
+						dispose();
+					}
+					
+				}catch (GeneralniException ge)
+				{
+					new Validacija().poruka(ge.getMessage());
+				}
+				
+				
+			}
+		});
 		btnNewButton.setBounds(306, 299, 128, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnIzbrisiKijenta = new JButton("Izbri\u0161i kijenta");
+		btnIzbrisiKijenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int reply = JOptionPane.showConfirmDialog(null, "Podaci će biti trajno obrisani. Da li želite nastaviti?", "Upozorenje", JOptionPane.YES_NO_OPTION);
+		        if (reply == JOptionPane.YES_OPTION) {
+		         
+		        	new HibernateKlijent().brisiKlijenta(klijent);
+					popuniTabeluUFormi();
+					new Validacija().poruka("Klijent obrisan.");
+					dispose();
+		        	
+		        }
+		        else {
+		          
+		        }
+			}
+		});
 		btnIzbrisiKijenta.setBounds(182, 299, 114, 23);
 		contentPane.add(btnIzbrisiKijenta);
+		upisiPodatke();
+	}
+	
+	private void upisiPodatke()
+	{
+		tAdresa.setText(klijent.getAdresa());
+		tEmail.setText(klijent.getEmail());
+		tJib.setText(klijent.getJib());
+		tMjesto.setText(klijent.getMjesto());
+		tNaziv.setText(klijent.getNaziv());
+		tTelefon.setText(klijent.getTelefon());
+		tTip.setText(klijent.getTip());
+		tWeb.setText(klijent.getWeb());
+	}
+	
+	private void popuniTabeluUFormi()
+	{
+		if (model.getRowCount() > 0) {
+		    for (int i = model.getRowCount() - 1; i > -1; i--) {
+		        model.removeRow(i);
+		    }
+		}
+		
+		List<Klijent> klijenti=new HibernateKlijent().dajSveKlijente();
+		if(klijenti.size()>0)
+		{
+			//"Br.", "Naziv", "Tip", "JIB", "Adresa", "Mjesto", "Telefon", "Email", "Web"
+			for(int i=0;i<klijenti.size();i++)
+			{
+				Klijent klijent=klijenti.get(i);
+				
+				String naziv=klijent.getNaziv();
+				String tipString=klijent.getTip();
+				String jib=klijent.getJib();
+				String adresa=klijent.getAdresa();
+				String mjesto=klijent.getMjesto();
+				String telefon=klijent.getTelefon();
+				String email=klijent.getEmail();
+				String web=klijent.getWeb();
+				
+				model.addRow(new Object[]{String.valueOf(i+1),naziv,tipString,jib,adresa,mjesto,telefon,email,web});
+			}
+		}
+		
 	}
 }
