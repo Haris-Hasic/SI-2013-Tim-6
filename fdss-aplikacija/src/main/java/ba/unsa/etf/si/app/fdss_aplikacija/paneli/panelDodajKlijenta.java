@@ -19,7 +19,9 @@ import java.awt.Component;
 import javax.swing.JSeparator;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 import java.awt.event.MouseAdapter;
@@ -34,11 +36,12 @@ public class panelDodajKlijenta extends JPanel {
 	private JTextField telefon_tb;
 	private JTextField email_tb;
 	private JTextField web_tb;
-
+	private HibernateKlijent hk;
 	/**
 	 * Create the panel.
 	 */
 	public panelDodajKlijenta() {
+		
 		setBorder(BorderFactory.createTitledBorder("Dodaj klijenta:"));
 		
 		JLabel lblNaziv = new JLabel("Naziv:");
@@ -95,13 +98,21 @@ public class panelDodajKlijenta extends JPanel {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				try {
-				Klijent k = new Klijent();
-				
-				pokupiPodatke(k);
-				JOptionPane.showMessageDialog(null, "Klijent " + k.getNaziv() + " uspješno unesen !");
-				
-				new HibernateKlijent().dodajKlijenta(k);
-				ocistiPoljaZaUnos();
+					
+					Klijent k = new Klijent();
+					pokupiPodatke(k);
+					
+					hk = new HibernateKlijent();
+					
+					if(!hk.postojiKlijent(k.getJib())) {
+						
+						hk.dodajKlijenta(k);
+						ocistiPoljaZaUnos();
+						JOptionPane.showMessageDialog(null, "Klijent " + k.getNaziv() + " uspješno unesen !");
+					}
+					
+					else
+						throw new GeneralniException("Korisnik sa datim JIB je već unesen u bazu !");
 				}
 				
 				catch(GeneralniException ge) {
