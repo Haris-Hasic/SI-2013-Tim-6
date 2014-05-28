@@ -15,6 +15,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.TestPristupaBazi;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 import java.awt.*;
@@ -42,32 +43,35 @@ public class frmLogin extends JFrame {
 
 				try {
 					
-					final frmSplashScreen fsp = new frmSplashScreen();
-					fsp.setVisible(true);
-					
-					Timer timer = new Timer(1000, new ActionListener() {
-					        public void actionPerformed(ActionEvent e) {
-					        	
-					        	hu = new HibernateUposlenik();
-					        	hk = new HibernateKlijent();
-					    		uposlenici = hu.dajSveUposlenike();
-					    		hk.dajSveKlijente();
-
-					    		fsp.setVisible(false);
-					            fsp.dispose();
-					            
+					if(TestPristupaBazi.Testiraj()) {
+						
+						final frmSplashScreen fsp = new frmSplashScreen();
+						fsp.setVisible(true);
+	
+						Timer timer = new Timer(1000, new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+	
+								hu = new HibernateUposlenik();
+								hk = new HibernateKlijent();
+								uposlenici = hu.dajSveUposlenike();
+								hk.dajSveKlijente();
+	
+								fsp.setVisible(false);
+								fsp.dispose();
+	
 								final frmLogin frame = new frmLogin();
 								frame.setVisible(true);
-					        }
-					    });
-					
-					    timer.setRepeats(false);
-					    timer.start();
-					
+							}
+						});
+	
+						timer.setRepeats(false);
+						timer.start(); 
+					}
+
 				} catch (Exception e) {
 
-					final frmLogin frame = new frmLogin();
-					frame.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Konekcija na bazu nije uspjela. \nRazlog : \n" + e.getClass().getName()+": "+ e.getMessage());
+					System.exit(1);
 				}
 			}
 		});
