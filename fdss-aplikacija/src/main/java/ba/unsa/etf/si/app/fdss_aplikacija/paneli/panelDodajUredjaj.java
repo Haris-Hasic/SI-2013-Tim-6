@@ -64,16 +64,22 @@ public class panelDodajUredjaj extends JPanel {
 		JButton btnDodajUredjaj = new JButton("Dodaj ure\u0111aj");
 		btnDodajUredjaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try
+				if(new HibernateUredjaj().postojiUredjaj(tIbfu.getText()))
 				{
-					Uredjaj u=new Uredjaj();
-					kreirajUredjaj(u);
-					new HibernateUredjaj().dodajUredjaj(u);
-					ocistiPolja();
-					new Validacija().poruka("Uređaj dodan!");
-				}catch(GeneralniException gen)
-				{
-					new Validacija().poruka(gen.getMessage());
+					new Validacija().poruka("Uređaj sa istim IFBU je već unesen.");
+				}
+				else{
+					try
+					{
+						Uredjaj u=new Uredjaj();
+						kreirajUredjaj(u);
+						new HibernateUredjaj().dodajUredjaj(u);
+						ocistiPolja();
+						new Validacija().poruka("Uređaj dodan!");
+					}catch(GeneralniException gen)
+					{
+						new Validacija().poruka(gen.getMessage());
+					}
 				}
 				
 			}
