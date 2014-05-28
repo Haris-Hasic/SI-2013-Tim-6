@@ -222,6 +222,10 @@ public class frmIzmjenaKlijenta extends JFrame {
 					
 					if(!klijent.getJib().equals(tJib.getText()))
 					{
+						if(new HibernateKlijent().postojiKlijent(tJib.getText()))
+						{
+							throw new GeneralniException("Klijent sa istim JIB je već unesen");
+						}
 						klijent.setJib(tJib.getText());promjena=true;
 					}
 					if(!klijent.getMjesto().equals(tMjesto.getText()))

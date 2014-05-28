@@ -115,8 +115,15 @@ public class frmIzmjenaUredjaja extends JFrame {
 					}
 					if(!(uredjaj.getIbfu().equals(tIFBU.getText())))
 					{
-						uredjaj.setIbfu(tIFBU.getText());
-						promjena=true;
+						if(new HibernateUredjaj().postojiUredjaj(tIFBU.getText()))
+						{
+							throw new GeneralniException("Uređaj sa istim IFBU je već unesen.");
+						}
+						else
+						{
+							uredjaj.setIbfu(tIFBU.getText());
+							promjena=true;
+						}
 					}
 					if(!(uredjaj.getJibProizvodaca().equals(tJIBProizvodzaca.getText())))
 					{

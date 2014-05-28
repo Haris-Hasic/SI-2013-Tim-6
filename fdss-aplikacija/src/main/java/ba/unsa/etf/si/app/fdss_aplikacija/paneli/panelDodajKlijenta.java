@@ -23,6 +23,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -97,27 +98,33 @@ public class panelDodajKlijenta extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				try {
-					
-					Klijent k = new Klijent();
-					pokupiPodatke(k);
-					
-					hk = new HibernateKlijent();
-					
-					if(!hk.postojiKlijent(k.getJib())) {
+				if(! new HibernateKlijent().postojiKlijent(jib_tb.getText()))
+				{
+					try {
 						
-						hk.dodajKlijenta(k);
-						ocistiPoljaZaUnos();
-						JOptionPane.showMessageDialog(null, "Klijent " + k.getNaziv() + " uspješno unesen !");
+						Klijent k = new Klijent();
+						pokupiPodatke(k);
+						
+						hk = new HibernateKlijent();
+						
+						if(!hk.postojiKlijent(k.getJib())) {
+							
+							hk.dodajKlijenta(k);
+							ocistiPoljaZaUnos();
+							JOptionPane.showMessageDialog(null, "Klijent " + k.getNaziv() + " uspješno unesen !");
+						}
+						
+						else
+							throw new GeneralniException("Korisnik sa datim JIB je već unesen u bazu !");
 					}
 					
-					else
-						throw new GeneralniException("Korisnik sa datim JIB je već unesen u bazu !");
-				}
-				
-				catch(GeneralniException ge) {
-					
-					JOptionPane.showMessageDialog(null, ge.getMessage());
+					catch(GeneralniException ge) {
+						
+						JOptionPane.showMessageDialog(null, ge.getMessage());
+					}
+				}else
+				{
+					new Validacija().poruka("Klijent sa istim JIB je već unesen");
 				}
 			}
 		});
