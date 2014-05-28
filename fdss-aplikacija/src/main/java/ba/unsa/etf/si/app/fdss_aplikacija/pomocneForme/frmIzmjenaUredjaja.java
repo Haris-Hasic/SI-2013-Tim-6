@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -154,6 +155,24 @@ public class frmIzmjenaUredjaja extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnIzbriiUreaj = new JButton("Izbri\u0161i ure\u0111aj");
+		btnIzbriiUreaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					int reply = JOptionPane.showConfirmDialog(null, "Podaci će biti trajno obrisani. Da li želite nastaviti?", "Upozorenje", JOptionPane.YES_NO_OPTION);
+			        if (reply == JOptionPane.YES_OPTION) {
+			         
+			        	new HibernateUredjaj().brisiUredjaj(uredjaj);
+						popuniTabeluUFormi();
+						new Validacija().poruka("Uređaj obrisan.");
+						dispose();
+			        	
+			        }
+				}catch(Exception e)
+				{
+					new Validacija().poruka("Brisanje trenutno nije moguće, jer je servisiranje uredjaja u toku.");
+				}
+			}
+		});
 		btnIzbriiUreaj.setBounds(171, 252, 116, 23);
 		contentPane.add(btnIzbriiUreaj);
 		contentPane.add(btnStasiIzmjene);
