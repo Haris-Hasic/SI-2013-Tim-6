@@ -280,9 +280,7 @@ public class frmIzmjenaKlijenta extends JFrame {
 					dispose();
 		        	
 		        }
-		        else {
-		          
-		        }
+		        
 			}
 		});
 		btnIzbrisiKijenta.setBounds(182, 299, 114, 23);

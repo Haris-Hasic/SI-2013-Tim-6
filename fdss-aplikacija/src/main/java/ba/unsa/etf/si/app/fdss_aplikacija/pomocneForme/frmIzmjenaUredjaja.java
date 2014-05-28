@@ -2,10 +2,13 @@ package ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -14,143 +17,221 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JComboBox;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class frmIzmjenaUredjaja extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField tJIBKlijenta;
+	private JTextField tJIBProizvodzaca;
+	private JTextField tIFBU;
+	private JTextField tIFBM;
+	private JTextField tTip;
+	JComboBox cbKlijent;
+	Uredjaj uredjaj;
+	DefaultTableModel model;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmIzmjenaUredjaja frame = new frmIzmjenaUredjaja();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public frmIzmjenaUredjaja() {//promjeniti konstruktor u frmIzmjenaUredjaja(uredjaj u)
-								//i na osnovu toka popuniti tb
+	
+	public frmIzmjenaUredjaja(DefaultTableModel defaultTableModel,String ibfu) {
+		setResizable(false);//promjeniti konstruktor u frmIzmjenaUredjaja(uredjaj u)
+																				//i na osnovu toka popuniti tb
+		
+		model=defaultTableModel;
+		uredjaj=new HibernateUredjaj().dajUredjaj(ibfu);
+		
 		setTitle("Izmjena ure\u0111aja");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 441, 291);
+		setBounds(100, 100, 432, 313);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 405, 196);
+		panel.setBounds(10, 11, 405, 230);
 		
 		JLabel label = new JLabel("Tip ure\u0111aja:");
+		label.setBounds(36, 126, 87, 14);
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_1 = new JLabel("IBFU:");
+		label_1.setBounds(36, 163, 87, 14);
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_2 = new JLabel("JIB proizvo\u0111a\u010Da:");
+		label_2.setBounds(16, 91, 107, 14);
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel label_3 = new JLabel("IBFM:");
+		label_3.setBounds(36, 200, 87, 14);
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel lblJibKlijenta = new JLabel("JIB klijenta:");
+		lblJibKlijenta.setBounds(30, 60, 95, 14);
 		lblJibKlijenta.setHorizontalAlignment(SwingConstants.RIGHT);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		tJIBKlijenta = new JTextField();
+		tJIBKlijenta.setEditable(false);
+		tJIBKlijenta.setBounds(129, 57, 194, 20);
+		tJIBKlijenta.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		tJIBProizvodzaca = new JTextField();
+		tJIBProizvodzaca.setBounds(127, 88, 194, 20);
+		tJIBProizvodzaca.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		tIFBU = new JTextField();
+		tIFBU.setBounds(127, 160, 121, 20);
+		tIFBU.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		tIFBM = new JTextField();
+		tIFBM.setBounds(127, 197, 121, 20);
+		tIFBM.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(14)
-							.addComponent(lblJibKlijenta, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-							.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_panel.createSequentialGroup()
-								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-									.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
-									.addComponent(label, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(76, Short.MAX_VALUE))
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblJibKlijenta))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_2)))
-					.addGap(15)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label))
-					.addGap(17)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_1))
-					.addGap(17)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_3))
-					.addGap(3))
-		);
-		panel.setLayout(gl_panel);
+		tTip = new JTextField();
+		tTip.setBounds(127, 123, 194, 20);
+		tTip.setColumns(10);
 		panel.setBorder(BorderFactory.createTitledBorder("Podaci o ure\u0111aju:"));
 		
 		JButton btnStasiIzmjene = new JButton("Spasi izmjene");
-		btnStasiIzmjene.setBounds(297, 218, 118, 23);
+		btnStasiIzmjene.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					boolean promjena=false;
+					if(!(uredjaj.getIbfm().equals(tIFBM.getText())))
+					{
+						uredjaj.setIbfm(tIFBM.getText());
+						promjena=true;
+					}
+					if(!(uredjaj.getIbfu().equals(tIFBU.getText())))
+					{
+						uredjaj.setIbfu(tIFBU.getText());
+						promjena=true;
+					}
+					if(!(uredjaj.getJibProizvodaca().equals(tJIBProizvodzaca.getText())))
+					{
+						uredjaj.setJibProizvodaca(tJIBProizvodzaca.getText());
+						promjena=true;
+					}
+					if(!(uredjaj.getTipUredaja().equals(tTip.getText())))
+					{
+						uredjaj.setTipUredaja(tTip.getText());
+						promjena=true;
+					}
+					if(!(uredjaj.getKlijent().getJib().equals(((Klijent)cbKlijent.getSelectedItem()).getJib())))
+					{
+						uredjaj.setKlijent((Klijent)cbKlijent.getSelectedItem());
+						promjena=true;
+					}
+					
+					if(promjena)
+					{
+						new HibernateUredjaj().updateUredjaj(uredjaj);
+						popuniTabeluUFormi();
+						new Validacija().poruka("Promjene spasene!");
+						dispose();
+					}
+					else{
+						new Validacija().poruka("Promjene nisu napravljene!");
+						dispose();
+					}
+				}catch(GeneralniException e)
+				{
+					new Validacija().poruka(e.getMessage());
+				}
+			}
+		});
+		btnStasiIzmjene.setBounds(297, 252, 118, 23);
 		contentPane.setLayout(null);
 		
 		JButton btnIzbriiUreaj = new JButton("Izbri\u0161i ure\u0111aj");
-		btnIzbriiUreaj.setBounds(171, 218, 116, 23);
+		btnIzbriiUreaj.setBounds(171, 252, 116, 23);
 		contentPane.add(btnIzbriiUreaj);
 		contentPane.add(btnStasiIzmjene);
 		contentPane.add(panel);
+		panel.setLayout(null);
+		panel.add(lblJibKlijenta);
+		panel.add(tJIBKlijenta);
+		panel.add(label_2);
+		panel.add(tJIBProizvodzaca);
+		panel.add(label_3);
+		panel.add(label_1);
+		panel.add(label);
+		panel.add(tIFBU);
+		panel.add(tTip);
+		panel.add(tIFBM);
+		
+		cbKlijent = new JComboBox();
+		cbKlijent.setBounds(129, 26, 194, 20);
+		panel.add(cbKlijent);
+		
+		JLabel lblKlijent = new JLabel("Klijent:");
+		lblKlijent.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblKlijent.setBounds(30, 29, 95, 14);
+		panel.add(lblKlijent);
+		
+		cbKlijent.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				try{
+					if(cbKlijent.getSelectedIndex()!=-1 && arg0.getStateChange()==ItemEvent.SELECTED){
+						Klijent k=(Klijent)cbKlijent.getSelectedItem();
+						tJIBKlijenta.setText(k.getJib());	
+					}
+				}catch(Exception e)
+				{
+					
+				}
+			}
+		});
+		
+		upisiPodatke();
 	}
-
+	
+	private void upisiPodatke()
+	{
+		List<Klijent> klijenti=new HibernateKlijent().dajSveKlijente();
+		for(Klijent klijent:klijenti)
+		{
+			cbKlijent.addItem(klijent);
+		}
+		cbKlijent.setSelectedItem(uredjaj.getKlijent());
+		tIFBM.setText(uredjaj.getIbfm());
+		tIFBU.setText(uredjaj.getIbfu());
+		tJIBProizvodzaca.setText(uredjaj.getJibProizvodaca());
+		tTip.setText(uredjaj.getTipUredaja());
+	}
+	
+	private void popuniTabeluUFormi()
+	{
+		if (model.getRowCount() > 0) {
+		    for (int i = model.getRowCount() - 1; i > -1; i--) {
+		        model.removeRow(i);
+		    }
+		}
+		
+		List<Uredjaj> uredjaji=new HibernateUredjaj().dajSveUredjaje();
+		
+		if(uredjaji.size()>0)
+		{
+			for(Uredjaj uredjaj:uredjaji)
+			{
+				String klijent=uredjaj.getKlijent().getNaziv()+" "+uredjaj.getKlijent().getJib();
+				String jibPro=uredjaj.getJibProizvodaca();
+				String tip=uredjaj.getTipUredaja();
+				String ibfu=uredjaj.getIbfu();
+				String ibfm=uredjaj.getIbfm();
+				
+				model.addRow(new Object[]{klijent,jibPro,tip,ibfu,ibfm});
+			}
+		}
+	}
 }

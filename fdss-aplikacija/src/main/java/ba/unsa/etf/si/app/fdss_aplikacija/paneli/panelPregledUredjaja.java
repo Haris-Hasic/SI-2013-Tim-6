@@ -66,8 +66,12 @@ public class panelPregledUredjaja extends JPanel {
 		JButton btnIzmjeni = new JButton("Izmjeni");
 		btnIzmjeni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmIzmjenaUredjaja fi=new frmIzmjenaUredjaja();
-				fi.setVisible(true);
+				if(tabela.getSelectedRow()>=0)
+				{
+					String ifbu=model.getValueAt(tabela.getSelectedRow(), 3).toString();
+					frmIzmjenaUredjaja fk=new frmIzmjenaUredjaja(model,ifbu);
+					fk.setVisible(true);
+				}
 			}
 		});
 		
