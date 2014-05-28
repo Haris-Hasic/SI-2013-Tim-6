@@ -58,7 +58,7 @@ public class frmManager extends JFrame {
 		setTitle("Prijavljen kao: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
 		setBounds(100, 100, 849, 597);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		int novaVarijabla=5;
+		int novaVarijable=5;
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
