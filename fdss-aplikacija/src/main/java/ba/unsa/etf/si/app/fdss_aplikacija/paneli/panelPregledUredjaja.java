@@ -16,40 +16,49 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmIzmjenaUredjaja;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class panelPregledUredjaja extends JPanel {
 
 	    private JTable tabela=new JTable();
-	/**
+	    private DefaultTableModel model;
+	    /** 
 	 * Create the panel.
 	 */
 	public panelPregledUredjaja(Boolean _dugmeVidljivo) {
 		
 		setBorder(BorderFactory.createTitledBorder("Pregled ure\u0111aja:"));
-
-		tabela.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"JIP klijenta", "JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, Object.class, String.class
+		model=new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Klijent", "JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
+				}
+			) {
+				Class[] columnTypes = new Class[] {
+					String.class, String.class, String.class, String.class, String.class
+				};
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+				boolean[] columnEditables = new boolean[] {
+					false, false, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
 			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		tabela.getColumnModel().getColumn(0).setPreferredWidth(133);
+		tabela.setModel(model);
+		tabela.getColumnModel().getColumn(0).setPreferredWidth(208);
 		tabela.getColumnModel().getColumn(1).setPreferredWidth(130);
 		tabela.getColumnModel().getColumn(2).setPreferredWidth(111);
-		tabela.getColumnModel().getColumn(3).setPreferredWidth(93);
+		tabela.getColumnModel().getColumn(3).setPreferredWidth(99);
 		tabela.getColumnModel().getColumn(4).setPreferredWidth(93);
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(tabela);
@@ -82,5 +91,25 @@ public class panelPregledUredjaja extends JPanel {
 		);
 		setLayout(groupLayout);
 		btnIzmjeni.setVisible(_dugmeVidljivo);
+		upisiPodatke();
+	}
+	
+	private void upisiPodatke()
+	{
+		//"Klijent", "JIB proizvo\u0111a\u010Da", "Tip ure\u0111aja", "IBFU", "IBFM"
+		List<Uredjaj> uredjaji=new HibernateUredjaj().dajSveUredjaje();
+		if(uredjaji.size()>0)
+		{
+			for(Uredjaj uredjaj:uredjaji)
+			{
+				String klijent=uredjaj.getKlijent().getNaziv()+" "+uredjaj.getKlijent().getJib();
+				String jibPro=uredjaj.getJibProizvodaca();
+				String tip=uredjaj.getTipUredaja();
+				String ibfu=uredjaj.getIbfu();
+				String ibfm=uredjaj.getIbfm();
+				
+				model.addRow(new Object[]{klijent,jibPro,tip,ibfu,ibfm});
+			}
+		}
 	}
 }
