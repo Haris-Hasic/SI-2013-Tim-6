@@ -47,6 +47,63 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertFalse(rezultat);
 	}
 	
+	public void TestValidirajIBFU() 
+	{
+		String ibfu = "EO021760";
+		Boolean rezultat = Validacija.validirajIBFU(ibfu);
+		Assert.assertTrue(rezultat);
+	}
+	
+	public void TestValidirajIBFU2() 
+	{
+		String ibfu = "EO021761";
+		Boolean rezultat = Validacija.validirajIBFU(ibfu);
+		Assert.assertFalse(rezultat);
+	}
+	
+	public void TestValidirajEmail() 
+	{
+		String email = "kahrovic@hotmail.com";
+		Boolean rezultat = Validacija.validirajIBFU(email);
+		Assert.assertTrue(rezultat);
+	}
+	
+	public void TestValidirajEmail2() 
+	{
+		String email = "kahrovic@.com";
+		Boolean rezultat = Validacija.validirajEmail(email);
+		Assert.assertFalse(rezultat);
+	}
+	
+	public void TestValidirajTelefon() 
+	{
+		String telefon = "+38761503098";
+		Boolean rezultat = Validacija.validirajTelefon(telefon);
+		Assert.assertTrue(rezultat);
+	}
+	
+	public void TestValidirajTelefon2() 
+	{
+		String telefon = "+38761";
+		Boolean rezultat = Validacija.validirajTelefon(telefon);
+		Assert.assertFalse(rezultat);
+	}
+	
+	public void TestHesirajMD5() 
+	{
+		String poruka = "nekaPoruka";
+		String hesirano = Validacija.HesirajMD5(poruka);
+		Assert.assertEquals(hesirano, "846010891eb0ecd2103dcc26320c6f20");
+	}
+	
+	public void TestHesirajMD52() 
+	{
+		String poruka = "nekaPoruka";
+		String hesirano = Validacija.HesirajMD5(poruka);
+		Assert.assertNotSame("846010891eb0ecd2103dcc26320c6f21", hesirano);
+	}
+	
+	
 	
 
 }
