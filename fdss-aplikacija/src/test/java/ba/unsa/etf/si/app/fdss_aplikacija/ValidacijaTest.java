@@ -2,23 +2,10 @@ package ba.unsa.etf.si.app.fdss_aplikacija;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
-import junit.framework.Assert;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.*;
 
-public class ValidacijaTest extends TestCase {
-	
-    public ValidacijaTest( String testName )
-    {
-        super( testName );
-    }
-    
-    public static Test suite()
-    {
-        return new TestSuite( ValidacijaTest.class );
-    }
-	
+public class ValidacijaTest {
+	@Test
 	public void TestValidirajJMBG() 
 	{
 		String jmb = "2706992172174";
@@ -26,13 +13,16 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertTrue(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajJMBG2() 
 	{
 		String jmb = "2706992172175";
 		Boolean rezultat = Validacija.validirajJMBG(jmb);
 		Assert.assertFalse(rezultat);
 	}
-
+	
+	
+	@Test
 	public void TestValidirajIBFM() 
 	{
 		String ibfm = "EO021760";
@@ -40,6 +30,7 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertTrue(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajIBFM2() 
 	{
 		String ibfm = "EOL21760";
@@ -47,6 +38,7 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertFalse(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajIBFU() 
 	{
 		String ibfu = "EO021760";
@@ -54,6 +46,7 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertTrue(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajIBFU2() 
 	{
 		String ibfu = "EO021761";
@@ -61,13 +54,16 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertFalse(rezultat);
 	}
 	
+	
+	@Test
 	public void TestValidirajEmail() 
 	{
 		String email = "kahrovic@hotmail.com";
-		Boolean rezultat = Validacija.validirajIBFU(email);
+		Boolean rezultat = Validacija.validirajEmail(email);
 		Assert.assertTrue(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajEmail2() 
 	{
 		String email = "kahrovic@.com";
@@ -75,6 +71,7 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertFalse(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajTelefon() 
 	{
 		String telefon = "+38761503098";
@@ -82,6 +79,7 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertTrue(rezultat);
 	}
 	
+	@Test
 	public void TestValidirajTelefon2() 
 	{
 		String telefon = "+38761";
@@ -89,13 +87,15 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertFalse(rezultat);
 	}
 	
+	@Test
 	public void TestHesirajMD5() 
 	{
 		String poruka = "nekaPoruka";
 		String hesirano = Validacija.HesirajMD5(poruka);
-		Assert.assertEquals(hesirano, "846010891eb0ecd2103dcc26320c6f20");
+		Assert.assertEquals("846010891eb0ecd2103dcc26320c6f20", hesirano);
 	}
 	
+	@Test
 	public void TestHesirajMD52() 
 	{
 		String poruka = "nekaPoruka";
@@ -103,7 +103,6 @@ public class ValidacijaTest extends TestCase {
 		Assert.assertNotSame("846010891eb0ecd2103dcc26320c6f21", hesirano);
 	}
 	
-	
-	
+
 
 }

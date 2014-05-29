@@ -1,0 +1,44 @@
+package ba.unsa.etf.si.app.fdss_aplikacija;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+
+import org.junit.*;
+
+public class HibernateKlijentTest {
+
+	private HibernateKlijent hk;
+	private Klijent k;
+	
+	@Before 
+	public void TestnePostavke () {
+		try {
+			k = new Klijent("Ajdin Kahrovic", "2706992172174", "Uzaludna", "Sarajevo", "+38761503098", "kahrovic@hotmail.com", "www.etf.ba");
+		}
+		catch (GeneralniException e)
+		{
+			Validacija v= new Validacija();
+			v.poruka(e.getMessage());
+		}
+		
+		hk = new HibernateKlijent();
+	}
+	
+	@Test
+	public void testDodajKlijenta() 
+	{
+		hk.dodajKlijenta(k);
+		Assert.assertTrue(hk.postojiKlijent("2706992172174"));
+	}
+	
+	@Test (expected = GeneralniException.class) 
+	public void testBrisiKlijenta() 
+	{
+		hk.dodajKlijenta(k);
+		hk.brisiKlijenta(k);
+		
+	}
+	
+}
