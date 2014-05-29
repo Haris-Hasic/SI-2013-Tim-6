@@ -50,12 +50,12 @@ public class frmManager extends JFrame {
 	
 	private JPanel contentPane;
 	private JPanel centralniPanel;
-	Uposlenik uposlenik;
+	private Uposlenik uposlenik;
 	
-	public frmManager(Uposlenik uposlenik) {
+	public frmManager(final Uposlenik uposlenik) {
 		this.uposlenik=uposlenik;
 		
-		setTitle("Prijavljen kao: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
+		setTitle("Prijavljen kao: ");
 		setBounds(100, 100, 849, 597);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int novaVarijable=5;
@@ -78,7 +78,7 @@ public class frmManager extends JFrame {
 		btnIzvjetaji.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				contentPane.remove(centralniPanel);
-				centralniPanel = new panelIzvjestaji();
+				centralniPanel = new panelIzvjestaji(uposlenik);
 				contentPane.add(centralniPanel, BorderLayout.CENTER);
 				centralniPanel.revalidate();
 				centralniPanel.updateUI();

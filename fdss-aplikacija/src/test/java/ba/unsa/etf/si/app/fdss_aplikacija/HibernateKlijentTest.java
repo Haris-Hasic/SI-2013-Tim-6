@@ -33,7 +33,7 @@ public class HibernateKlijentTest {
 		Assert.assertTrue(hk.postojiKlijent("2706992172174"));
 	}
 	
-	@Test (expected = GeneralniException.class) 
+	@Test (expected = Exception.class) 
 	public void testBrisiKlijenta() 
 	{
 		hk.brisiKlijenta(k);
@@ -57,7 +57,7 @@ public class HibernateKlijentTest {
 		Assert.assertEquals("Zenica", novi.getMjesto());
 	}	
 	
-	@Test (expected = GeneralniException.class) 
+	@Test (expected = Exception.class) 
 	public void testUpdateKlijenta2() 
 	{
 		k.setMjesto("Zenica");

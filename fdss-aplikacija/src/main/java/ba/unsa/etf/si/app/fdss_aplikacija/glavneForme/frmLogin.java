@@ -36,6 +36,7 @@ public class frmLogin extends JFrame {
 	private static List<Uposlenik> uposlenici;
 	private static HibernateUposlenik hu;
 	private static HibernateKlijent hk;
+	private static TestPristupaBazi tpb;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,7 +44,9 @@ public class frmLogin extends JFrame {
 
 				try {
 					
-					if(TestPristupaBazi.Testiraj()) {
+					tpb = new TestPristupaBazi();
+					
+					if(tpb.Testiraj()) {
 						
 						final frmSplashScreen fsp = new frmSplashScreen();
 						fsp.setVisible(true);

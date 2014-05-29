@@ -71,6 +71,7 @@ public class HibernateZadatak {
 		}
 		return lista ;
 	}
+	
 	public void updateZadatak(Zadatak z) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -119,6 +120,26 @@ public class HibernateZadatak {
 		session.close();
 		return temp;
 	}
+	
+	
+	public  List<Zadatak> dajSveZadatke(Uposlenik serviser)
+	{
+		List<Zadatak> temp=dajSveZadatke();
+		if(temp==null)
+			return new ArrayList<Zadatak>();
+			
+		List<Zadatak> lista=new ArrayList<Zadatak>();
+		
+		for(Zadatak z:temp)
+		{
+			if(z.getServiser().getId()==serviser.getId())
+				lista.add(z);
+		}
+		
+		return lista ;
+	}
+	
+	
 	public boolean postojiZadatak(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
