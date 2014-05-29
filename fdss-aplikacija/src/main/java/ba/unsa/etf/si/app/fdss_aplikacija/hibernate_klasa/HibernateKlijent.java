@@ -74,6 +74,7 @@ public class HibernateKlijent{
 		query.setParameter("tempJib", JIB);
 		List<Klijent> temp=query.list();
 		
+
 		if(temp.size() == 0) {
 			session.close();
 			return new Klijent();
