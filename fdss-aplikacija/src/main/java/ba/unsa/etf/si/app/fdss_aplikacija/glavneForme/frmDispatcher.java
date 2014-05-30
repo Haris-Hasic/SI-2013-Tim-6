@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Image;
 
 import javax.swing.JFrame;
@@ -269,6 +270,7 @@ public class frmDispatcher extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmPromjenaifre = new JMenuItem("Promjena \u0161ifre");
+		mntmPromjenaifre.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmPromjenaifre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPromjenaSifre fs=new frmPromjenaSifre();
@@ -278,6 +280,7 @@ public class frmDispatcher extends JFrame {
 		mnNewMenu.add(mntmPromjenaifre);
 		
 		JMenuItem mntmOtvoriIzvjetaj = new JMenuItem("Otvori izvještaj");
+		mntmOtvoriIzvjetaj.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmOtvoriIzvjetaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Chooser c=new Chooser();
@@ -301,6 +304,7 @@ public class frmDispatcher extends JFrame {
 		mnNewMenu.add(mntmOtvoriIzvjetaj);
 		
 		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
+		mntmIzlaz.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmIzlaz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmLogin.pocetna.setVisible(true);
@@ -310,9 +314,11 @@ public class frmDispatcher extends JFrame {
 		mnNewMenu.add(mntmIzlaz);
 		
 		JMenu mnOstalo = new JMenu("Ostalo");
+		mnOstalo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		menuBar.add(mnOstalo);
 		
 		JMenuItem mntmPopratnaDokumentacija = new JMenuItem("Popratna dokumentacija");
+		mntmPopratnaDokumentacija.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmPopratnaDokumentacija.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -336,9 +342,22 @@ public class frmDispatcher extends JFrame {
 		mnOstalo.add(mntmPopratnaDokumentacija);
 		
 		JMenuItem mntmOnlinePomo = new JMenuItem("Online pomoć");
+		mntmOnlinePomo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mntmOnlinePomo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String url = "https://github.com/Haris-Hasic/SI2013Tim6/wiki/Uputstvo-za-kori%C5%A1tenje";
+		         try {
+					Desktop.getDesktop().browse(java.net.URI.create(url));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnOstalo.add(mntmOnlinePomo);
 		
 		JMenuItem mntmNadogradi = new JMenuItem("Nadogradi");
+		mntmNadogradi.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmNadogradi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Instalirana je najnovija verzija aplikacije.");

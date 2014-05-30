@@ -1,4 +1,5 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -45,6 +46,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -167,9 +169,11 @@ public class frmAdministrator extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnPostavke = new JMenu("Postavke");
+		mnPostavke.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		menuBar.add(mnPostavke);
 		
 		JMenuItem mntmPromjenaifre = new JMenuItem("Promjena \u0161ifre");
+		mntmPromjenaifre.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmPromjenaifre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmPromjenaSifre fs=new frmPromjenaSifre();
@@ -179,9 +183,11 @@ public class frmAdministrator extends JFrame {
 		mnPostavke.add(mntmPromjenaifre);
 		
 		JMenuItem mntmPodesiParametreKonekcije = new JMenuItem("Podesi parametre konekcije");
+		mntmPodesiParametreKonekcije.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mnPostavke.add(mntmPodesiParametreKonekcije);
 		
 		JMenuItem mntmExportPodatakaIz = new JMenuItem("Export podataka iz baze");
+		mntmExportPodatakaIz.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmExportPodatakaIz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmExport ex=new frmExport();
@@ -191,6 +197,7 @@ public class frmAdministrator extends JFrame {
 		mnPostavke.add(mntmExportPodatakaIz);
 		
 		JMenuItem mntmImportPodatakaU = new JMenuItem("Import podataka u bazu");
+		mntmImportPodatakaU.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmImportPodatakaU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Potrebno je odabrati fajl sa ekstenzijom .csv u kojem se nalaze novi podaci koji se trebaju unijeti u bazu");
@@ -204,6 +211,7 @@ public class frmAdministrator extends JFrame {
 		mnPostavke.add(mntmImportPodatakaU);
 		
 		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
+		mntmIzlaz.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmIzlaz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmLogin.pocetna.setVisible(true);
@@ -220,9 +228,11 @@ public class frmAdministrator extends JFrame {
 		mnPostavke.add(mntmIzlaz);
 		
 		JMenu mnOstalo = new JMenu("Ostalo");
+		mnOstalo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		menuBar.add(mnOstalo);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Popratna dokumentacija");
+		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -246,9 +256,23 @@ public class frmAdministrator extends JFrame {
 		mnOstalo.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Online pomoć");
+		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String url = "https://github.com/Haris-Hasic/SI2013Tim6/wiki/Uputstvo-za-kori%C5%A1tenje";
+		         try {
+					Desktop.getDesktop().browse(java.net.URI.create(url));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnOstalo.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNadogradi = new JMenuItem("Nadogradi");
+		mntmNadogradi.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmNadogradi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Instalirana je najnovija verzija aplikacije.");
