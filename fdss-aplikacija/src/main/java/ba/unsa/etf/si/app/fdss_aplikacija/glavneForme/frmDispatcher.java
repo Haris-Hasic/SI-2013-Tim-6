@@ -46,6 +46,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 
 public class frmDispatcher extends JFrame {
@@ -277,6 +278,26 @@ public class frmDispatcher extends JFrame {
 		mnNewMenu.add(mntmPromjenaifre);
 		
 		JMenuItem mntmOtvoriIzvjetaj = new JMenuItem("Otvori izvještaj");
+		mntmOtvoriIzvjetaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Chooser c=new Chooser();
+				Process p = null;
+				try {
+					p = Runtime
+							   .getRuntime()
+							   .exec("rundll32 url.dll,FileProtocolHandler "+c.fileName);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+						try {
+							p.waitFor();
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			}
+		});
 		mnNewMenu.add(mntmOtvoriIzvjetaj);
 		
 		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
