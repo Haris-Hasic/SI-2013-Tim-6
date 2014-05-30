@@ -511,12 +511,15 @@ class Chooser extends JFrame {
 
 JFileChooser chooser;
 String fileName;
+String folder;
 
 public Chooser() {
 chooser = new JFileChooser();
 int r = chooser.showOpenDialog(new JFrame());
 if (r == JFileChooser.APPROVE_OPTION) {
 fileName = chooser.getSelectedFile().getPath();
+folder=chooser.getCurrentDirectory().getPath();
+
 }
 }
 }
