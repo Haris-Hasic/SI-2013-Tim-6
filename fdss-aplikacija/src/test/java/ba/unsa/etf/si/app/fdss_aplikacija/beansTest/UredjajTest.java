@@ -1,13 +1,40 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
+import java.util.List;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
 
 import org.junit.*;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 public class UredjajTest {
+	Uredjaj ur;
+	HibernateUredjaj hur;
+	@Before
+	public void TestnePostavke () {
+		try {
+			ur =  new Uredjaj();
+			ur.setIbfu("EO021760");
+			ur.setIbfm("EO021760");
+			ur.setId(123);
+			ur.setTipUredaja("kasa");
+			ur.setJibProizvodaca("2706992172174");
+		}
+		
+		catch (GeneralniException e)
+		{
+			Validacija v= new Validacija();
+			v.poruka(e.getMessage());
+		}
+		
+		hur = new HibernateUredjaj();
+	}
 	
 	@Test
 	public void testGetSetIBFU() {
@@ -22,8 +49,6 @@ public class UredjajTest {
 		}
 		
 	}
-	
-
 	
 	@Test
 	public void testGetSetIBFUNeispravno() {
@@ -98,21 +123,36 @@ public class UredjajTest {
 		
 	}
 	
-
-	public void testpostojiUredjaj() {
+	@Test
+	public void testdodavanjeUredjajaKlijentu() {
+		try {
 		
-		HibernateUredjaj h  = new HibernateUredjaj();
+		HibernateKlijent hk = new HibernateKlijent();
+		List<Klijent> klijenti = hk.vratiSveKlijente();
+		if (klijenti.isEmpty()) klijenti.add(new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba"));
+		Klijent k = klijenti.get(0);
 		
-		assertEquals((Boolean)true,(Boolean) h.postojiUredjaj("1607991186528"));
+		List<Uredjaj> uredjaji = k.getUredjaji();
+		uredjaji.add(ur);
+		k.setUredjaji(uredjaji);
+		
+		Boolean flag=false;
+		for (Uredjaj ure : uredjaji) 
+			if (ure==ur) flag=true;
+			
+		Assert.assertTrue(flag);
+		}
+		catch (GeneralniException e) 
+		{
+			Assert.fail("Greska u dodavanju uredjaja klijentu.");
+		}
 		
 	}
+	
 
 
 
-	private void assertEquals(Boolean boolean1, Boolean postojiUredjaj) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	
 }
