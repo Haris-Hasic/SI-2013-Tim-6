@@ -7,7 +7,6 @@ import java.util.List;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 
 import org.junit.*;
