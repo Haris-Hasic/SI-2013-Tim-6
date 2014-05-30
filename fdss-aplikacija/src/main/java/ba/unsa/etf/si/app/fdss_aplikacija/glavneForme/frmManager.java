@@ -1,5 +1,6 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Image;
 
 import javax.swing.JFrame;
@@ -340,6 +341,17 @@ public class frmManager extends JFrame {
 		mnOstalo.add(mntmPopratnaDokumentacija);
 		
 		JMenuItem mntmOnlinePomo = new JMenuItem("Online pomoć");
+		mntmOnlinePomo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String url = "https://github.com/Haris-Hasic/SI2013Tim6/wiki/Uputstvo-za-kori%C5%A1tenje";
+		         try {
+					Desktop.getDesktop().browse(java.net.URI.create(url));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnOstalo.add(mntmOnlinePomo);
 		
 		JMenuItem mntmNadogradi = new JMenuItem("Nadogradi");
