@@ -197,7 +197,6 @@ public class frmAdministrator extends JFrame {
 				String putanja=c.fileName;
 				String novi = putanja.replace("\\","/");
 				TestPristupaBazi.importPodataka(novi);
-				JOptionPane.showMessageDialog(null, novi);
 				
 			}
 		});
