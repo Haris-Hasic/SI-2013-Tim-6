@@ -59,5 +59,36 @@ public class ZahtjevTest {
 		}
 		
 	}
+	@Test
+	public void testUpdateUredjaja() {
+
+			long id = za.getId();
+			hza.dodajZahtjev(za);
+			
+			za.setHitno(0);
+			hza.updateZahtjev(za);
+			Zahtjev novi = hza.dajZahtjev(id);
+			
+			Assert.assertEquals(0, novi.getHitno());
+	}
+	
+	@Test
+	public void testBrisanjeUredjaja() {
+			long id = za.getId();
+			hza.dodajZahtjev(za);
+			hza.brisiZahtjev(za);
+			
+			Assert.assertFalse(hza.postojiZahtjev(id));
+	}
+	
+	@Test
+	public void testPretragaZahtjeva() {
+			long id = za.getId();
+			hza.dodajZahtjev(za);
+			
+			Zahtjev za2 = hza.dajZahtjev(id);
+			
+			Assert.assertEquals(za, za2);
+	}
 
 }
