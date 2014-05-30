@@ -58,11 +58,11 @@ public class frmPodesiBazu extends JFrame{
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					
+					JOptionPane.showMessageDialog(null, e1.toString());
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					
+					JOptionPane.showMessageDialog(null, e1.toString());
 				}
 			}
 		});
