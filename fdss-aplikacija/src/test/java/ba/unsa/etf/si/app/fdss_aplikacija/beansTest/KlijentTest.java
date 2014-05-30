@@ -11,7 +11,6 @@ import junit.framework.TestCase;
 
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 public class KlijentTest extends TestCase {
@@ -70,7 +69,7 @@ public void testGetSetJibNeispravno() {
 }
 
 @Test
-public void testUpdateUposlenika() {
+public void testUpdateKlijenta() {
 	
 	Klijent k = new Klijent();
 	
