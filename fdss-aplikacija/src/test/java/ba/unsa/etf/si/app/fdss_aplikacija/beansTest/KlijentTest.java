@@ -6,10 +6,6 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
-
-
-
-
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
