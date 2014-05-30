@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class frmExport extends JFrame{
 	private JTextField textField;
@@ -71,6 +72,18 @@ public class frmExport extends JFrame{
 		});
 		btnOdaberi.setBounds(258, 139, 89, 23);
 		getContentPane().add(btnOdaberi);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Potrebno je u prvi textbox unijeti naziv fajla u koji želimo smjestiti podatke, npr. primjer.csv, \n"
+						+ "zatim kliknuti na button odaberi i odabrati datoteku u koju želimo smjestiti fajl čije smo ime unijeli u prvom textboxu. \n"
+						+ "Nakon toga potrebno je kliknuti dogme extraktuj. Traženi fajl nalazi se u odabranoj datoteci na računaru.");
+			}
+		});
+		button.setIcon(new ImageIcon(frmExport.class.getResource("/javax/swing/plaf/metal/icons/ocean/question.png")));
+		button.setBounds(339, 11, 26, 23);
+		getContentPane().add(button);
 	}
 }
 
