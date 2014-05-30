@@ -194,8 +194,10 @@ public class frmAdministrator extends JFrame {
 		mntmImportPodatakaU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Chooser c=new Chooser();
-				TestPristupaBazi.importPodataka(c.fileName);
-				JOptionPane.showMessageDialog(null, c.fileName);
+				String putanja=c.fileName;
+				String novi = putanja.replace("\\","/");
+				TestPristupaBazi.importPodataka(novi);
+				JOptionPane.showMessageDialog(null, novi);
 				
 			}
 		});
