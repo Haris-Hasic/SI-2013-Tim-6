@@ -193,6 +193,7 @@ public class frmAdministrator extends JFrame {
 		JMenuItem mntmImportPodatakaU = new JMenuItem("Import podataka u bazu");
 		mntmImportPodatakaU.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Potrebno je odabrati fajl sa ekstenzijom .csv u kojem se nalaze novi podaci koji se trebaju unijeti u bazu");
 				Chooser c=new Chooser();
 				String putanja=c.fileName;
 				String novi = putanja.replace("\\","/");
