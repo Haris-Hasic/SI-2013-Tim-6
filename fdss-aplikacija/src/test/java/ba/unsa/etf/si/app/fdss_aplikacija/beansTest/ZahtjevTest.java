@@ -59,8 +59,48 @@ public class ZahtjevTest {
 		}
 		
 	}
+	
 	@Test
-	public void testUpdateUredjaja() {
+	public void testDodavanjeZahtjeva() {
+			long id = za.getId();
+			hza.dodajZahtjev(za);
+			
+			Assert.assertTrue(hza.postojiZahtjev(id));
+	}
+	
+	@Test
+	public void testDodavanjeZahtjevaNeispravno() {
+		Zahtjev z = new Zahtjev();
+		SimpleDateFormat formatter;
+		Date rok = null;
+		try {
+			
+			formatter = new SimpleDateFormat("dd/MM/yyyy");
+			rok = formatter.parse("14/09/2014");
+			Date sadasnji = formatter.parse("31/05/2014");
+			
+			z.setRok(rok);
+			z.setZahtjevPodnesen(sadasnji);
+			z.setHitno(2);
+			z.setId(123);
+			z.setZavrsen(false);
+			z.setRok(formatter.parse("14/04/2014"));
+			
+			Assert.fail("Greska u datumima - rok je poslije datuma kreiranja zahtjeva.");
+		}
+		catch (Exception e) 
+		{
+				Assert.assertEquals(rok, z.getRok());
+		
+		}
+		
+		
+		
+	}
+	
+	
+	@Test
+	public void testUpdateZahtjeva() {
 
 			long id = za.getId();
 			hza.dodajZahtjev(za);
@@ -73,7 +113,7 @@ public class ZahtjevTest {
 	}
 	
 	@Test
-	public void testBrisanjeUredjaja() {
+	public void testBrisanjeZahtjeva() {
 			long id = za.getId();
 			hza.dodajZahtjev(za);
 			hza.brisiZahtjev(za);
