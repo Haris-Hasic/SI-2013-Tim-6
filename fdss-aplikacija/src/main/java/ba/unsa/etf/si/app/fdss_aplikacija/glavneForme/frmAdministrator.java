@@ -1,4 +1,5 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -45,6 +46,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -246,6 +248,18 @@ public class frmAdministrator extends JFrame {
 		mnOstalo.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Online pomoć");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String url = "https://github.com/Haris-Hasic/SI2013Tim6/wiki/Uputstvo-za-kori%C5%A1tenje";
+		         try {
+					Desktop.getDesktop().browse(java.net.URI.create(url));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		mnOstalo.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNadogradi = new JMenuItem("Nadogradi");
