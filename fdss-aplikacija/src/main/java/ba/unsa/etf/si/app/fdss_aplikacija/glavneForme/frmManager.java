@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
@@ -46,6 +47,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 
 public class frmManager extends JFrame {
@@ -280,6 +282,26 @@ public class frmManager extends JFrame {
 		mnNewMenu.add(mntmPromjenaifre);
 		
 		JMenuItem mntmOtvoriIzvjetaj = new JMenuItem("Otvori izvještaj");
+		mntmOtvoriIzvjetaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Chooser c=new Chooser();
+				Process p = null;
+				try {
+					p = Runtime
+							   .getRuntime()
+							   .exec("rundll32 url.dll,FileProtocolHandler "+c.fileName);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+						try {
+							p.waitFor();
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+			}
+		});
 		mnNewMenu.add(mntmOtvoriIzvjetaj);
 		
 		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
@@ -483,4 +505,18 @@ public class frmManager extends JFrame {
 		
 		
 	}
+}
+
+class Chooser extends JFrame {
+
+JFileChooser chooser;
+String fileName;
+
+public Chooser() {
+chooser = new JFileChooser();
+int r = chooser.showOpenDialog(new JFrame());
+if (r == JFileChooser.APPROVE_OPTION) {
+fileName = chooser.getSelectedFile().getPath();
+}
+}
 }
