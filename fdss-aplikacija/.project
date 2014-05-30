@@ -26,11 +26,4 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/java/resources/Interfejs.docx</name>
-			<type>1</type>
-			<location>C:/Users/dzenita/Desktop/SI/Interfejs.docx</location>
-		</link>
-	</linkedResources>
 </projectDescription>
