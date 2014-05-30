@@ -24,9 +24,9 @@ public class Zahtjev implements Serializable {
 	}
 
 
-	public void setRok(Date rok) {
+	public void setRok(java.util.Date rok) {
 
-			this.rok = rok;
+			this.rok = (Date) rok;
 		
 	}
 
@@ -91,8 +91,8 @@ public class Zahtjev implements Serializable {
 	}
 
 
-	public void setZahtjevPodnesen(Date zahtjevPodnesen) {
-		this.zahtjevPodnesen = zahtjevPodnesen;
+	public void setZahtjevPodnesen(java.util.Date sadasnji) {
+		this.zahtjevPodnesen = (Date) sadasnji;
 	}
 
 
