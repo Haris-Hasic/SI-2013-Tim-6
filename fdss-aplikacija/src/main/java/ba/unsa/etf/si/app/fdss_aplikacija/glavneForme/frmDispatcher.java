@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -273,6 +274,35 @@ public class frmDispatcher extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmPromjenaifre);
+		
+		JMenuItem mntmOtvoriIzvjetaj = new JMenuItem("Otvori izvještaj");
+		mnNewMenu.add(mntmOtvoriIzvjetaj);
+		
+		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
+		mntmIzlaz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmLogin.pocetna.setVisible(true);
+				dispose();
+			}
+		});
+		mnNewMenu.add(mntmIzlaz);
+		
+		JMenu mnOstalo = new JMenu("Ostalo");
+		menuBar.add(mnOstalo);
+		
+		JMenuItem mntmPopratnaDokumentacija = new JMenuItem("Popratna dokumentacija");
+		mnOstalo.add(mntmPopratnaDokumentacija);
+		
+		JMenuItem mntmOnlinePomo = new JMenuItem("Online pomoć");
+		mnOstalo.add(mntmOnlinePomo);
+		
+		JMenuItem mntmNadogradi = new JMenuItem("Nadogradi");
+		mntmNadogradi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Instalirana je najnovija verzija aplikacije.");
+			}
+		});
+		mnOstalo.add(mntmNadogradi);
 		
 		panel.setBorder(BorderFactory.createTitledBorder("Klijenti:"));
 		TitledBorder border=(TitledBorder)panel.getBorder();

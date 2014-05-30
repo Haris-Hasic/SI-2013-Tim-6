@@ -2,6 +2,7 @@ package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -32,6 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -126,6 +128,10 @@ public class frmAdministrator extends JFrame {
 		);
 		
 		JButton btnOdjaviSe = new JButton("Odjavi se");
+		btnOdjaviSe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnOdjaviSe.setBounds(27, 140, 212, 29);
 		panel.add(btnOdjaviSe);
 		btnOdjaviSe.addMouseListener(new MouseAdapter() {
@@ -161,6 +167,48 @@ public class frmAdministrator extends JFrame {
 			}
 		});
 		mnPostavke.add(mntmPromjenaifre);
+		
+		JMenuItem mntmPodesiParametreKonekcije = new JMenuItem("Podesi parametre konekcije");
+		mnPostavke.add(mntmPodesiParametreKonekcije);
+		
+		JMenuItem mntmExportPodatakaIz = new JMenuItem("Export podataka iz baze");
+		mnPostavke.add(mntmExportPodatakaIz);
+		
+		JMenuItem mntmImportPodatakaU = new JMenuItem("Import podataka u bazu");
+		mnPostavke.add(mntmImportPodatakaU);
+		
+		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
+		mntmIzlaz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmLogin.pocetna.setVisible(true);
+				dispose();
+			}
+		});
+		mntmIzlaz.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				frmLogin.pocetna.setVisible(true);
+				dispose();
+			}
+		});
+		mnPostavke.add(mntmIzlaz);
+		
+		JMenu mnOstalo = new JMenu("Ostalo");
+		menuBar.add(mnOstalo);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Popratna dokumentacija");
+		mnOstalo.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Online pomoć");
+		mnOstalo.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNadogradi = new JMenuItem("Nadogradi");
+		mntmNadogradi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Instalirana je najnovija verzija aplikacije.");
+			}
+		});
+		mnOstalo.add(mntmNadogradi);
 		
 	}
 }
