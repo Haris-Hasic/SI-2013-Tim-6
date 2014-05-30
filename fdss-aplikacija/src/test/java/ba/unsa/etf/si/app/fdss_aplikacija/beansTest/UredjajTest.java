@@ -150,9 +150,34 @@ public class UredjajTest {
 	}
 	
 
+	@Test
+	public void testUpdateUredjaja() {
+		
+		try {
+			long id = ur.getId();
+			hur.dodajUredjaj(ur);
+			
+			ur.setIbfu("EO099960");
+			hur.updateUredjaj(ur);
+			Uredjaj novi = hur.dajUredjaj(id);
+			
+			Assert.assertEquals("EO099960", novi.getIbfu());
+		} 
+		
+		catch (GeneralniException e) {
+			
+			Assert.fail("Test neuspješan. Ne radi update-ovanje uredjaja.");
+		}
+	}
 
-
-
+	@Test
+	public void testBrisanjeUredjaja() {
+			long id = ur.getId();
+			hur.dodajUredjaj(ur);
+			hur.brisiUredjaj(ur);
+			
+			Assert.assertFalse(hur.postojiUredjaj(id));
+	}
 
 	
 }
