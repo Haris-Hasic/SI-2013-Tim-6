@@ -318,6 +318,7 @@ public class frmManager extends JFrame {
 		mnNewMenu.add(mntmIzlaz);
 		
 		JMenu mnOstalo = new JMenu("Ostalo");
+		mnOstalo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		menuBar.add(mnOstalo);
 		
 		JMenuItem mntmPopratnaDokumentacija = new JMenuItem("Popratna dokumentacija");
