@@ -50,6 +50,41 @@ public void testGetSetJibNeispravno() {
 	}
 }
 
+public void testGetSetWebIspravno() {
+	
+	try {
+
+		Klijent k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+		k.setWeb("firma.com");
+		
+		assertEquals("firma.com", k.getWeb());
+	} 
+	
+	catch (GeneralniException e) {
+		
+		fail("Test neuspješan. Ne rade get i set metode za atribut Web .");
+	}
+}
+
+
+public void testGetSetMjestoIspravno() {
+	
+	try {
+
+		Klijent k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+		k.setMjesto("Sarajevo");
+		
+		assertEquals("Sarajevo", k.getMjesto());
+	} 
+	
+	catch (GeneralniException e) {
+		
+		fail("Test neuspješan. Ne rade get i set metode za atribut Mjesto .");
+	}
+}
+
+
+
  void testGetSetEmail() {
 	
 	 Klijent k = new Klijent();
