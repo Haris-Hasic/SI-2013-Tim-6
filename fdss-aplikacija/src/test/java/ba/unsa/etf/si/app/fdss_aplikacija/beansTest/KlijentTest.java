@@ -12,7 +12,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 public class KlijentTest extends TestCase {
 
-public void testGetSetJmbgIspravno() {
+public void testGetSetJib() {
 		
 		try {
 	
