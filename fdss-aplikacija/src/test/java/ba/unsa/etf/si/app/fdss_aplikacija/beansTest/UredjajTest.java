@@ -137,7 +137,7 @@ public class UredjajTest {
 		k.setUredjaji(uredjaji);
 		
 		Boolean flag=false;
-		for (Uredjaj ure : uredjaji) 
+		for (Uredjaj ure : k.getUredjaji()) 
 			if (ure==ur) flag=true;
 			
 		Assert.assertTrue(flag);
@@ -178,6 +178,41 @@ public class UredjajTest {
 			
 			Assert.assertFalse(hur.postojiUredjaj(id));
 	}
-
 	
+	@Test
+	public void testOdstranjivanjeUredjajaKlijentu() {
+		try {
+		
+		HibernateKlijent hk = new HibernateKlijent();
+		List<Klijent> klijenti = hk.vratiSveKlijente();
+		if (klijenti.isEmpty()) klijenti.add(new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba"));
+		Klijent k = klijenti.get(0);
+		
+		List<Uredjaj> uredjaji = k.getUredjaji();
+		if(!uredjaji.contains(ur)) uredjaji.add(ur);
+		uredjaji.remove(ur);
+		k.setUredjaji(uredjaji);
+		
+		Boolean flag=true;
+		for (Uredjaj ure : k.getUredjaji()) 
+			if (ure==ur) flag=false;
+			
+		Assert.assertTrue(flag);
+		}
+		catch (GeneralniException e) 
+		{
+			Assert.fail("Greska u odstranjivanju uredjaja klijentu.");
+		}
+		
+	}
+
+	@Test
+	public void testPretragaUredjaja() {
+			long id = ur.getId();
+			hur.dodajUredjaj(ur);
+			
+			Uredjaj ur2 = hur.dajUredjaj(id);
+			
+			Assert.assertEquals(ur, ur2);
+	}	
 }
