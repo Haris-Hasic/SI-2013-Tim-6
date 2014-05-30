@@ -1,7 +1,11 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+
 import org.junit.*;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 public class UposlenikTest {
@@ -105,4 +109,11 @@ public class UposlenikTest {
 			Assert.fail("Test neuspješan. Ne radi update-ovanje uposlenika.");
 		}
 	}
+
+
+	private void assertEquals(Boolean boolean1, Boolean postojiUposlenik) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

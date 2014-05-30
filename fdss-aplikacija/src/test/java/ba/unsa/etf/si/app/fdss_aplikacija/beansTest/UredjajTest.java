@@ -1,6 +1,10 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+
 import org.junit.*;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 public class UredjajTest {
@@ -18,6 +22,8 @@ public class UredjajTest {
 		}
 		
 	}
+	
+
 	
 	@Test
 	public void testGetSetIBFUNeispravno() {
@@ -93,4 +99,20 @@ public class UredjajTest {
 	}
 	
 
+	public void testpostojiUredjaj() {
+		
+		HibernateUredjaj h  = new HibernateUredjaj();
+		
+		assertEquals((Boolean)true,(Boolean) h.postojiUredjaj("1607991186528"));
+		
+	}
+
+
+
+	private void assertEquals(Boolean boolean1, Boolean postojiUredjaj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

@@ -11,6 +11,7 @@ import junit.framework.TestCase;
 
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 
 public class KlijentTest extends TestCase {
@@ -133,5 +134,13 @@ public void testUpdateKlijenta() {
 	}
 }
 
+
+public void testpostojiKlijent() {
+	
+	HibernateKlijent h  = new HibernateKlijent();
+	
+	assertEquals((Boolean)true,(Boolean) h.postojiKlijent("1607991186528"));
+	
+}
 
 }
