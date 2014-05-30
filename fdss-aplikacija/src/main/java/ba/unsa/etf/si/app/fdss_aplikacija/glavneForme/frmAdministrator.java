@@ -183,6 +183,12 @@ public class frmAdministrator extends JFrame {
 		mnPostavke.add(mntmPromjenaifre);
 		
 		JMenuItem mntmPodesiParametreKonekcije = new JMenuItem("Podesi parametre konekcije");
+		mntmPodesiParametreKonekcije.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPodesiBazu pb=new frmPodesiBazu();
+				pb.setVisible(true);
+			}
+		});
 		mntmPodesiParametreKonekcije.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mnPostavke.add(mntmPodesiParametreKonekcije);
 		
