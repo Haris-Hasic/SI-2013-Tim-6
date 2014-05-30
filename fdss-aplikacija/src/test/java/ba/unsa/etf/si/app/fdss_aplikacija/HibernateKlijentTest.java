@@ -1,3 +1,4 @@
+
 package ba.unsa.etf.si.app.fdss_aplikacija;
 
 
@@ -21,6 +22,7 @@ public class HibernateKlijentTest {
 		try {
 			k = new Klijent("Ajdin Kahrovic", "2706992172174", "Uzaludna", "Sarajevo", "+38761503098", "kahrovic@hotmail.com", "www.etf.ba");
 		}
+		
 		catch (GeneralniException e)
 		{
 			Validacija v= new Validacija();
