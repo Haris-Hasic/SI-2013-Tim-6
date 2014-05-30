@@ -10,6 +10,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Window;
@@ -36,6 +37,13 @@ import javax.swing.JLabel;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 
 public class frmAdministrator extends JFrame {
@@ -197,6 +205,26 @@ public class frmAdministrator extends JFrame {
 		menuBar.add(mnOstalo);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Popratna dokumentacija");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					final File f = new File(frmLogin.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+					if (f.exists()) {
+						Process p = Runtime
+						   .getRuntime()
+						   .exec("rundll32 url.dll,FileProtocolHandler "+f+"\\Uputstvo za korištenje.pdf");
+						p.waitFor();
+			 
+					} else {
+			 
+						JOptionPane.showMessageDialog(null, "Dokument ne postoji");
+			 
+					}			 
+			  	  } catch (Exception ex) {
+					ex.printStackTrace();
+				  }
+			}
+		});
 		mnOstalo.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Online pomoć");

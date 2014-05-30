@@ -45,6 +45,7 @@ import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 
 public class frmDispatcher extends JFrame {
@@ -291,6 +292,26 @@ public class frmDispatcher extends JFrame {
 		menuBar.add(mnOstalo);
 		
 		JMenuItem mntmPopratnaDokumentacija = new JMenuItem("Popratna dokumentacija");
+		mntmPopratnaDokumentacija.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					final File f = new File(frmLogin.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+					if (f.exists()) {
+						Process p = Runtime
+						   .getRuntime()
+						   .exec("rundll32 url.dll,FileProtocolHandler "+f+"\\Uputstvo za korištenje.pdf");
+						p.waitFor();
+			 
+					} else {
+			 
+						JOptionPane.showMessageDialog(null, "Dokument ne postoji");
+			 
+					}			 
+			  	  } catch (Exception ex) {
+					ex.printStackTrace();
+				  }
+			}
+		});
 		mnOstalo.add(mntmPopratnaDokumentacija);
 		
 		JMenuItem mntmOnlinePomo = new JMenuItem("Online pomoć");
