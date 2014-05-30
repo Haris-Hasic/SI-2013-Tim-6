@@ -26,6 +26,8 @@ import java.awt.Color;
 import javax.swing.JMenu;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.TestPristupaBazi;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmDodavanjeKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPregledKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
@@ -180,9 +182,23 @@ public class frmAdministrator extends JFrame {
 		mnPostavke.add(mntmPodesiParametreKonekcije);
 		
 		JMenuItem mntmExportPodatakaIz = new JMenuItem("Export podataka iz baze");
+		mntmExportPodatakaIz.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmExport ex=new frmExport();
+				ex.setVisible(true);
+			}
+		});
 		mnPostavke.add(mntmExportPodatakaIz);
 		
 		JMenuItem mntmImportPodatakaU = new JMenuItem("Import podataka u bazu");
+		mntmImportPodatakaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Chooser c=new Chooser();
+				TestPristupaBazi.importPodataka(c.fileName);
+				JOptionPane.showMessageDialog(null, c.fileName);
+				
+			}
+		});
 		mnPostavke.add(mntmImportPodatakaU);
 		
 		JMenuItem mntmIzlaz = new JMenuItem("Izlaz");
