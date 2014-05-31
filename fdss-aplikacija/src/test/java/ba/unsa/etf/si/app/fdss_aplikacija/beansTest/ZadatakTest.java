@@ -30,8 +30,9 @@ public class ZadatakTest {
 			//zahtjev
 			Zahtjev zah = new Zahtjev();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			Date rok = formatter.parse("14/09/2014");
-			Date sadasnji = formatter.parse("31/05/2014");
+			java.sql.Date rok = new java.sql.Date(formatter.parse("14/09/2014").getTime());
+			java.sql.Date sadasnji = new java.sql.Date(formatter.parse("31/05/2014").getTime());
+			
 			
 			zah.setRok(rok);
 			zah.setZahtjevPodnesen(sadasnji);
@@ -46,11 +47,11 @@ public class ZadatakTest {
 			
 			
 			//Ostali podaci
-			Date noviRok = formatter.parse("14/07/2014");
+			java.sql.Date noviRok = new java.sql.Date(formatter.parse("14/07/2014").getTime());
 			
-			za.setZahtjevPodnesen((java.sql.Date)sadasnji);
-			za.setZavrsitiDo((java.sql.Date)rok);
-			za.setDonijetiUredjajDo((java.sql.Date)noviRok);
+			za.setZahtjevPodnesen(sadasnji);
+			za.setZavrsitiDo(rok);
+			za.setDonijetiUredjajDo(noviRok);
 			
 			za.setId(123);
 			za.setZavrsen(false);
