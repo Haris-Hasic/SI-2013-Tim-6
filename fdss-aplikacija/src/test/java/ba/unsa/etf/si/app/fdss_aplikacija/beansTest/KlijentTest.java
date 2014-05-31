@@ -1,16 +1,12 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
 
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 
 import org.junit.*;
 
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
@@ -33,6 +29,12 @@ public class KlijentTest {
 		}
 		
 	}
+
+	
+	
+
+	
+	
 	
 @Test
 public void testGetSetJib() {
@@ -99,7 +101,27 @@ public void testGetSetMjestoIspravno() {
 
 }
 
+@Test
+public void testGetSetNazivIspravno() {
 
+	
+		k.setNaziv("Firmaa");
+		
+		Assert.assertEquals("Firmaa", k.getNaziv());
+
+}
+
+@Test
+public void testGetSetNazivAdresa() {
+
+	
+		k.setAdresa("Radiceva 10");
+		
+		Assert.assertEquals("Radiceva 10", k.getAdresa());
+
+}
+
+/*
 @Test
  void testGetSetEmail() {
 	
@@ -116,7 +138,7 @@ public void testGetSetMjestoIspravno() {
 		
 		Assert.fail("Test neuspješan. Ne rade get i set metode za atribut e-mail.");
 	}
-}
+} */
 
 @Test
 public void testUpdateKlijenta() {
@@ -175,6 +197,8 @@ public void testPretragaKlijenta() {
 		
 		Assert.assertEquals(k, k2);
 }
+
+
 
 
 }

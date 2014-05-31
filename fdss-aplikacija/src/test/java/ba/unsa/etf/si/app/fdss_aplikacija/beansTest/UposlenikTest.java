@@ -28,6 +28,16 @@ public class UposlenikTest {
 		
 		hup = new HibernateUposlenik();
 	}
+	
+	@Test
+	public void testGetSetNazivAdresa() {
+
+		
+			up.setAdresa("Radiceva 10");
+			
+			Assert.assertEquals("Radiceva 10", up.getAdresa());
+
+	}
 
 	@Test
 	public void testGetSetJmbgIspravno() {
