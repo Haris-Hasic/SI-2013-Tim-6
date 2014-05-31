@@ -1,41 +1,65 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import junit.framework.TestCase;
+import org.junit.*;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
-public class KlijentTest extends TestCase {
-
+public class KlijentTest {
+	
+	HibernateKlijent hk;
+	Klijent k;
+	
+	@Before
+	public void TestnePostavke () {
+		try {
+			k =  new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+			hk = new HibernateKlijent();
+		}
+		
+		catch (GeneralniException e)
+		{
+			Validacija v= new Validacija();
+			v.poruka(e.getMessage());
+		}
+		
+	}
+	
+@Test
 public void testGetSetJib() {
 		
 		try {
 	
-			Klijent k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+
 			k.setJib("1607991186528");
 			
-			assertEquals("1607991186528", k.getJib());
+			Assert.assertEquals("1607991186528", k.getJib());
 		} 
 		
 		catch (GeneralniException e) {
 			
-			fail("Test neuspješan. Ne rade get i set metode za atribut Jib.");
+			Assert.fail("Test neuspješan. Ne rade get i set metode za atribut Jib.");
 		}
 	}
 
 
+@Test
 public void testGetSetJibNeispravno() {
 	
 	Klijent k = new Klijent();
 	
 	try {
 		
-		k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+
 		k.setJib("1607");
 		
 		Assert.fail("Test neuspješan. Ne rade get i set metode za atribut jmbg.");
@@ -47,48 +71,42 @@ public void testGetSetJibNeispravno() {
 	}
 }
 
+@Test
 public void testGetSetWebIspravno() {
 	
 	try {
 
-		Klijent k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+
 		k.setWeb("firma.com");
 		
-		assertEquals("firma.com", k.getWeb());
+		Assert.assertEquals("firma.com", k.getWeb());
 	} 
 	
 	catch (GeneralniException e) {
 		
-		fail("Test neuspješan. Ne rade get i set metode za atribut Web .");
+		Assert.fail("Test neuspješan. Ne rade get i set metode za atribut Web .");
 	}
 }
 
 
+@Test
 public void testGetSetMjestoIspravno() {
-	
-	try {
 
-		Klijent k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+	
 		k.setMjesto("Sarajevo");
 		
-		assertEquals("Sarajevo", k.getMjesto());
-	} 
-	
-	catch (GeneralniException e) {
-		
-		fail("Test neuspješan. Ne rade get i set metode za atribut Mjesto .");
-	}
+		Assert.assertEquals("Sarajevo", k.getMjesto());
+
 }
 
 
-
+@Test
  void testGetSetEmail() {
 	
 	 Klijent k = new Klijent();
 	 
 	try {
 		
-		k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
 		k.setEmail("eganilovic1@etf.unsa.ba");
 		
 		Assert.assertEquals("eganilovic1@etf.unsa.ba", k.getEmail());
@@ -107,7 +125,6 @@ public void testUpdateKlijenta() {
 	
 	try {
 		
-		k = new Klijent("Firma", "1607991186528", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
 		k.setAdresa("Trg djece Dobrinje");
 		k.setMjesto("Sarajevo");
 		k.setNaziv("Firma");
@@ -131,12 +148,33 @@ public void testUpdateKlijenta() {
 }
 
 
+@Test
 public void testpostojiKlijent() {
 	
 	HibernateKlijent h  = new HibernateKlijent();
 	
-	assertEquals((Boolean)true,(Boolean) h.postojiKlijent("1607991186528"));
+	Assert.assertTrue(h.postojiKlijent("1607991186528"));
 	
 }
+
+@Test
+public void testBrisanjeKlijenta() {
+		long id = k.getId();
+		hk.dodajKlijenta(k);
+		hk.brisiKlijenta(k);
+		
+		Assert.assertFalse(hk.postojiKlijent(id));
+}
+
+@Test
+public void testPretragaKlijenta() {
+		long id = k.getId();
+		hk.dodajKlijenta(k);
+		
+		Klijent k2 = hk.dajKlijenta(id);
+		
+		Assert.assertEquals(k, k2);
+}
+
 
 }
