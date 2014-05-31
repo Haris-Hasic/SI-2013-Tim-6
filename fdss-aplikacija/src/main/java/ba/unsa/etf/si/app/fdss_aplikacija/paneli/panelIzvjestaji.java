@@ -67,11 +67,14 @@ public class panelIzvjestaji extends JPanel {
 	private static Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC);
 	private JTextField hrm_un_tb;
 	private JTextField kli_jib_tb;
+	private static Uposlenik uposlenik; 
 
 	/**
 	 * Create the panel.
 	 */
 	public panelIzvjestaji(final Uposlenik u) {
+		
+		uposlenik = u;
 		
 		setBorder(BorderFactory.createTitledBorder("Kreiranje izvje\u0161taja"));
 		
@@ -165,7 +168,7 @@ public class panelIzvjestaji extends JPanel {
 		JLabel lblibfuUreaja = new JLabel("IBFU uređaja :");
 		lblibfuUreaja.setEnabled(false);
 		lblibfuUreaja.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblibfuUreaja.setBounds(10, 83, 70, 20);
+		lblibfuUreaja.setBounds(0, 83, 82, 20);
 		teh_panel.add(lblibfuUreaja);
 		
 		final JDateChooser teh_od_dateC = new JDateChooser();
@@ -371,11 +374,7 @@ public class panelIzvjestaji extends JPanel {
 				try {
 
 					Document document = new Document(PageSize.A4, 50, 50, 50, 50);
-					//Evo ja sam ti nasla kako se nade putanja do desktopa bilo kojeg i to, ali nisam htjela nista da mijenjam da ne zeznem
 					String putanja= System.getProperty("user.home") + "/Desktop";
-					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/haris.pdf"));
-					//PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/Users/Haris/Desktop/haris.pdf"));
-					document.open();
 
 					Date Od, Do; 
 					String user, IBFU, JIBKlijenta;
@@ -385,10 +384,15 @@ public class panelIzvjestaji extends JPanel {
 						
 						Od = new Date(pos_od_dateC.getDate().getTime());
 						Do = new Date(pos_do_dateC.getDate().getTime());
-						i = i + "o Poslovanju Servisa";
+						i = i + " o Poslovanju Servisa";
+						
+						DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						Date date = new Date();
+						PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/"+i+dateFormat.format(date)+".pdf"));
+						document.open();
 						
 						iscrtajHeader(document, i);
-						podesiDetaljeIzvjestaja(document, i, i, u.getIme() + " " + u.getPrezime(), u.getIme() + " " + u.getPrezime());
+						podesiDetaljeIzvjestaja(document, i);
 						ispisiTijeloPoslovanjeIzvjestaja(document, Do, Od);
 					}
 
@@ -396,7 +400,6 @@ public class panelIzvjestaji extends JPanel {
 						
 						HibernateUposlenik hu = new HibernateUposlenik();
 						Uposlenik up = new Uposlenik();
-						
 						
 						Od = new Date(hrm_od_dateC.getDate().getTime());
 						Do = new Date(hrm_do_dateC.getDate().getTime());
@@ -409,9 +412,13 @@ public class panelIzvjestaji extends JPanel {
 						else
 							throw new Exception("Nepostojeći JIB klijenta !");
 						
+						DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						Date date = new Date();
+						PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/"+i+up.getIme()+up.getPrezime()+dateFormat.format(date)+".pdf"));
+						document.open();
 						
 						iscrtajHeader(document, i);
-						podesiDetaljeIzvjestaja(document, i, i, u.getIme() + " " + u.getPrezime(), u.getIme() + " " + u.getPrezime());
+						podesiDetaljeIzvjestaja(document, i);
 						ispisiTijeloHRMIzvjestaja(document, Od, Do, up);
 					}
 
@@ -423,7 +430,7 @@ public class panelIzvjestaji extends JPanel {
 						Od = new Date(kli_od_dateC.getDate().getTime());
 						Do = new Date(kli_do_dateC.getDate().getTime());
 						JIBKlijenta = kli_jib_tb.getText();
-						i = i + "o Klijentu"; 
+						i = i + " o Klijentu"; 
 						
 						if(hu.postojiKlijent(JIBKlijenta))
 							k = hu.dajKlijenta(JIBKlijenta);
@@ -431,8 +438,13 @@ public class panelIzvjestaji extends JPanel {
 						else
 							throw new Exception("Nepostojeći JIB klijenta !");
 						
+						DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						Date date = new Date();
+						PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/"+i+JIBKlijenta+dateFormat.format(date)+".pdf"));
+						document.open();
+						
 						iscrtajHeader(document, i);
-						podesiDetaljeIzvjestaja(document, i, i, u.getIme() + " " + u.getPrezime(), u.getIme() + " " + u.getPrezime());
+						podesiDetaljeIzvjestaja(document, i);
 						ispisiTijeloKlijentelaIzvjestaja(document, Od, Do, k);
 					}
 
@@ -444,7 +456,7 @@ public class panelIzvjestaji extends JPanel {
 						Od = new Date(teh_od_dateC.getDate().getTime());
 						Do = new Date(teh_do_dateC.getDate().getTime());
 						IBFU = teh_ibfuUred_tb.getText();
-						i = i + "o Uredaju";
+						i = i + " o Uredaju";
 						
 						if(hu.postojiUredjaj(IBFU))
 							ur = hu.dajUredjaj(IBFU);
@@ -452,13 +464,20 @@ public class panelIzvjestaji extends JPanel {
 						else
 							throw new Exception("Nepostojeći IBFU uredaja !");
 						
+						DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+						Date date = new Date();
+						PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/"+i+ur.getIbfu()+dateFormat.format(date)+".pdf"));
+						document.open();
+						
 						iscrtajHeader(document, i);
-						podesiDetaljeIzvjestaja(document, i, i, u.getIme() + " " + u.getPrezime(), u.getIme() + " " + u.getPrezime());
+						podesiDetaljeIzvjestaja(document, i);
 						ispisiTijeloTehnickogIzvjestaja(document, Od, Do, ur);
 					}
 					
 					iscrtajFooter(document);
 					document.close();
+					
+					JOptionPane.showMessageDialog(null, "Izvještaj uspješno kreiran i nalazi se na vašem desktopu !");
 				} 
 
 				catch (Exception e) {
@@ -573,13 +592,13 @@ public class panelIzvjestaji extends JPanel {
 		document.add(table);
 	}
 	
-	public static void podesiDetaljeIzvjestaja(Document document, String t, String s, String a, String c) {
+	public static void podesiDetaljeIzvjestaja(Document document, String t) {
 	
 		document.addTitle(t);
-	    document.addSubject(s);
+	    document.addSubject(t);
 	    document.addKeywords("Java, PDF, iText");
-	    document.addAuthor(a);
-	    document.addCreator(c);
+	    //document.addAuthor(uposlenik.getIme() + " " + uposlenik.getPrezime());
+	    //document.addCreator(uposlenik.getIme() + " " + uposlenik.getPrezime());
 	}
 	
 	public static void ispisiTijeloHRMIzvjestaja(Document document, Date Od, Date Do, Uposlenik up) throws Exception {
@@ -753,7 +772,7 @@ public class panelIzvjestaji extends JPanel {
 		c1.setPaddingRight(5);
 	    table2.addCell(c1);
 	    
-	    double ef = (lnz.size()/lz.size())*100;
+	    double ef = (lzz/lz.size())*100;
 	    
 	    c1 = new PdfPCell(new Phrase(ef + " %", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -885,7 +904,7 @@ public class panelIzvjestaji extends JPanel {
 		c1.setPaddingLeft(5);
 	    table2.addCell(c1);
 	    
-	    c1 = new PdfPCell(new Phrase("Broj uredaja koji se trenutno servisiraju:", boldFont));
+	    c1 = new PdfPCell(new Phrase("Broj trenutnih servisiraja:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
@@ -894,15 +913,14 @@ public class panelIzvjestaji extends JPanel {
 	    
 	    HibernateZadatak hz = new HibernateZadatak();
 	    HibernateUredjaj hu = new HibernateUredjaj();
-	    List<Uredjaj> lu = hu.dajSveUredjaje();
-	    List<Zadatak> lz = hz.dajSveZadatke();
-	    
+	    List<Uredjaj> listaUred = hu.dajSveUredjaje();
+	    List<Zadatak> listaZad = hz.dajSveZadatke();
 	    int br = 0;
 	    
-	    for(Zadatak z:lz)
-	    	for(Uredjaj ur:lu)
-	    		if(z.getZahtjev().getUredjaj().getIbfu() == ur.getIbfu() && !z.isZavrsen())
-	    			br++;
+	    for(Uredjaj ur:listaUred)
+	    	for(Zadatak z:listaZad)
+	    		if(z.getZahtjev().getUredjaj().getIbfu().compareTo(ur.getIbfu()) == 0)
+	    			br = br + 1;
 	    		
 	    c1 = new PdfPCell(new Phrase(br + "", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -911,35 +929,28 @@ public class panelIzvjestaji extends JPanel {
 		c1.setPaddingLeft(5);
 	    table2.addCell(c1);
 	    
-	    HibernateZahtjev hza = new HibernateZahtjev();
-	    List<Zahtjev> lzah = hza.dajSveNezavrseneZahtjeve();
+	    HibernateZahtjev hzah = new HibernateZahtjev();
+	    List<Zahtjev> listaZah = hzah.dajSveZahtjeve();
+	    int bru = 0;
 	    
-	    br = 0;
+	    for(Uredjaj ur:listaUred)
+	    	for(Zahtjev zah:listaZah)
+	    		if(zah.getUredjaj().getIbfu().compareTo(ur.getIbfu()) == 0)
+	    			bru = bru + 1;
 	    
-	    for(Zahtjev zah:lzah)
-	    	for(Uredjaj ur:lu)
-	    		if(zah.getUredjaj().getIbfu() == ur.getIbfu())
-	    			br++;
-	    
-	    c1 = new PdfPCell(new Phrase("Broj uredaja koji cekaju na servisiranje:", boldFont));
+	    c1 = new PdfPCell(new Phrase("Broj zahtjeva za servisiranje:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
 		c1.setPaddingRight(5);
 	    table2.addCell(c1);
 	    
-	    c1 = new PdfPCell(new Phrase(br + "", obicniFont));
+	    c1 = new PdfPCell(new Phrase(bru + "", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
 		c1.setPaddingLeft(5);
 	    table2.addCell(c1);
-	    
-	    int bru = 0;
-	    
-	    for(Uredjaj ured:lu)
-	    	if(ured.getJibProizvodaca() == u.getJibProizvodaca())
-	    		bru++;
 	    		
 	    c1 = new PdfPCell(new Phrase("Preformanse proizvodaca:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -948,33 +959,36 @@ public class panelIzvjestaji extends JPanel {
 		c1.setPaddingRight(5);
 	    table2.addCell(c1);
 	    
-	    c1 = new PdfPCell(new Phrase( br + " od " + bru + " na servisiranju", obicniFont));
+	    c1 = new PdfPCell(new Phrase( "-" + br*5 + "% ratinga", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
 		c1.setPaddingLeft(5);
 	    table2.addCell(c1);
 	    
-	    c1 = new PdfPCell(new Phrase("Efikasnost uredaja:", boldFont));
-	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+	    if(br != 0 && bru != 0) {
+	    	
+		    c1 = new PdfPCell(new Phrase("Efikasnost servisa:", boldFont));
+		    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			c1.setPaddingBottom(8);
+			c1.setPaddingTop(5);
+			c1.setPaddingRight(5);
+		    table2.addCell(c1);
+	    	
+		    c1 = new PdfPCell(new Phrase( 100 - (bru - br)*10 + "%", obicniFont));
+		    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
+			c1.setPaddingBottom(8);
+			c1.setPaddingTop(5);
+			c1.setPaddingLeft(5);
+		    table2.addCell(c1);
+	    }
+		    
+		c1 = new PdfPCell(new Phrase("Procjena nadleznog menadzera:", boldFont));
+		c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
 		c1.setPaddingRight(5);
-	    table2.addCell(c1);
-	    
-	    c1 = new PdfPCell(new Phrase((br/bru)*100 + "", obicniFont));
-	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
-		c1.setPaddingBottom(8);
-		c1.setPaddingTop(5);
-		c1.setPaddingLeft(5);
-	    table2.addCell(c1);
-	    
-	    c1 = new PdfPCell(new Phrase("Procjena nadleznog menadzera:", boldFont));
-	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-		c1.setPaddingBottom(8);
-		c1.setPaddingTop(5);
-		c1.setPaddingRight(5);
-	    table2.addCell(c1);
+		table2.addCell(c1);
 	    
 	    c1 = new PdfPCell(new Phrase("\n\n\n\n\n\n\n", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -992,7 +1006,7 @@ public class panelIzvjestaji extends JPanel {
 		PdfPTable table = new PdfPTable(2);
 	    table.setWidthPercentage(100);
 
-	    SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+	    SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
 	    
 	    PdfPCell c1 = new PdfPCell(new Phrase("Od:  " + (f.format(Od)).toString(), obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -1144,7 +1158,7 @@ public class panelIzvjestaji extends JPanel {
 	    String lista = "";
 	    
 	    for(Uredjaj u:lsu)
-	    	lista = lista + u.getIbfu() + " " + u.getTipUredaja() + "\n";
+	    	lista = lista + u.getTipUredaja() + " - " + u.getIbfu() + "\n";
 	    
 	    c1 = new PdfPCell(new Phrase(lista, obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -1155,14 +1169,26 @@ public class panelIzvjestaji extends JPanel {
 	    
 	    HibernateZahtjev hz = new HibernateZahtjev();
 	    List<Zahtjev> lz = hz.dajSveZahtjeve();
+	    HibernateZadatak hzad = new HibernateZadatak();
+	    List<Zadatak> lzad = hzad.dajSveZadatke();
 	    int i = 0;
+	    int j = 0;
 	    
-	    for(Uredjaj u:lsu)
-	    	for(Zahtjev z:lz)
-	    		if(z.getUredjaj().getIbfu() == u.getIbfu())
-	    			i++;
+	    for(Uredjaj u:lsu) {
+	    	for(Zahtjev z:lz) {
+	    		if(u.getIbfu().compareTo(z.getUredjaj().getIbfu()) == 0)
+	    			i = i+1;
+	    	}
+	    }
 	    
-	    c1 = new PdfPCell(new Phrase("Broj zahtjeva:", boldFont));
+	    for(Uredjaj u:lsu) {
+	    	for(Zadatak z:lzad) {
+	    		if(u.getIbfu().compareTo(z.getZahtjev().getUredjaj().getIbfu()) == 0)
+	    			j = j + 1;
+	    	}
+	    }
+	    
+	    c1 = new PdfPCell(new Phrase("Broj podnesenih zahtjeva:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
@@ -1170,6 +1196,20 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    c1 = new PdfPCell(new Phrase(i + "", obicniFont));
+	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
+		c1.setPaddingBottom(8);
+		c1.setPaddingTop(5);
+		c1.setPaddingLeft(5);
+	    table2.addCell(c1);
+	    
+	    c1 = new PdfPCell(new Phrase("Broj servisiranja:", boldFont));
+	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		c1.setPaddingBottom(8);
+		c1.setPaddingTop(5);
+		c1.setPaddingRight(5);
+	    table2.addCell(c1);
+	    
+	    c1 = new PdfPCell(new Phrase(j + "", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);
@@ -1199,7 +1239,7 @@ public class panelIzvjestaji extends JPanel {
 		PdfPTable table = new PdfPTable(2);
 	    table.setWidthPercentage(100);
 
-	    SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+	    SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
 	    
 	    PdfPCell c1 = new PdfPCell(new Phrase("Od:  " + (f.format(Od)).toString(), obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -1343,7 +1383,7 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    HibernateZadatak hzad = new HibernateZadatak();
-	    int br = hzad.dajSveZadatke().size() - hz.dajSveNezavrseneZahtjeve().size();
+	    int br = hzad.dajSveZadatke().size() - hzad.dajSveNezavrseneZadatke().size();
 	    
 	    c1 = new PdfPCell(new Phrase("Ukupno obavljenih zadataka:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -1366,7 +1406,7 @@ public class panelIzvjestaji extends JPanel {
 		c1.setPaddingRight(5);
 	    table2.addCell(c1);
 	    
-	    c1 = new PdfPCell(new Phrase(br*154 + "", obicniFont));
+	    c1 = new PdfPCell(new Phrase(br*154.43 + " KM", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
 		c1.setPaddingBottom(8);
 		c1.setPaddingTop(5);

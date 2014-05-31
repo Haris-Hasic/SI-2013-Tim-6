@@ -37,7 +37,7 @@ public class frmExport extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String str=textField_1.getText();
 				String newString = str.replace("\\","/");
-				TestPristupaBazi.exportPodataka(newString+"/"+textField.getText());
+				TestPristupaBazi.exportPodataka(newString+"/"+textField.getText() +".csv");
 				JOptionPane.showMessageDialog(null, "Podaci su eksportovani.");
 				dispose();
 			}

@@ -114,37 +114,8 @@ public class frmLogin extends JFrame {
 		PrijaviSe_btn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-
-				if ( userName_tb.getText().compareTo("a") == 0 ) {
 					
-					frmAdministrator fa = new frmAdministrator(null);
-					fa.setVisible(true);
-					dispose();
-				}
-				
-				else if ( userName_tb.getText().compareTo("m") == 0 ) {
-					frmManager fm=new frmManager(null);
-					fm.setVisible(true);
-					dispose();
-			    }
-				
-				else if ( userName_tb.getText().compareTo("s") == 0 ) {
-					frmServiser fs=new frmServiser(null);
-					fs.setVisible(true);
-					dispose();
-				}
-				
-				else if ( userName_tb.getText().compareTo("d") == 0 ) {
-					
-					frmDispatcher fd=new frmDispatcher(null);
-					fd.setVisible(true);
-					dispose();
-				}
-				
-				else {
-					
-					provjeriPodatke(userName_tb.getText(), password_tb.getText());
-				}		
+					provjeriPodatke(userName_tb.getText(), password_tb.getText());	
 			}
 		});
 		

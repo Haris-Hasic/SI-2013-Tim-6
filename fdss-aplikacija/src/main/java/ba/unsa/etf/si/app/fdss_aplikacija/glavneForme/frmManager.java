@@ -60,7 +60,7 @@ public class frmManager extends JFrame {
 	public frmManager(final Uposlenik uposlenik) {
 		this.uposlenik=uposlenik;
 		
-		setTitle("Prijavljen kao: ");
+		setTitle("Prijavljen kao: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
 		setBounds(100, 100, 849, 597);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int novaVarijable=5;
