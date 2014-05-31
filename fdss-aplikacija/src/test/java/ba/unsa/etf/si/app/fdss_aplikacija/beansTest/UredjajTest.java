@@ -109,32 +109,6 @@ public class UredjajTest {
 	}
 	
 	
-	@Test
-	public void testdodavanjeUredjajaKlijentu() {
-		try {
-		
-		HibernateKlijent hk = new HibernateKlijent();
-		List<Klijent> klijenti = hk.vratiSveKlijente();
-		if (klijenti.isEmpty()) klijenti.add(new Klijent("Firma", "160799118652", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba"));
-		Klijent k = klijenti.get(0);
-		
-		List<Uredjaj> uredjaji = k.getUredjaji();
-		uredjaji.add(ur);
-		k.setUredjaji(uredjaji);
-		
-		//Boolean flag=false;
-		/*for (Uredjaj ure : k.getUredjaji()) 
-			if (ure.getTipUredaja()==ur.getTipUredaja()) flag=true;*/
-			
-		Assert.assertTrue(!k.getUredjaji().isEmpty());
-		}
-		catch (GeneralniException e) 
-		{
-			Assert.fail("Greska u dodavanju uredjaja klijentu.");
-		}
-		
-	}
-	
 
 	@Test
 	public void testUpdateUredjaja() {
@@ -183,32 +157,6 @@ public class UredjajTest {
 			Assert.assertFalse(hur.postojiUredjaj("EO021761"));
 	}
 	
-	@Test
-	public void testOdstranjivanjeUredjajaKlijentu() {
-		try {
-		
-		HibernateKlijent hk = new HibernateKlijent();
-		List<Klijent> klijenti = hk.vratiSveKlijente();
-		if (klijenti.isEmpty()) klijenti.add(new Klijent("Firma", "16079911865", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba"));
-		Klijent k = klijenti.get(0);
-		
-		List<Uredjaj> uredjaji = k.getUredjaji();
-		if(!uredjaji.contains(ur)) uredjaji.add(ur);
-		uredjaji.remove(ur);
-		k.setUredjaji(uredjaji);
-		
-		Boolean flag=true;
-		for (Uredjaj ure : k.getUredjaji()) 
-			if (ure==ur) flag=false;
-			
-		Assert.assertTrue(flag);
-		}
-		catch (GeneralniException e) 
-		{
-			Assert.fail("Greska u odstranjivanju uredjaja klijentu.");
-		}
-		
-	}
 
 	@Test
 	public void testPretragaUredjaja() {

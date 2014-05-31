@@ -54,24 +54,6 @@ public void testGetSetJib() {
 	}
 
 
-/*@Test
-public void testGetSetJibNeispravno() {
-	
-	Klijent k = new Klijent();
-	
-	try {
-		
-
-		k.setJib("1607");
-		
-		Assert.fail("Test neuspješan. Ne rade get i set metode za atribut jmbg.");
-	} 
-	
-	catch (GeneralniException e) {
-		
-		Assert.assertEquals("160799118652", k.getJib());
-	}
-}*/
 
 @Test
 public void testGetSetWebIspravno() {
@@ -121,24 +103,7 @@ public void testGetSetNazivAdresa() {
 
 }
 
-/*
-@Test
- void testGetSetEmail() {
-	
-	 Klijent k = new Klijent();
-	 
-	try {
-		
-		k.setEmail("eganilovic1@etf.unsa.ba");
-		
-		Assert.assertEquals("eganilovic1@etf.unsa.ba", k.getEmail());
-	} 
-	
-	catch (GeneralniException e) {
-		
-		Assert.fail("Test neuspješan. Ne rade get i set metode za atribut e-mail.");
-	}
-} */
+
 
 @Test
 public void testUpdateKlijenta() {

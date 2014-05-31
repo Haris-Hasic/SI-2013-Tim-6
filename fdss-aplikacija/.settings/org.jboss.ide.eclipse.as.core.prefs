@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-org.jboss.ide.eclipse.as.core.singledeployable.deployableList=\n
+org.jboss.ide.eclipse.as.core.singledeployable.deployableList=src/test/java/ba/unsa/etf/si/app/fdss_aplikacija/beansTest\n
