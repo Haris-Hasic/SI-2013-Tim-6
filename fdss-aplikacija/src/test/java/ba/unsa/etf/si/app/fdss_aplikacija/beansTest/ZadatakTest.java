@@ -23,8 +23,7 @@ public class ZadatakTest {
 	Zadatak za;
 	
 	@Before
-	public void TestnePostavke () {
-		
+	public void TestnePostavke () {	
 		try {
 			za =  new Zadatak();
 			
@@ -71,9 +70,44 @@ public class ZadatakTest {
 		
 	}
 
+	@Test
+	public void testDodavanjeZadatka() {
+			long id = za.getId();
+			hza.dodajZadatak(za);
+			
+			Assert.assertTrue(hza.postojiZadatak(id));
+	}
 	
 	@Test
-	public void testUpdateZahtjeva() {
+	public void testDodavanjeZadatkaNeispravno() {
+		Zadatak z = new Zadatak();
+		SimpleDateFormat formatter;
+		Date rok = null;
+		try {
+			
+			formatter = new SimpleDateFormat("dd/MM/yyyy");
+			rok = formatter.parse("14/09/2014");
+			Date sadasnji = formatter.parse("31/05/2014");
+			
+			z.setZavrsitiDo((java.sql.Date)rok);
+			z.setZahtjevPodnesen((java.sql.Date)sadasnji);
+			z.setId(123);
+			z.setZavrsen(false);
+			z.setZavrsitiDo((java.sql.Date)formatter.parse("14/04/2014"));
+			
+			Assert.fail("Greska u datumima - rok je poslije datuma kreiranja zadatka.");
+		}
+		catch (Exception e) 
+		{
+				Assert.assertEquals(rok, z.getZavrsitiDo());
+		
+		}
+		
+	}
+	
+	
+	@Test
+	public void testUpdateZadatka() {
 
 			long id = za.getId();
 			hza.dodajZadatak(za);
@@ -86,7 +120,7 @@ public class ZadatakTest {
 	}
 	
 	@Test
-	public void testBrisanjeZahtjeva() {
+	public void testBrisanjeZadatka() {
 			long id = za.getId();
 			hza.dodajZadatak(za);
 			hza.brisiZadatak(za);
@@ -102,6 +136,31 @@ public class ZadatakTest {
 			Zadatak za2 = hza.dajZadatak(id);
 			
 			Assert.assertEquals(za, za2);
+	}
+	
+	@Test
+	public void testCekiranjeZadatka() {
+			long id = za.getId();
+			za.setZavrsen(true);
+			hza.dodajZadatak(za);
+			
+			Assert.assertTrue(hza.dajZadatak(id).isZavrsen());
+	}
+	
+	@Test
+	public void testPridruzivanjaZadatkaUposleniku() {
+		try {
+			Uposlenik novi = new Uposlenik ("Haris", "Hasic", "1504992173043", "Tuzlanska bb", "Olovo", "+38762380249", "haristd@hotmail.com", 1, "hhasic2", "harishasic21");
+			za.setServiser(novi);
+			
+			Assert.assertEquals(za.getServiser(), novi);
+		}
+		
+		catch (GeneralniException e)
+		{
+			Assert.fail("Pridruzivanje zadatka uposleniku ima gresku.");
+		}
+
 	}
 
 }
