@@ -371,6 +371,9 @@ public class panelIzvjestaji extends JPanel {
 				try {
 
 					Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+					//Evo ja sam ti nasla kako se nade putanja do desktopa bilo kojeg i to, ali nisam htjela nista da mijenjam da ne zeznem
+					//String putanja= System.getProperty("user.home") + "/Desktop";
+					//PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/haris.pdf"));
 					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/Users/Haris/Desktop/haris.pdf"));
 					document.open();
 
