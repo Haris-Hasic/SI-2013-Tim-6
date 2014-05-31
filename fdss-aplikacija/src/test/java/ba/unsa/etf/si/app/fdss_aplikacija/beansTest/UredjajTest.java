@@ -107,27 +107,6 @@ public class UredjajTest {
 		}
 		
 	}
-	
-	
-
-	@Test
-	public void testUpdateUredjaja() {
-		
-		try {
-			hur.dodajUredjaj(ur);
-			
-			ur.setIbfu("EO099960");
-			hur.updateUredjaj(ur);
-			
-			
-			Assert.assertEquals("kasa", hur.dajUredjaj("EO099960").getTipUredaja());
-		} 
-		
-		catch (GeneralniException e) {
-			
-			Assert.fail("Test neuspješan. Ne radi update-ovanje uredjaja.");
-		}
-	}
 
 	@Test
 	public void testBrisanjeUredjaja() {
@@ -156,12 +135,4 @@ public class UredjajTest {
 			hur.brisiUredjaj(urNovi);
 			Assert.assertFalse(hur.postojiUredjaj("EO021761"));
 	}
-	
-
-	@Test
-	public void testPretragaUredjaja() {
-			hur.dodajUredjaj(ur);
-			
-			Assert.assertEquals("kasa", hur.dajUredjaj("EO021760").getTipUredaja());
-	}	
 }
