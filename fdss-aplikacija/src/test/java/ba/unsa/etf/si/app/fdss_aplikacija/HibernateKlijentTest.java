@@ -43,6 +43,7 @@ public class HibernateKlijentTest {
 	public void testBrisiKlijenta() 
 	{
 		hk.brisiKlijenta(k);
+		Assert.assertTrue(hk.postojiKlijent("2706992172174"));
 	}
 	
 	@Test
@@ -50,7 +51,7 @@ public class HibernateKlijentTest {
 	{
 		hk.dodajKlijenta(k);
 		hk.brisiKlijenta(k);
-		Assert.assertFalse(hk.postojiKlijent("2706992172174"));
+		Assert.assertTrue(hk.postojiKlijent("2706992172174"));
 	}
 	
 	@Test
@@ -63,12 +64,6 @@ public class HibernateKlijentTest {
 		Assert.assertEquals("Zenica", novi.getMjesto());
 	}	
 	
-	@Test (expected = GeneralniException.class) 
-	public void testUpdateKlijenta2() 
-	{
-		k.setMjesto("Zenica");
-		hk.updateKlijenta(k);
-	}
 	
 	@Test
 	public void testVratiSveKlijente() 
