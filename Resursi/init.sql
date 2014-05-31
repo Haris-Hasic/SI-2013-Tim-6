@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `uposlenik` (
 --
 
 INSERT INTO `uposlenik` (`ID`, `IME`, `PREZIME`, `JIB`, `ADRESA`, `MJESTO`, `TELEFON`, `EMAIL`, `TIP`, `USERNAME`, `PASSWORD`) VALUES
-(1, 'admin', 'admin', '1504992173043', 'admin', 'admin', '+38732444555', 'admin@admin.com', 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+(1, 'Haris', 'Hasic', '1504992173043', 'Tuzlanska bb', 'Olovo', '+38762380249', 'haristd@hotmail.com', 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
