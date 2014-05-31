@@ -68,6 +68,7 @@ public class frmManager extends JFrame {
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(Color.WHITE));

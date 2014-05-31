@@ -68,6 +68,7 @@ public class frmAdministrator extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 11, 244, 114);

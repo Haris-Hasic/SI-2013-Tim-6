@@ -70,6 +70,7 @@ public class panelKreirajZahtjev extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					kreirajZahtjev((Uredjaj)cbIBFU.getSelectedItem(), (Hitnost)cbHitnost.getSelectedItem(),new Date(dateChooser.getDate().getTime()));
+					JOptionPane.showMessageDialog(null, "Zahtjev uspješno kreiran !");
 				}
 				catch(Exception e)
 				{

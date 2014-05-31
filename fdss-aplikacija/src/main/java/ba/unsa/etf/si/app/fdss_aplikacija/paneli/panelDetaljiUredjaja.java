@@ -217,6 +217,7 @@ public class panelDetaljiUredjaja extends JPanel {
 						tAdresa.setText(uredjaj.getKlijent().getAdresa());
 						tEmail.setText(uredjaj.getKlijent().getEmail());
 						tIfbm.setText(uredjaj.getIbfm());
+						jTipUredjaja.setText(uredjaj.getTipUredaja());
 						tJib.setText(uredjaj.getKlijent().getJib());
 						tJIBProizvodzaca.setText(uredjaj.getJibProizvodaca());
 						tMjesto.setText(uredjaj.getKlijent().getMjesto());

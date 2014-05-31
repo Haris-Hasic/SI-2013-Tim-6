@@ -55,13 +55,14 @@ public class frmServiser extends JFrame {
 	public frmServiser(final Uposlenik uposlenik) {
 		this.uposlenik=uposlenik;
 		
-		setTitle("Prijavljen kao: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
+		setTitle("Prijavljen kao: ");// + uposlenik.getIme() + " " + uposlenik.getPrezime());
 		setBounds(100, 100, 743, 550);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(Color.WHITE));

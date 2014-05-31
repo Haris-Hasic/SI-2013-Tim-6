@@ -21,6 +21,7 @@ public class frmExport extends JFrame{
 	public frmExport() {
 		setBounds(100, 100, 415, 270);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 		
 		textField = new JTextField();
 		textField.setBounds(53, 70, 294, 20);

@@ -21,6 +21,7 @@ public class frmPodesiBazu extends JFrame{
 	public frmPodesiBazu() {
 		setBounds(100, 100, 288, 213);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 		
 		tbaza = new JTextField();
 		tbaza.setBounds(107, 43, 135, 20);

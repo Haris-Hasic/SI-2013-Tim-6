@@ -372,9 +372,9 @@ public class panelIzvjestaji extends JPanel {
 
 					Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 					//Evo ja sam ti nasla kako se nade putanja do desktopa bilo kojeg i to, ali nisam htjela nista da mijenjam da ne zeznem
-					//String putanja= System.getProperty("user.home") + "/Desktop";
-					//PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/haris.pdf"));
-					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/Users/Haris/Desktop/haris.pdf"));
+					String putanja= System.getProperty("user.home") + "/Desktop";
+					PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(putanja+"/haris.pdf"));
+					//PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/Users/Haris/Desktop/haris.pdf"));
 					document.open();
 
 					Date Od, Do; 
@@ -397,6 +397,7 @@ public class panelIzvjestaji extends JPanel {
 						HibernateUposlenik hu = new HibernateUposlenik();
 						Uposlenik up = new Uposlenik();
 						
+						
 						Od = new Date(hrm_od_dateC.getDate().getTime());
 						Do = new Date(hrm_do_dateC.getDate().getTime());
 						user = hrm_un_tb.getText();
@@ -407,6 +408,7 @@ public class panelIzvjestaji extends JPanel {
 						
 						else
 							throw new Exception("Nepostojeći JIB klijenta !");
+						
 						
 						iscrtajHeader(document, i);
 						podesiDetaljeIzvjestaja(document, i, i, u.getIme() + " " + u.getPrezime(), u.getIme() + " " + u.getPrezime());

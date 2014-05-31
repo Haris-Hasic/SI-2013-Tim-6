@@ -79,7 +79,7 @@ public class Klijent implements Serializable{
 
 	public void setJib(String jib) throws GeneralniException {
 
-		if(Validacija.validirajJMBG(jib))
+		if(jib.length() == 12)
 			this.jib = jib;
 		
 		else

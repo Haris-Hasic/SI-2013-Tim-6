@@ -42,10 +42,12 @@ public class Uredjaj implements Serializable{
 	}
 
 	public void setJibProizvodaca(String jibProizvodaca) throws GeneralniException{
-		if(new Validacija().validirajJMBG(jibProizvodaca))
+		if(jibProizvodaca.length() == 12)
 		{
 			this.jibProizvodaca = jibProizvodaca;
-		}else throw new GeneralniException("Nepravilan JIB proizvođaća.");
+		}
+		
+		else throw new GeneralniException("Nepravilan JIB proizvođaća.");
 	}
 
 	public String getTipUredaja() {
