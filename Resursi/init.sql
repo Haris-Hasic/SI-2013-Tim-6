@@ -1,381 +1,143 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
-
-
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-
-USE `mydb` ;
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`KONTINENT`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`KONTINENT` (
-
-  `KONTINENT_ID` INT NOT NULL ,
-
-  `KONTINENT_IME` VARCHAR(30) NULL ,
-
-  PRIMARY KEY (`KONTINENT_ID`) )
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`DRZAVA`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`DRZAVA` (
-
-  `DRZAVA_ID` INT NOT NULL ,
-
-  `DRZAVA_IME` VARCHAR(30) NULL ,
-
-  `KONTINENT_ID` INT NOT NULL ,
-
-  PRIMARY KEY (`DRZAVA_ID`) ,
-
-  INDEX `fk_DRZAVA_KONTINENT_idx` (`KONTINENT_ID` ASC) ,
-
-  CONSTRAINT `fk_DRZAVA_KONTINENT`
-
-    FOREIGN KEY (`KONTINENT_ID` )
-
-    REFERENCES `mydb`.`KONTINENT` (`KONTINENT_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`LOKACIJA`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`LOKACIJA` (
-
-  `LOKACIJA_ID` INT NOT NULL ,
-
-  `ADRESA` VARCHAR(30) NULL ,
-
-  `POSTANSKI_KOD` INT NULL ,
-
-  `GRAD` VARCHAR(30) NULL ,
-
-  `OPCINA` VARCHAR(30) NULL ,
-
-  `DRZAVA_ID` INT NOT NULL ,
-
-  PRIMARY KEY (`LOKACIJA_ID`) ,
-
-  INDEX `fk_LOKACIJA_DRZAVA1_idx` (`DRZAVA_ID` ASC) ,
-
-  UNIQUE INDEX `POSTANSKI_KOD_UNIQUE` (`POSTANSKI_KOD` ASC) ,
-
-  CONSTRAINT `fk_LOKACIJA_DRZAVA1`
-
-    FOREIGN KEY (`DRZAVA_ID` )
-
-    REFERENCES `mydb`.`DRZAVA` (`DRZAVA_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`POSAO`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`POSAO` (
-
-  `POSAO_ID` INT NOT NULL ,
-
-  `POZICIJA` VARCHAR(30) NULL ,
-
-  PRIMARY KEY (`POSAO_ID`) )
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`LOGIN`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`LOGIN` (
-
-  `LOG_ID` INT NOT NULL ,
-
-  `USERNAME` VARCHAR(45) NOT NULL ,
-
-  `PASSWORD_HASH` VARCHAR(45) NOT NULL ,
-
-  PRIMARY KEY (`LOG_ID`) ,
-
-  UNIQUE INDEX `USERNAME_UNIQUE` (`USERNAME` ASC) ,
-
-  UNIQUE INDEX `PASSWORD_UNIQUE` (`PASSWORD_HASH` ASC) )
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`UPOSLENI`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`UPOSLENI` (
-
-  `UPOSLENI_ID` INT NOT NULL ,
-
-  `IME` VARCHAR(30) NULL ,
-
-  `PREZIME` VARCHAR(30) NULL ,
-
-  `JMBG` INT NULL ,
-
-  `ADRESA` VARCHAR(30) NULL ,
-
-  `DATUM_RODENJA` DATE NULL ,
-
-  `DATUM_ZAPOSLENJA` DATE NULL ,
-
-  `PLATA` DOUBLE NULL ,
-
-  `BROJ_TELEFONA` VARCHAR(30) NULL ,
-
-  `EMAIL` VARCHAR(30) NULL ,
-
-  `PREBIVALISTE` INT NOT NULL ,
-
-  `POSAO_ID` INT NOT NULL ,
-
-  `LOGIN` INT NOT NULL ,
-
-  PRIMARY KEY (`UPOSLENI_ID`) ,
-
-  UNIQUE INDEX `JMBG_UNIQUE` (`JMBG` ASC) ,
-
-  INDEX `fk_UPOSLENI_LOKACIJA1_idx` (`PREBIVALISTE` ASC) ,
-
-  INDEX `fk_UPOSLENI_POSAO1_idx` (`POSAO_ID` ASC) ,
-
-  INDEX `fk_UPOSLENI_LOGIN1_idx` (`LOGIN` ASC) ,
-
-  CONSTRAINT `fk_UPOSLENI_LOKACIJA1`
-
-    FOREIGN KEY (`PREBIVALISTE` )
-
-    REFERENCES `mydb`.`LOKACIJA` (`LOKACIJA_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION,
-
-  CONSTRAINT `fk_UPOSLENI_POSAO1`
-
-    FOREIGN KEY (`POSAO_ID` )
-
-    REFERENCES `mydb`.`POSAO` (`POSAO_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION,
-
-  CONSTRAINT `fk_UPOSLENI_LOGIN1`
-
-    FOREIGN KEY (`LOGIN` )
-
-    REFERENCES `mydb`.`LOGIN` (`LOG_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`KLIJENT`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`KLIJENT` (
-
-  `KLIJENT_JIB` INT NOT NULL ,
-
-  `NAZIV` VARCHAR(30) NULL ,
-
-  `TIP` VARCHAR(30) NULL ,
-
-  `BROJ_TELEFONA` VARCHAR(30) NULL ,
-
-  `EMAIL` VARCHAR(30) NULL ,
-
-  `WEB` VARCHAR(45) NULL ,
-
-  `PREBIVALISTE` INT NOT NULL ,
-
-  PRIMARY KEY (`KLIJENT_JIB`) ,
-
-  INDEX `fk_KUPAC_LOKACIJA1_idx` (`PREBIVALISTE` ASC) ,
-
-  CONSTRAINT `fk_KUPAC_LOKACIJA1`
-
-    FOREIGN KEY (`PREBIVALISTE` )
-
-    REFERENCES `mydb`.`LOKACIJA` (`LOKACIJA_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`UREDAJ`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`UREDAJ` (
-
-  `UREDAJ_JIB` INT NOT NULL ,
-
-  `KLIJENT_JIB` INT NOT NULL ,
-
-  `TIP` VARCHAR(45) NULL ,
-
-  `IBFU` VARCHAR(45) NULL ,
-
-  `IBFM` VARCHAR(45) NULL ,
-
-  PRIMARY KEY (`UREDAJ_JIB`) ,
-
-  UNIQUE INDEX `IBFM_UNIQUE` (`IBFM` ASC) ,
-
-  UNIQUE INDEX `IBFU_UNIQUE` (`IBFU` ASC) ,
-
-  INDEX `fk_UREDAJ_KLIJENT1_idx` (`KLIJENT_JIB` ASC) ,
-
-  CONSTRAINT `fk_UREDAJ_KLIJENT1`
-
-    FOREIGN KEY (`KLIJENT_JIB` )
-
-    REFERENCES `mydb`.`KLIJENT` (`KLIJENT_JIB` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
-
-ENGINE = InnoDB;
-
-
-
-
-
--- -----------------------------------------------------
-
--- Table `mydb`.`ZADATAK`
-
--- -----------------------------------------------------
-
-CREATE  TABLE IF NOT EXISTS `mydb`.`ZADATAK` (
-
-  `BROJ` INT NOT NULL ,
-
-  `ZAVRSITI_DO` DATETIME NULL ,
-
-  `ZAHTJEV_PODNESEN` DATETIME NULL ,
-
-  `DONIJETI_DO` DATETIME NULL ,
-
-  `UPOSLENI` INT NOT NULL ,
-
-  `UREDAJ` INT NOT NULL ,
-
-  PRIMARY KEY (`BROJ`) ,
-
-  INDEX `fk_ZADATAK_UPOSLENI1_idx` (`UPOSLENI` ASC) ,
-
-  INDEX `fk_ZADATAK_UREDAJ1_idx` (`UREDAJ` ASC) ,
-
-  CONSTRAINT `fk_ZADATAK_UPOSLENI1`
-
-    FOREIGN KEY (`UPOSLENI` )
-
-    REFERENCES `mydb`.`UPOSLENI` (`UPOSLENI_ID` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION,
-
-  CONSTRAINT `fk_ZADATAK_UREDAJ1`
-
-    FOREIGN KEY (`UREDAJ` )
-
-    REFERENCES `mydb`.`UREDAJ` (`UREDAJ_JIB` )
-
-    ON DELETE NO ACTION
-
-    ON UPDATE NO ACTION)
-
-ENGINE = InnoDB;
-
-
-
-USE `mydb` ;
-
-
-
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 31, 2014 at 08:17 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `bazafdss`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `klijent`
+--
+
+CREATE TABLE IF NOT EXISTS `klijent` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAZIV` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `TIP` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `JIB` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `ADRESA` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `MJESTO` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `TELEFON` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `EMAIL` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `WEB` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci AUTO_INCREMENT=21 ;
+
+--
+-- Table structure for table `uposlenik`
+--
+
+CREATE TABLE IF NOT EXISTS `uposlenik` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `IME` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `PREZIME` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `JIB` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `ADRESA` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `MJESTO` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `TELEFON` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `EMAIL` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `TIP` int(11) DEFAULT NULL,
+  `USERNAME` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `PASSWORD` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `uposlenik`
+--
+
+INSERT INTO `uposlenik` (`ID`, `IME`, `PREZIME`, `JIB`, `ADRESA`, `MJESTO`, `TELEFON`, `EMAIL`, `TIP`, `USERNAME`, `PASSWORD`) VALUES
+(1, 'admin', 'admin', '1504992173043', 'admin', 'admin', '+38732444555', 'admin@admin.com', 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uredjaj`
+--
+
+CREATE TABLE IF NOT EXISTS `uredjaj` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `JIBPROIZVODACA` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `TIPUREDAJA` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `IBFU` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `IBFM` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `KLIJENT` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_qr79q32gcm8m246hdbe9516r` (`KLIJENT`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci AUTO_INCREMENT=7 ;
+
+--
+-- Table structure for table `zadatak`
+--
+
+CREATE TABLE IF NOT EXISTS `zadatak` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ZAHTJEV` bigint(20) DEFAULT NULL,
+  `SERVISER` bigint(20) DEFAULT NULL,
+  `HITNOST` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `ZAVRSITIDO` date DEFAULT NULL,
+  `ZAHTJEVPODNESEN` date DEFAULT NULL,
+  `DONIJETIUREDJAJDO` date DEFAULT NULL,
+  `ZAVRSEN` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_qwyg1ntm6l4bvf4d92vs8vp9s` (`ZAHTJEV`),
+  KEY `FK_maac3lpjwq3lhhlij0jvdr87f` (`SERVISER`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci AUTO_INCREMENT=6 ;
+
+--
+-- Table structure for table `zahtjev`
+--
+
+CREATE TABLE IF NOT EXISTS `zahtjev` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `UREDJAJ` bigint(20) DEFAULT NULL,
+  `ZAHTJEVPODNESEN` date DEFAULT NULL,
+  `ROK` date DEFAULT NULL,
+  `ZAVRSEN` bit(1) DEFAULT NULL,
+  `HITNO` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_psn4if3ev7w09fn9y36gh2ndm` (`UREDJAJ`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci AUTO_INCREMENT=7 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `uredjaj`
+--
+ALTER TABLE `uredjaj`
+  ADD CONSTRAINT `FK_qr79q32gcm8m246hdbe9516r` FOREIGN KEY (`KLIJENT`) REFERENCES `klijent` (`ID`);
+
+--
+-- Constraints for table `zadatak`
+--
+ALTER TABLE `zadatak`
+  ADD CONSTRAINT `FK_maac3lpjwq3lhhlij0jvdr87f` FOREIGN KEY (`SERVISER`) REFERENCES `uposlenik` (`ID`),
+  ADD CONSTRAINT `FK_qwyg1ntm6l4bvf4d92vs8vp9s` FOREIGN KEY (`ZAHTJEV`) REFERENCES `zahtjev` (`ID`);
+
+--
+-- Constraints for table `zahtjev`
+--
+ALTER TABLE `zahtjev`
+  ADD CONSTRAINT `FK_psn4if3ev7w09fn9y36gh2ndm` FOREIGN KEY (`UREDJAJ`) REFERENCES `uredjaj` (`ID`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
