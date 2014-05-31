@@ -1,11 +1,12 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
 
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import static org.junit.Assert.*;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
-
-import org.junit.*;
-
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
@@ -149,10 +150,11 @@ public class UposlenikTest {
 	
 	@Test
 	public void testPretragaUposlenika() {
+		
 			hup.dodajUposlenika(up);		
 			Assert.assertEquals(hup.dajUposlenikaJMBG("1504992173043").getAdresa(), "Tuzlanska bb");
 	}	
-
 	
 
 }
+

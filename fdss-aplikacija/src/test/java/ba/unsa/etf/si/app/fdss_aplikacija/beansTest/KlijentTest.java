@@ -18,7 +18,7 @@ public class KlijentTest {
 	@Before
 	public void TestnePostavke () {
 		try {
-			k =  new Klijent("Firma", "160799118652", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+			k =  new Klijent("Firma", "Market","160799118652", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
 			hk = new HibernateKlijent();
 		}
 		

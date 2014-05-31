@@ -38,9 +38,10 @@ public class Klijent implements Serializable{
 		List<Uredjaj> uredjaji;
 	}
 	
-	public Klijent(String n, String j, String a, String m, String t, String e, String w) throws GeneralniException {
+	public Klijent(String n, String tp, String j, String a, String m, String t, String e, String w) throws GeneralniException {
 		
 		setNaziv(n);
+		setTip(tp);
 		setJib(j);
 		setAdresa(a);
 		setMjesto(m);
