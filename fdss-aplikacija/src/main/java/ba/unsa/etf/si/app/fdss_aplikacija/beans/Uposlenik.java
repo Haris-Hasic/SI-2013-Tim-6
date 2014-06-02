@@ -104,7 +104,7 @@ public class Uposlenik implements Serializable{
 			this.telefon = telefon;
 		
 		else
-			throw new GeneralniException("Nepravilan format telefona !");
+			throw new GeneralniException("Nepravilan format telefona ! (npr. +38733123456)");
 	}
 
 	public String getEmail() {
@@ -117,7 +117,7 @@ public class Uposlenik implements Serializable{
 			this.email = email;
 		
 		else
-			throw new GeneralniException("Nepravilan format e-maila !");
+			throw new GeneralniException("Nepravilan format e-maila ! (npr. nesto@nesto.com)");
 	}
 
 	public int getTip() {	// metode getTip i setTip nemojte koristi

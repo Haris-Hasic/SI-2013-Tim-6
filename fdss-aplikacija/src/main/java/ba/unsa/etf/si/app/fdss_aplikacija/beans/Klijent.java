@@ -84,7 +84,7 @@ public class Klijent implements Serializable{
 			this.jib = jib;
 		
 		else
-			throw new GeneralniException("Nepravilan format JIB !");
+			throw new GeneralniException("Nepravilan format JIB ! (tačno 12 brojeva)");
 	}
 
 	public String getAdresa() {
@@ -113,7 +113,7 @@ public class Klijent implements Serializable{
 			this.telefon = telefon;
 		
 		else
-			throw new GeneralniException("Nepravilan format telefona !");
+			throw new GeneralniException("Nepravilan format telefona ! (npr. +38733123456)");
 	}
 
 	public String getEmail() {
@@ -126,7 +126,7 @@ public class Klijent implements Serializable{
 			this.email = email;
 		
 		else
-			throw new GeneralniException("Nepravilan format e-maila !");
+			throw new GeneralniException("Nepravilan format e-maila ! (npr. nesto@nesto.com)");
 	}
 
 	public String getWeb() {
