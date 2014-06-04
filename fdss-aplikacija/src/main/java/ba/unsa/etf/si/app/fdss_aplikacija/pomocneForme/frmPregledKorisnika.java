@@ -166,7 +166,6 @@ public class frmPregledKorisnika extends JFrame {
 		scrollPane.setBounds(10, 67, 347, 184);
 		panel.add(scrollPane);
 		
-		
 		scrollPane.setViewportView(list);
 		list.setModel(model);
 		
