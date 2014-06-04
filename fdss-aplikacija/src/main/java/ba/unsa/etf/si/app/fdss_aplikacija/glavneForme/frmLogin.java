@@ -151,24 +151,32 @@ public class frmLogin extends JFrame {
 					case ADMINISTRATOR:
 						frmAdministrator fa=new frmAdministrator(up);
 						fa.setVisible(true);
+						userName_tb.setText("");
+						password_tb.setText("");
 						dispose();
 						break;
 						
 					case MENADZER:
 						frmManager fm=new frmManager(up);
 						fm.setVisible(true);
+						userName_tb.setText("");
+						password_tb.setText("");
 						dispose();
 						break;
 						
 					case DISPECER:
 						frmDispatcher fd=new frmDispatcher(up);
 						fd.setVisible(true);
+						userName_tb.setText("");
+						password_tb.setText("");
 						dispose();
 						break;
 						
 					case SERVISER:
 						frmServiser fs=new frmServiser(up);
 						fs.setVisible(true);
+						userName_tb.setText("");
+						password_tb.setText("");
 						dispose();
 						break;
 				}

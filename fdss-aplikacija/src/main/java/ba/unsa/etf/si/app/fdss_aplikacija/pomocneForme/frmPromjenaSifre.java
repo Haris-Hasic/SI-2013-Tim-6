@@ -79,7 +79,7 @@ public class frmPromjenaSifre extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				if( novaSifra_pf.getText().compareTo(potvrdaSifre_pf.getText()) == 0) { // && (Validacija.HesirajMD5(staraSifra_pf.getText())).compareTo(Validacija.HesirajMD5(up.getPassword())) == 0) {
+				if( novaSifra_pf.getText().compareTo(potvrdaSifre_pf.getText()) == 0 && up.getPassword().compareTo(Validacija.HesirajMD5(Validacija.HesirajMD5(staraSifra_pf.getText()))) == 0) {
 					
 					HibernateUposlenik hu = new HibernateUposlenik();
 					up.setPassword(novaSifra_pf.getText());
