@@ -52,7 +52,7 @@ import java.net.URL;
 
 public class frmAdministrator extends JFrame {
 	Uposlenik uposlenik;
-	public frmAdministrator(Uposlenik u) {
+	public frmAdministrator(final Uposlenik u) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -177,7 +177,8 @@ public class frmAdministrator extends JFrame {
 		mntmPromjenaifre.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmPromjenaifre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmPromjenaSifre fs=new frmPromjenaSifre();
+				
+				frmPromjenaSifre fs=new frmPromjenaSifre(u);
 				fs.setVisible(true);
 			}
 		});

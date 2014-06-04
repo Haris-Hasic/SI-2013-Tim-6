@@ -7,39 +7,34 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class frmPromjenaSifre extends JFrame {
 
 	private JPanel contentPane;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JPasswordField passwordField_2;
+	private JPasswordField staraSifra_pf;
+	private JPasswordField novaSifra_pf;
+	private JPasswordField potvrdaSifre_pf;
+	private Uposlenik up;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmPromjenaSifre frame = new frmPromjenaSifre();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public frmPromjenaSifre() {
+	public frmPromjenaSifre(final Uposlenik u) {
+		
+		up = u;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Promjena \u0161ifre");
@@ -67,19 +62,42 @@ public class frmPromjenaSifre extends JFrame {
 		lblPotvrdaNoveifre.setBounds(10, 89, 103, 14);
 		contentPane.add(lblPotvrdaNoveifre);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(123, 25, 271, 20);
-		contentPane.add(passwordField);
+		staraSifra_pf = new JPasswordField();
+		staraSifra_pf.setBounds(123, 25, 271, 20);
+		contentPane.add(staraSifra_pf);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(123, 56, 271, 20);
-		contentPane.add(passwordField_1);
+		novaSifra_pf = new JPasswordField();
+		novaSifra_pf.setBounds(123, 56, 271, 20);
+		contentPane.add(novaSifra_pf);
 		
-		passwordField_2 = new JPasswordField();
-		passwordField_2.setBounds(123, 87, 271, 20);
-		contentPane.add(passwordField_2);
+		potvrdaSifre_pf = new JPasswordField();
+		potvrdaSifre_pf.setBounds(123, 87, 271, 20);
+		contentPane.add(potvrdaSifre_pf);
 		
 		JButton btnNewButton = new JButton("Potvrdi");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				if( novaSifra_pf.getText().compareTo(potvrdaSifre_pf.getText()) == 0) { // && (Validacija.HesirajMD5(staraSifra_pf.getText())).compareTo(Validacija.HesirajMD5(up.getPassword())) == 0) {
+					
+					HibernateUposlenik hu = new HibernateUposlenik();
+					up.setPassword(novaSifra_pf.getText());
+					hu.updateUposlenika(up);
+					
+					novaSifra_pf.setText("");
+					staraSifra_pf.setText("");
+					potvrdaSifre_pf.setText("");
+					
+					JOptionPane.showMessageDialog(null, "Uspješno promijenjena lozinka !");
+				}
+				
+				else {
+
+					JOptionPane.showMessageDialog(null, "Lozinke se ne slažu !");
+				}		
+			}
+		});
 		btnNewButton.setBounds(305, 123, 89, 23);
 		contentPane.add(btnNewButton);
 	}

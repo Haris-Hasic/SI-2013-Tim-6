@@ -55,7 +55,8 @@ public class frmDispatcher extends JFrame {
 	private JPanel centralniPanel;
 	private Servis _servis;
 	Uposlenik uposlenik;
-	public frmDispatcher(Uposlenik uposlenik) {
+	
+	public frmDispatcher(final Uposlenik uposlenik) {
 		
 		this.uposlenik=uposlenik;
 		_servis=new Servis();
@@ -274,7 +275,7 @@ public class frmDispatcher extends JFrame {
 		mntmPromjenaifre.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmPromjenaifre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmPromjenaSifre fs=new frmPromjenaSifre();
+				frmPromjenaSifre fs=new frmPromjenaSifre(uposlenik);
 				fs.setVisible(true);
 			}
 		});

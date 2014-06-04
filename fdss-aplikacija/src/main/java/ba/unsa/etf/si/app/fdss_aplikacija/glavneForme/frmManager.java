@@ -278,7 +278,7 @@ public class frmManager extends JFrame {
 		mntmPromjenaifre.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mntmPromjenaifre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmPromjenaSifre fs=new frmPromjenaSifre();
+				frmPromjenaSifre fs=new frmPromjenaSifre(uposlenik);
 				fs.setVisible(true);
 			}
 		});
