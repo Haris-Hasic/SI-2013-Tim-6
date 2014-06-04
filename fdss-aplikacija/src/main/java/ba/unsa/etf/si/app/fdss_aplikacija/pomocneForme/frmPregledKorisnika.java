@@ -22,6 +22,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Color;
 
 
 public class frmPregledKorisnika extends JFrame {
@@ -30,18 +33,19 @@ public class frmPregledKorisnika extends JFrame {
 	private DefaultListModel model=new DefaultListModel();
 	private HibernateUposlenik h = new HibernateUposlenik();
 	Uposlenik uposlenik;
+	final JList list;
 	public frmPregledKorisnika(Uposlenik u) {
 		uposlenik=u;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		
 		setTitle("Korisnici");
-		setBounds(100, 100, 386, 220);
+		setBounds(100, 100, 386, 341);
 		
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 369, 181);
+		panel.setBounds(0, 0, 369, 301);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -69,6 +73,7 @@ public class frmPregledKorisnika extends JFrame {
 		separator.setBounds(160, 15, 0, 2);
 		panel.add(separator);
 		
+		list = new JList();
 		pretraga_tb = new JTextField();
 		pretraga_tb.setBounds(97, 20, 150, 28);
 		panel.add(pretraga_tb);
@@ -85,11 +90,6 @@ public class frmPregledKorisnika extends JFrame {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 59, 347, 2);
 		panel.add(separator_1);
-		
-		final JList list = new JList();
-		list.setModel(model);
-		list.setBounds(10, 72, 347, 60);
-		panel.add(list);
 		
 		JButton btnUredi = new JButton("Uredi");
 		btnUredi.addActionListener(new ActionListener() {
@@ -124,7 +124,7 @@ public class frmPregledKorisnika extends JFrame {
 			}
 		});
 		
-		btnUredi.setBounds(147, 143, 100, 28);
+		btnUredi.setBounds(147, 262, 100, 28);
 		panel.add(btnUredi);
 		slika=new ImageIcon(getClass().getResource("/edit.png"));
 		sl=slika.getImage();
@@ -155,12 +155,20 @@ public class frmPregledKorisnika extends JFrame {
 
 			}
 		});
-		btnIzbrisi.setBounds(257, 143, 100, 28);
+		btnIzbrisi.setBounds(257, 262, 100, 28);
 		panel.add(btnIzbrisi);
 		slika=new ImageIcon(getClass().getResource("/delete.png"));
 		sl=slika.getImage();
 		temp=sl.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		btnIzbrisi.setIcon(new ImageIcon(temp));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 67, 347, 184);
+		panel.add(scrollPane);
+		
+		
+		scrollPane.setViewportView(list);
+		list.setModel(model);
 		
 		ispisiListu();
 	}
