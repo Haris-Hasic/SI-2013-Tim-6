@@ -47,7 +47,7 @@ public class Uredjaj implements Serializable{
 			this.jibProizvodaca = jibProizvodaca;
 		}
 		
-		else throw new GeneralniException("Nepravilan JIB proizvođaća.");
+		else throw new GeneralniException("Nepravilan JIB proizvođaća. (Duzina mora biti 12 brojeva.)");
 	}
 
 	public String getTipUredaja() {
@@ -66,7 +66,7 @@ public class Uredjaj implements Serializable{
 		if(new Validacija().validirajIBFU(ibfu))
 		{
 			this.ibfu = ibfu;
-		}else throw new GeneralniException("Nepravilan IBFU.");
+		}else throw new GeneralniException("Nepravilan IBFU. (Npr. ab123450, nula na kraju je obavezna.)");
 	}
 
 	public String getIbfm() {
@@ -77,7 +77,7 @@ public class Uredjaj implements Serializable{
 		if(new Validacija().validirajIBFM(ibfm))
 		{
 			this.ibfm = ibfm;
-		}else throw new GeneralniException("Nepravilan IBFM");
+		}else throw new GeneralniException("Nepravilan IBFM.  (Npr. ab123456)");
 	}
 
 	@Override

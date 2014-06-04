@@ -174,7 +174,7 @@ public class frmLogin extends JFrame {
 				}
 			}
 			
-			else 
+			else
 				new Validacija().poruka("Pogrešni login podaci !");
 		}
 		

@@ -91,7 +91,25 @@ public class frmIzmjenaKorisnika extends JFrame {
 	    grupa.add(menadzer_rdbtn);
 	    grupa.add(dispecer_rdbtn);
 	    grupa.add(serviser_rdbtn);
-		
+	    
+		switch(u.getPrivilegija())
+		{
+			case ADMINISTRATOR:
+				administrator_rdbtn.setSelected(true);
+				break;
+			case MENADZER:
+				menadzer_rdbtn.setSelected(true);
+				break;
+			case SERVISER:
+				serviser_rdbtn.setSelected(true);
+				break;
+			case DISPECER:
+				dispecer_rdbtn.setSelected(true);
+				break;
+			default:
+				break;	
+		}
+	    
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(BorderFactory.createTitledBorder("Novi korisnik"));
@@ -228,9 +246,9 @@ public class frmIzmjenaKorisnika extends JFrame {
 		u.setEmail(email_tb.getText());
 		
 		u.setUserName(username_tb.getText());
-		u.setPassword(password_tb.getText());
+		//u.setPassword(password_tb.getText());
 		
-		if(true)
+		if(menadzer_rdbtn.isSelected())
 			u.SetPrivilegija(PrivilegijaUposlenika.MENADZER);
 		
 		else if(administrator_rdbtn.isSelected())
@@ -254,7 +272,7 @@ public class frmIzmjenaKorisnika extends JFrame {
 		email_tb.setText(up.getEmail());
 		
 		username_tb.setText(up.getUserName());
-		password_tb.setText(up.getPassword());
+		//password_tb.setText(up.getPassword());
 		
 		switch(up.getPrivilegija())
 		{
