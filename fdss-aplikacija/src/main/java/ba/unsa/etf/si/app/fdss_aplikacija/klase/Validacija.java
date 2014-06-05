@@ -65,6 +65,26 @@ public class Validacija {
 		return true;
 	}
 	
+	public static boolean validirajIme(String i) {
+		
+		return i.matches("[A-Z][a-zA-Z]*");
+	}
+	
+	public static boolean validirajPrezime(String p) {
+		
+		return p.matches("[a-zA-z]+([ '-][a-zA-Z]+)*");
+	}
+	
+	public static boolean validirajAdresa(String a) {
+		
+		return a.matches("[a-zA-Z0-9]+(?:[ '-][a-zA-Z0-9]+)*");
+	}
+	
+	public static boolean validirajGrad(String g) {
+		
+		return g.matches("[a-zA-Z]+(?:[ '-][a-zA-Z]+)*");
+	}
+	
 	public static boolean validirajEmail(String em) {
 		
 		return em.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -73,6 +93,11 @@ public class Validacija {
 	public static boolean validirajTelefon(String tel) {
 		
 		return tel.matches("[+][0-9]{9,15}");
+	}
+	
+	public static boolean validirajWeb(String w) {
+		
+		return w.matches("\\(?\\b(http://|www[.])[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@#/%=~_()|]");
 	}
 	
 	public static String HesirajMD5(String message){ 

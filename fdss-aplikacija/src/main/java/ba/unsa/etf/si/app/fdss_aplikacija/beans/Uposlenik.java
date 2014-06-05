@@ -52,16 +52,26 @@ public class Uposlenik implements Serializable{
 		return ime;
 	}
 
-	public void setIme(String ime) {
-		this.ime = ime;
+	public void setIme(String ime) throws GeneralniException {
+		
+		if(Validacija.validirajIme(ime))
+			this.ime = ime;
+		
+		else
+			throw new GeneralniException("Nepravilan format imena !");
 	}
 
 	public String getPrezime() {
 		return prezime;
 	}
 
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
+	public void setPrezime(String prezime) throws GeneralniException {
+		
+		if(Validacija.validirajPrezime(prezime))
+			this.prezime = prezime;
+		
+		else
+			throw new GeneralniException("Nepravilan format prezimena !");
 	}
 
 	public String getJmbg() {
@@ -82,16 +92,26 @@ public class Uposlenik implements Serializable{
 		return adresa;
 	}
 
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
+	public void setAdresa(String adresa) throws GeneralniException {
+		
+		if(Validacija.validirajAdresa(adresa))
+			this.adresa = adresa;
+		
+		else
+			throw new GeneralniException("Nepravilan format adrese ! (npr. Tuzlanska bb)");
 	}
 
 	public String getMjesto() {
 		return mjesto;
 	}
 
-	public void setMjesto(String mjesto) {
-		this.mjesto = mjesto;
+	public void setMjesto(String mjesto) throws GeneralniException {
+		
+		if(Validacija.validirajGrad(mjesto))
+			this.mjesto = mjesto;
+		
+		else
+			throw new GeneralniException("Nepravilan format grada ! (npr. Sarajevo)");
 	}
 
 	public String getTelefon() {

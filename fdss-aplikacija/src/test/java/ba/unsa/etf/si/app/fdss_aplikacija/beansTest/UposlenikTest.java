@@ -34,10 +34,13 @@ public class UposlenikTest {
 	public void testGetSetNazivAdresa() {
 
 		
-			up.setAdresa("Radiceva 10");
-			
-			Assert.assertEquals("Radiceva 10", up.getAdresa());
-
+			try {
+				up.setAdresa("Radiceva 10");
+				Assert.assertEquals("Radiceva 10", up.getAdresa());
+			} catch (GeneralniException e) {
+				
+				Assert.assertEquals("Radiceva 10", "lol");
+			}
 	}
 
 	@Test

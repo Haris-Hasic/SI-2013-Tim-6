@@ -5,104 +5,166 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import org.junit.*;
 
 public class ValidacijaTest {
+	
 	@Test
 	public void TestValidirajJMBG() 
 	{
 		String jmb = "2706992172174";
-		Boolean rezultat = Validacija.validirajJMBG(jmb);
-		Assert.assertTrue(rezultat);
+		Assert.assertTrue(Validacija.validirajJMBG(jmb));
 	}
 	
 	@Test
-	public void TestValidirajJMBG2() 
+	public void TestValidirajPogresanJMBG() 
 	{
-		String jmb = "2706992172175";
-		Boolean rezultat = Validacija.validirajJMBG(jmb);
-		Assert.assertFalse(rezultat);
+		String jmb = "1234567890";
+		Assert.assertFalse(Validacija.validirajJMBG(jmb));
 	}
-	
 	
 	@Test
 	public void TestValidirajIBFM() 
 	{
-		String ibfm = "EO021760";
-		Boolean rezultat = Validacija.validirajIBFM(ibfm);
-		Assert.assertTrue(rezultat);
+		String ibfm = "AB021765";
+		Assert.assertTrue(Validacija.validirajIBFM(ibfm));
 	}
 	
 	@Test
-	public void TestValidirajIBFM2() 
+	public void TestValidirajPogresanIBFM() 
 	{
-		String ibfm = "EOL21760";
-		Boolean rezultat = Validacija.validirajIBFM(ibfm);
-		Assert.assertFalse(rezultat);
+		String ibfm = "123456AB";
+		Assert.assertFalse(Validacija.validirajIBFM(ibfm));
 	}
 	
 	@Test
 	public void TestValidirajIBFU() 
 	{
 		String ibfu = "EO021760";
-		Boolean rezultat = Validacija.validirajIBFU(ibfu);
-		Assert.assertTrue(rezultat);
+		Assert.assertTrue(Validacija.validirajIBFU(ibfu));
 	}
 	
 	@Test
-	public void TestValidirajIBFU2() 
+	public void TestValidirajPogresanIBFU() 
 	{
-		String ibfu = "EO021761";
-		Boolean rezultat = Validacija.validirajIBFU(ibfu);
-		Assert.assertFalse(rezultat);
+		String ibfu = "HH021761";
+		Assert.assertFalse(Validacija.validirajIBFU(ibfu));
 	}
 	
+	@Test
+	public void TestValidirajIme() 
+	{
+		String ime = "Haris";
+		Assert.assertTrue(Validacija.validirajIme(ime));
+	}
+	
+	@Test
+	public void TestValidirajPogresnoIme() 
+	{
+		String ime = "     12sasa";
+		Assert.assertFalse(Validacija.validirajIme(ime));
+	}
+	
+	@Test
+	public void TestValidirajPrezime() 
+	{
+		String ime = "Jean-Paul";
+		Assert.assertTrue(Validacija.validirajPrezime(ime));
+		ime = "Hasic";
+		Assert.assertTrue(Validacija.validirajPrezime(ime));
+	}
+	
+	@Test
+	public void TestValidirajPogresnoPrezime() 
+	{
+		String ime = "   sdaa  12sasa";
+		Assert.assertFalse(Validacija.validirajPrezime(ime));
+	}
+	
+	@Test
+	public void TestValidirajAdresu() 
+	{
+		String adresa = "Tuzlanska br5";
+		Assert.assertTrue(Validacija.validirajAdresa(adresa));
+	}
+	
+	@Test
+	public void TestValidirajPogresnaAdresa() 
+	{
+		String adresa = "---adsdadsdas----";
+		Assert.assertFalse(Validacija.validirajAdresa(adresa));
+	}
+	
+	@Test
+	public void TestValidirajGrad() 
+	{
+		String grad = "Los Angeles";
+		Assert.assertTrue(Validacija.validirajGrad(grad));
+		grad = "Olovo";
+		Assert.assertTrue(Validacija.validirajGrad(grad));
+	}
+	
+	@Test
+	public void TestValidirajPogresanGrad() 
+	{
+		String grad = "---adsdadsdas----";
+		Assert.assertFalse(Validacija.validirajGrad(grad));
+	}
 	
 	@Test
 	public void TestValidirajEmail() 
 	{
 		String email = "kahrovic@hotmail.com";
-		Boolean rezultat = Validacija.validirajEmail(email);
-		Assert.assertTrue(rezultat);
+		Assert.assertTrue(Validacija.validirajEmail(email));
 	}
 	
 	@Test
-	public void TestValidirajEmail2() 
+	public void TestValidirajPogresanEmail() 
 	{
 		String email = "kahrovic@.com";
-		Boolean rezultat = Validacija.validirajEmail(email);
-		Assert.assertFalse(rezultat);
+		Assert.assertFalse(Validacija.validirajEmail(email));
+	}
+	
+	@Test
+	public void TestValidirajWeb() 
+	{
+		String web = "www.google.com";
+		Assert.assertTrue(Validacija.validirajWeb(web));
+		web = "www.klix.ba";
+		Assert.assertTrue(Validacija.validirajWeb(web));
+		web = "www.usarmy.arpa";
+		Assert.assertTrue(Validacija.validirajWeb(web));
+	}
+	
+	@Test
+	public void TestValidirajPogresanWeb() 
+	{
+		String web = "   12312#fdsff";
+		Assert.assertFalse(Validacija.validirajWeb(web));
 	}
 	
 	@Test
 	public void TestValidirajTelefon() 
 	{
 		String telefon = "+38761503098";
-		Boolean rezultat = Validacija.validirajTelefon(telefon);
-		Assert.assertTrue(rezultat);
+		Assert.assertTrue(Validacija.validirajTelefon(telefon));
 	}
 	
 	@Test
-	public void TestValidirajTelefon2() 
+	public void TestValidirajPogresanTelefon() 
 	{
 		String telefon = "+38761";
-		Boolean rezultat = Validacija.validirajTelefon(telefon);
-		Assert.assertFalse(rezultat);
+		Assert.assertFalse(Validacija.validirajTelefon(telefon));
 	}
 	
 	@Test
 	public void TestHesirajMD5() 
 	{
 		String poruka = "nekaPoruka";
-		String hesirano = Validacija.HesirajMD5(poruka);
-		Assert.assertEquals("846010891eb0ecd2103dcc26320c6f20", hesirano);
+		Assert.assertEquals("846010891eb0ecd2103dcc26320c6f20", Validacija.HesirajMD5(poruka));
 	}
 	
 	@Test
-	public void TestHesirajMD52() 
+	public void TestPogresanHesirajMD5() 
 	{
 		String poruka = "nekaPoruka";
-		String hesirano = Validacija.HesirajMD5(poruka);
-		Assert.assertNotSame("846010891eb0ecd2103dcc26320c6f21", hesirano);
+		Assert.assertNotSame("846010891eb0ecd2103dcc26320c6f21", Validacija.HesirajMD5(poruka));
 	}
-	
-
-
 }

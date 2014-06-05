@@ -91,16 +91,26 @@ public class Klijent implements Serializable{
 		return adresa;
 	}
 
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
+	public void setAdresa(String adresa) throws GeneralniException {
+		
+		if(Validacija.validirajAdresa(adresa))
+			this.adresa = adresa;
+		
+		else
+			throw new GeneralniException("Nepravilan format adrese ! (npr. Tuzlanska bb)");
 	}
 
 	public String getMjesto() {
 		return mjesto;
 	}
 
-	public void setMjesto(String mjesto) {
-		this.mjesto = mjesto;
+	public void setMjesto(String mjesto) throws GeneralniException {
+		
+		if(Validacija.validirajGrad(mjesto))
+			this.mjesto = mjesto;
+		
+		else
+			throw new GeneralniException("Nepravilan format grada ! (npr. Sarajevo)");
 	}
 
 	public String getTelefon() {
@@ -134,8 +144,12 @@ public class Klijent implements Serializable{
 	}
 
 	public void setWeb(String web) throws GeneralniException {
-
+		
+		if(Validacija.validirajWeb(web))
 			this.web = web;
+		
+		else
+			throw new GeneralniException("Nepravilan format e-maila ! (npr. www.nesto.com)");
 	}
 	
 	

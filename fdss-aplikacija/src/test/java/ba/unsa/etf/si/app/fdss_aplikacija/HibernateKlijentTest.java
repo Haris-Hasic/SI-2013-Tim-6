@@ -50,11 +50,17 @@ public class HibernateKlijentTest {
 	@Test
 	public void testUpdateKlijenta() 
 	{
-		hk.dodajKlijenta(k);
-		k.setMjesto("Sarajevo");
-		hk.updateKlijenta(k);
-		Klijent novi = hk.dajKlijenta("270699217217");
-		Assert.assertEquals("Sarajevo", novi.getMjesto());
+		try {
+			hk.dodajKlijenta(k);
+			k.setMjesto("Sarajevo");
+			hk.updateKlijenta(k);
+			Klijent novi = hk.dajKlijenta("270699217217");
+			Assert.assertEquals("Sarajevo", novi.getMjesto());
+			
+		} catch (GeneralniException e) {
+			
+			Assert.assertEquals("Sarajevo", "lol"); // obaranje
+		}
 	}	
 	
 	

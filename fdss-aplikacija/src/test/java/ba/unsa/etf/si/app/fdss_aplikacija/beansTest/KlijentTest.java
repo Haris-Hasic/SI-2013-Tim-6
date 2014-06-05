@@ -77,9 +77,13 @@ public void testGetSetWebIspravno() {
 public void testGetSetMjestoIspravno() {
 
 	
-		k.setMjesto("Sarajevo");
-		
-		Assert.assertEquals("Sarajevo", k.getMjesto());
+		try {
+			k.setMjesto("Sarajevo");
+			Assert.assertEquals("Sarajevo", k.getMjesto());
+		} catch (GeneralniException e) {
+			
+			Assert.assertEquals("Sarajevo","lol");
+		}
 
 }
 
@@ -97,9 +101,13 @@ public void testGetSetNazivIspravno() {
 public void testGetSetNazivAdresa() {
 
 	
-		k.setAdresa("Radiceva 10");
-		
-		Assert.assertEquals("Radiceva 10", k.getAdresa());
+		try {
+			k.setAdresa("Radiceva 10");
+			Assert.assertEquals("Radiceva 10", k.getAdresa());
+		} catch (GeneralniException e) {
+
+			Assert.assertEquals("Radiceva 10", "lol");
+		}
 
 }
 
