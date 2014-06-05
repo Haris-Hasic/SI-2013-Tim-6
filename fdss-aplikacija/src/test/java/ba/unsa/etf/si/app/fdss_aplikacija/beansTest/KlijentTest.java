@@ -18,7 +18,7 @@ public class KlijentTest {
 	@Before
 	public void TestnePostavke () {
 		try {
-			k =  new Klijent("Firma", "Market","160799118652", "Dervisa Susica 2", "Brcko", "+38761579652", "ena_brcko@hotmail.com","firma.ba");
+			k =  new Klijent("Firma", "Market","160799118652", "Dervisa Susica 2", "Brcko", "+38761579652", "Jasmin@hotmail.com","www.nesto.ba");
 			hk = new HibernateKlijent();
 		}
 		
@@ -29,11 +29,6 @@ public class KlijentTest {
 		}
 		
 	}
-
-	
-	
-
-	
 	
 	
 @Test
@@ -53,121 +48,108 @@ public void testGetSetJib() {
 		}
 	}
 
-
-
 @Test
-public void testGetSetWebIspravno() {
+public void testPostojiKlijent() {
 	
-	try {
-
-
-		k.setWeb("firma.com");
-		
-		Assert.assertEquals("firma.com", k.getWeb());
-	} 
-	
-	catch (GeneralniException e) {
-		
-		Assert.fail("Test neuspješan. Ne rade get i set metode za atribut Web .");
-	}
-}
-
-
-@Test
-public void testGetSetMjestoIspravno() {
-
-	
-		try {
-			k.setMjesto("Sarajevo");
-			Assert.assertEquals("Sarajevo", k.getMjesto());
-		} catch (GeneralniException e) {
-			
-			Assert.assertEquals("Sarajevo","lol");
-		}
-
+	hk.dodajKlijenta(k);
+	Assert.assertTrue(hk.postojiKlijent("160799118652"));
+	hk.brisiKlijenta(k);	
 }
 
 @Test
-public void testGetSetNazivIspravno() {
-
-	
-		k.setNaziv("Firmaa");
-		
-		Assert.assertEquals("Firmaa", k.getNaziv());
-
+public void testDodavanjeIBrisanjeKlijenta() {
+		hk.dodajKlijenta(k);
+		Klijent klijent=hk.dajKlijenta(k.getJib());
+		long id=klijent.getId();
+		Assert.assertTrue(hk.postojiKlijent(id));	
+		hk.brisiKlijenta(klijent);
+		Assert.assertFalse(hk.postojiKlijent(id));
 }
-
-@Test
-public void testGetSetNazivAdresa() {
-
-	
-		try {
-			k.setAdresa("Radiceva 10");
-			Assert.assertEquals("Radiceva 10", k.getAdresa());
-		} catch (GeneralniException e) {
-
-			Assert.assertEquals("Radiceva 10", "lol");
-		}
-
-}
-
-
 
 @Test
 public void testUpdateKlijenta() {
 	
-	Klijent k = new Klijent();
+	Klijent klijent = new Klijent();
 	
 	try {
 		
-		k.setAdresa("Trg djece Dobrinje");
-		k.setMjesto("Sarajevo");
-		k.setNaziv("Firma");
-		k.setJib("270699217217");
-		k.setEmail("firma@hotmail.com");
-		k.setTelefon("+38761503098");
-		k.setWeb("firma.com");
-	
+		klijent.setAdresa("Trg djece Dobrinje");
+		klijent.setMjesto("Sarajevo");
+		klijent.setNaziv("Firma");
+		klijent.setJib("270699217210");
+		klijent.setEmail("firma@hotmail.com");
+		klijent.setTelefon("+38761503098");
+		klijent.setWeb("www.firma.com");
+		hk.dodajKlijenta(klijent);
 		
+		Klijent tempKlijent_1=hk.dajKlijenta("270699217210");
+		tempKlijent_1.setJib("222222222222");
+		hk.updateKlijenta(tempKlijent_1);
+		
+		Klijent tempKlijent_2=hk.dajKlijenta("222222222222");
+				
 		Boolean flag=false;
-		if (k.getAdresa()=="Trg djece Dobrinje" && k.getMjesto()=="Sarajevo" && k.getNaziv()=="Firma"  && k.getJib()=="270699217217" && k.getEmail()=="firma@hotmail.com" && k.getTelefon()=="+38761503098")
+		if(tempKlijent_1.getId()==tempKlijent_2.getId())
 			flag=true;
-		
+		hk.brisiKlijenta(tempKlijent_2);
 		Assert.assertTrue(flag);
 	} 
 	
 	catch (GeneralniException e) {
 		
-		Assert.fail("Test neuspješan. Ne radi update-ovanje klijenta.");
+		Assert.fail("Test neuspješan. Poruka: "+e.getMessage());
 	}
 }
 
-
 @Test
-public void testpostojiKlijent() {
-	
-	HibernateKlijent h  = new HibernateKlijent();
-	h.dodajKlijenta(k);
-	Assert.assertTrue(h.postojiKlijent("160799118652"));
-	
+public void testGetSetJibFail()
+{
+	try{
+		String nepravilanJIB="1234567890";
+		k.setJib(nepravilanJIB);
+		Assert.fail("Nije bacen izuzetak.");
+	}catch(Exception e)
+	{
+		Assert.assertTrue(true);
+	}
 }
 
 @Test
-public void testBrisanjeKlijenta() {
-		long id = k.getId();
-		hk.dodajKlijenta(k);
-		hk.brisiKlijenta(k);
-		
-		Assert.assertFalse(hk.postojiKlijent(id));
+public void testNepravilanEmail()
+{
+	try{
+		Klijent k=new Klijent();
+		k.setEmail("jasmin@gmailcom");
+		Assert.fail("Email:: Nije bacen izuzetak");
+	}catch (Exception e)
+	{
+		Assert.assertTrue(true);
+	}
 }
 
 @Test
-public void testPretragaKlijenta() {
-		hk.dodajKlijenta(k);
-		Assert.assertEquals(hk.dajKlijenta("160799118652").getAdresa(), "Dervisa Susica 2");
+public void testNepravilanWeb()
+{
+	try{
+		Klijent k=new Klijent();
+		k.setEmail("webFirme");
+		Assert.fail("WEB:: Nije bacen izuzetak");
+	}catch (Exception e)
+	{
+		Assert.assertTrue(true);
+	}
 }
-
-
-
+@Test
+public void testNepravilanTelefon()
+{
+	try{
+		Klijent k=new Klijent();
+		k.setTelefon("225 883");
+		Assert.fail("Telefon:: Nije bacen izuzetak");
+	}catch (Exception e)
+	{
+		Assert.assertTrue(true);
+	}
+}
 
 }

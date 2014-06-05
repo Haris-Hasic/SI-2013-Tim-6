@@ -112,7 +112,7 @@ public class UredjajTest {
 	public void testBrisanjeUredjaja() {
 		Uredjaj urNovi =  new Uredjaj();
 		try {
-			urNovi.setIbfu("EO021761");
+			urNovi.setIbfu("EO021760");
 		} catch (GeneralniException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,6 +133,38 @@ public class UredjajTest {
 		}
 			hur.dodajUredjaj(urNovi);
 			hur.brisiUredjaj(urNovi);
-			Assert.assertFalse(hur.postojiUredjaj("EO021761"));
+			Assert.assertFalse(hur.postojiUredjaj("EO021760"));
+	}
+	public void testDodajUredjaj()
+	{
+		hur.dodajUredjaj(ur);
+		Assert.assertTrue(hur.postojiUredjaj(ur.getId()));
+		hur.brisiUredjaj(ur);
+	}
+	@Test
+	public void testUpdateUredjaja() {
+		
+		
+		
+		try {
+			hur.dodajUredjaj(ur);//IFBU= EO021760
+			
+			Uredjaj tmp1=hur.dajUredjaj("EO021760");
+			tmp1.setIbfu("EO123450");
+			hur.updateUredjaj(tmp1);
+			
+			Uredjaj tmp2=hur.dajUredjaj("EO123450");
+					
+			Boolean flag=false;
+			if(tmp1.getId()==tmp2.getId())
+				flag=true;
+			hur.brisiUredjaj(ur);
+			Assert.assertTrue(flag);
+		} 
+		
+		catch (GeneralniException e) {
+			
+			Assert.fail("Test neuspješan. Poruka: "+e.getMessage());
+		}
 	}
 }
