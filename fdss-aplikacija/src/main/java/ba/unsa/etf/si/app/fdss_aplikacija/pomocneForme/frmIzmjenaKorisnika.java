@@ -23,6 +23,10 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class frmIzmjenaKorisnika extends JFrame {
 
@@ -50,7 +54,14 @@ public class frmIzmjenaKorisnika extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmIzmjenaKorisnika(Uposlenik u) {//u implementaciji promjeniti ovaj konstruktor u public frmIzmjenaKorisnika(Korisnik k)
+	public frmIzmjenaKorisnika(Uposlenik u) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				
+				frmPregledKorisnika.korisniciPregled.setVisible(true);
+			}
+		});//u implementaciji promjeniti ovaj konstruktor u public frmIzmjenaKorisnika(Korisnik k)
 		
 		up = u;
 		
@@ -207,6 +218,10 @@ public class frmIzmjenaKorisnika extends JFrame {
 		panel.add(label_8);
 		
 		JButton btnNapraviIzmjene = new JButton("Napravi Izmjene");
+		btnNapraviIzmjene.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNapraviIzmjene.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -219,6 +234,7 @@ public class frmIzmjenaKorisnika extends JFrame {
 					h.updateUposlenika(up);
 					JOptionPane.showMessageDialog(null, "Izmjene izvršene !");
 					
+					frmPregledKorisnika.korisniciPregled.setVisible(true);
 					dispose();
 				}
 				

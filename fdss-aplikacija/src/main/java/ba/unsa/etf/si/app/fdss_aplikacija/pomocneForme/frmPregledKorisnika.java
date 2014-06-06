@@ -34,7 +34,9 @@ public class frmPregledKorisnika extends JFrame {
 	private HibernateUposlenik h = new HibernateUposlenik();
 	Uposlenik uposlenik;
 	final JList list;
+	public static frmPregledKorisnika korisniciPregled;
 	public frmPregledKorisnika(Uposlenik u) {
+		korisniciPregled=this;
 		uposlenik=u;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -50,6 +52,10 @@ public class frmPregledKorisnika extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnHome = new JButton("");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -99,7 +105,10 @@ public class frmPregledKorisnika extends JFrame {
 				{
 					Uposlenik u = (Uposlenik)model.getElementAt(list.getSelectedIndex());
 					frmIzmjenaKorisnika fi = new frmIzmjenaKorisnika(u);
+					
 					fi.setVisible(true);
+					dispose();
+					
 				}
 				
 				ispisiListu();
