@@ -20,7 +20,6 @@ public class HibernateZadatak {
 		
 	}
 	
-	
 	public void dodajZadatak(Zadatak z) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
