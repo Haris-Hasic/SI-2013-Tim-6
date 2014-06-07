@@ -22,8 +22,12 @@ import javax.swing.JComboBox;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
@@ -167,7 +171,7 @@ public class frmIzmjenaUredjaja extends JFrame {
 				try{
 					int reply = JOptionPane.showConfirmDialog(null, "Podaci će biti trajno obrisani. Da li želite nastaviti?", "Upozorenje", JOptionPane.YES_NO_OPTION);
 			        if (reply == JOptionPane.YES_OPTION) {
-			         
+			        	izbisiPodatkeZaUredjaj();
 			        	new HibernateUredjaj().brisiUredjaj(uredjaj);
 						popuniTabeluUFormi();
 						new Validacija().poruka("Uređaj obrisan.");
@@ -176,7 +180,7 @@ public class frmIzmjenaUredjaja extends JFrame {
 			        }
 				}catch(Exception e)
 				{
-					new Validacija().poruka("Brisanje trenutno nije moguće, jer je servisiranje uredjaja u toku.");
+					new Validacija().poruka("Brisanje trenutno nije moguće. Razlog: "+e.getMessage());
 				}
 			}
 		});
@@ -257,6 +261,34 @@ public class frmIzmjenaUredjaja extends JFrame {
 				String ibfm=uredjaj.getIbfm();
 				
 				model.addRow(new Object[]{klijent,jibPro,tip,ibfu,ibfm});
+			}
+		}
+	}
+	
+	private void izbisiPodatkeZaUredjaj()
+	{
+		List<Zadatak> _zadaci=new HibernateZadatak().dajSveZadatke();
+		if(_zadaci.size()>0)
+		{
+			for(Zadatak zadatak:_zadaci)
+			{
+				if(zadatak.getZahtjev().getUredjaj().getId()==uredjaj.getId())
+				{
+					new HibernateZadatak().brisiZadatak(zadatak);
+					new HibernateZahtjev().brisiZahtjev(zadatak.getZahtjev());
+				}
+			}
+		}
+		
+		List<Zahtjev> zahtjevi=new HibernateZahtjev().dajSveZahtjeve();
+		if(zahtjevi.size()>0)
+		{
+			for(Zahtjev zahtjev:zahtjevi)
+			{
+				if(zahtjev.getUredjaj().getId()==uredjaj.getId())
+				{
+					new HibernateZahtjev().brisiZahtjev(zahtjev);
+				}
 			}
 		}
 	}

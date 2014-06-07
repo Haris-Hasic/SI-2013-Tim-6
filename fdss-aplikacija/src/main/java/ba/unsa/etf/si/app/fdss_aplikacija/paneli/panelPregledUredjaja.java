@@ -106,13 +106,18 @@ public class panelPregledUredjaja extends JPanel {
 		{
 			for(Uredjaj uredjaj:uredjaji)
 			{
-				String klijent=uredjaj.getKlijent().getNaziv()+" "+uredjaj.getKlijent().getJib();
-				String jibPro=uredjaj.getJibProizvodaca();
-				String tip=uredjaj.getTipUredaja();
-				String ibfu=uredjaj.getIbfu();
-				String ibfm=uredjaj.getIbfm();
-				
-				model.addRow(new Object[]{klijent,jibPro,tip,ibfu,ibfm});
+				try{
+					String klijent=uredjaj.getKlijent().getNaziv()+" "+uredjaj.getKlijent().getJib();
+					String jibPro=uredjaj.getJibProizvodaca();
+					String tip=uredjaj.getTipUredaja();
+					String ibfu=uredjaj.getIbfu();
+					String ibfm=uredjaj.getIbfm();
+					
+					model.addRow(new Object[]{klijent,jibPro,tip,ibfu,ibfm});
+				}catch(Exception e)
+				{
+					
+				}
 			}
 		}
 	}

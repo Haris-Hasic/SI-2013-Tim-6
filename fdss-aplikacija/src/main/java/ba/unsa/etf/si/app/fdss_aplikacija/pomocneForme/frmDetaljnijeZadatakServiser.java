@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -20,10 +21,12 @@ import javax.swing.JButton;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
 
 import javax.swing.UIManager;
+
 import java.awt.Color;
+import java.awt.Dialog.ModalityType;
 
 
-public class frmDetaljnijeZadatakServiser extends JFrame {
+public class frmDetaljnijeZadatakServiser extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField tTip;
@@ -43,6 +46,7 @@ public class frmDetaljnijeZadatakServiser extends JFrame {
 	 */
 	Zadatak zadatak;
 	public frmDetaljnijeZadatakServiser(Zadatak zadatak) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setResizable(false);
 		this.zadatak=zadatak;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -17,7 +17,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
@@ -277,7 +283,7 @@ public class frmIzmjenaKlijenta extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int reply = JOptionPane.showConfirmDialog(null, "Podaci će biti trajno obrisani. Da li želite nastaviti?", "Upozorenje", JOptionPane.YES_NO_OPTION);
 		        if (reply == JOptionPane.YES_OPTION) {
-		         
+		        	izbisiPodatkeZaUredjaj();
 		        	new HibernateKlijent().brisiKlijenta(klijent);
 					popuniTabeluUFormi();
 					new Validacija().poruka("Klijent obrisan.");
@@ -333,5 +339,41 @@ public class frmIzmjenaKlijenta extends JFrame {
 			}
 		}
 		
+	}
+	
+	private void izbisiPodatkeZaUredjaj()
+	{
+		List<Zadatak> _zadaci=new HibernateZadatak().dajSveZadatke();
+		List<Zahtjev> zahtjevi=new HibernateZahtjev().dajSveNezavrseneZahtjeve();
+		List<Uredjaj> uredjaji=klijent.getUredjaji();
+		
+		for(Uredjaj uredjaj:uredjaji)
+		{
+			if(_zadaci.size()>0)
+			{
+				for(Zadatak zadatak:_zadaci)
+				{
+					if(zadatak.getZahtjev().getUredjaj().getId()==uredjaj.getId())
+					{
+						new HibernateZadatak().brisiZadatak(zadatak);
+						new HibernateZahtjev().brisiZahtjev(zadatak.getZahtjev());
+					}
+				}
+			}
+			
+			
+			if(zahtjevi.size()>0)
+			{
+				for(Zahtjev zahtjev:zahtjevi)
+				{
+					if(zahtjev.getUredjaj().getId()==uredjaj.getId())
+					{
+						new HibernateZahtjev().brisiZahtjev(zahtjev);
+					}
+				}
+			}
+			
+			new HibernateUredjaj().brisiUredjaj(uredjaj);
+		}
 	}
 }
