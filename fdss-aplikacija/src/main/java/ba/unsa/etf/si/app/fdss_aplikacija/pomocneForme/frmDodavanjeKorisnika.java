@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -32,8 +33,9 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalityType;
 
-public class frmDodavanjeKorisnika extends JFrame {
+public class frmDodavanjeKorisnika extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField ime_tb;
@@ -58,6 +60,7 @@ public class frmDodavanjeKorisnika extends JFrame {
 	 * Create the frame.
 	 */
 	public frmDodavanjeKorisnika(Uposlenik u) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		uposlenik=u;
 		setResizable(false);
 		setTitle("Dodaj korisnika");
