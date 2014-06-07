@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -22,8 +23,9 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Dialog.ModalityType;
 
-public class frmPromjenaSifre extends JFrame {
+public class frmPromjenaSifre extends JDialog {
 
 	private JPanel contentPane;
 	private JPasswordField staraSifra_pf;
@@ -33,6 +35,7 @@ public class frmPromjenaSifre extends JFrame {
 
 
 	public frmPromjenaSifre(final Uposlenik u) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		
 		up = u;
 		setResizable(false);

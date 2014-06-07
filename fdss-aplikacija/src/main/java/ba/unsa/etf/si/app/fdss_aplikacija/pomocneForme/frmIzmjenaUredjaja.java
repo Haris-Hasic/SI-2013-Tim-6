@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -34,8 +35,9 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.awt.Dialog.ModalityType;
 
-public class frmIzmjenaUredjaja extends JFrame {
+public class frmIzmjenaUredjaja extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField tJIBKlijenta;
@@ -49,6 +51,7 @@ public class frmIzmjenaUredjaja extends JFrame {
 
 	
 	public frmIzmjenaUredjaja(DefaultTableModel defaultTableModel,String ibfu) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		setResizable(false);//promjeniti konstruktor u frmIzmjenaUredjaja(uredjaj u)
 																				//i na osnovu toka popuniti tb
 		

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -27,8 +28,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Dialog.ModalityType;
 
-public class frmIzmjenaKorisnika extends JFrame {
+public class frmIzmjenaKorisnika extends JDialog{
 
 	private JPanel contentPane;
 	private JTextField ime_tb;
@@ -55,6 +57,7 @@ public class frmIzmjenaKorisnika extends JFrame {
 	 * Create the frame.
 	 */
 	public frmIzmjenaKorisnika(Uposlenik u) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent arg0) {

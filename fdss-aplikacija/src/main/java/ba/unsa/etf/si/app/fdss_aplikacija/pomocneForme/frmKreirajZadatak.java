@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -43,8 +44,9 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalityType;
 
-public class frmKreirajZadatak extends JFrame {
+public class frmKreirajZadatak extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField tTipUredjaja;
@@ -62,6 +64,7 @@ public class frmKreirajZadatak extends JFrame {
 	Zahtjev zahtjev;
 	int redniBroj;
 	public frmKreirajZadatak(DefaultTableModel model,int redniBroj) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		this.model=model;
 		this.zahtjev=zahtjev;
 		this.redniBroj=redniBroj;

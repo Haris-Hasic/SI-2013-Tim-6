@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -30,8 +31,9 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.awt.Dialog.ModalityType;
 
-public class frmIzmjenaKlijenta extends JFrame {
+public class frmIzmjenaKlijenta extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField tWeb;
@@ -47,6 +49,7 @@ public class frmIzmjenaKlijenta extends JFrame {
 	private DefaultTableModel model;
 	private Klijent klijent;
 	public frmIzmjenaKlijenta(DefaultTableModel model,String jib) {
+		setModalityType(ModalityType.APPLICATION_MODAL);
 		this.model=model;
 		klijent=new HibernateKlijent().dajKlijenta(jib);
 		
