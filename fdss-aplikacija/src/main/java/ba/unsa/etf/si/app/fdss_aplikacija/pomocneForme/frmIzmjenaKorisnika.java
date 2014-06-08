@@ -62,7 +62,6 @@ public class frmIzmjenaKorisnika extends JDialog{
 			@Override
 			public void windowClosed(WindowEvent arg0) {
 				
-				frmPregledKorisnika.korisniciPregled.setVisible(true);
 			}
 		});//u implementaciji promjeniti ovaj konstruktor u public frmIzmjenaKorisnika(Korisnik k)
 		
@@ -257,7 +256,6 @@ public class frmIzmjenaKorisnika extends JDialog{
 					}
 					JOptionPane.showMessageDialog(null, "Izmjene izvršene !");
 					up=h.dajUposlenika(up.getId());
-					frmPregledKorisnika.korisniciPregled.setVisible(true);
 					dispose();
 				}
 				

@@ -36,6 +36,8 @@ import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledKlijenata;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledUredjaja;
 import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelPregledZadatakaServiser;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class frmServiser extends JFrame {
@@ -43,11 +45,17 @@ public class frmServiser extends JFrame {
 	private JPanel centralniPanel;
 	final Uposlenik uposlenik;
 	public frmServiser(final Uposlenik uposlenik) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				frmLogin.pocetna.setVisible(true);
+			}
+		});
 		this.uposlenik=uposlenik;
 		
 		setTitle("Prijavljen kao: " + uposlenik.getIme() + " " + uposlenik.getPrezime());
 		setBounds(100, 100, 743, 550);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -119,6 +127,10 @@ public class frmServiser extends JFrame {
 		btnPretraga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JButton btnNewButton = new JButton("Odjavi se");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

@@ -31,7 +31,6 @@ public class frmPregledKorisnika extends JFrame {
 	private HibernateUposlenik h = new HibernateUposlenik();
 	Uposlenik uposlenik;
 	final JList list;
-	public static frmPregledKorisnika korisniciPregled;
 	public frmPregledKorisnika(Uposlenik u) {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -40,7 +39,6 @@ public class frmPregledKorisnika extends JFrame {
 				fa.setVisible(true);
 			}
 		});
-		korisniciPregled=this;
 		uposlenik=u;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -111,7 +109,7 @@ public class frmPregledKorisnika extends JFrame {
 					frmIzmjenaKorisnika fi = new frmIzmjenaKorisnika(u);
 					
 					fi.setVisible(true);
-					dispose();
+					
 					
 				}
 				
