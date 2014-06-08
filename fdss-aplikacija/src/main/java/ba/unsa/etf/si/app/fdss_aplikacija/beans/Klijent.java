@@ -149,7 +149,7 @@ public class Klijent implements Serializable{
 			this.web = web;
 		
 		else
-			throw new GeneralniException("Nepravilan format e-maila ! (npr. www.nesto.com)");
+			throw new GeneralniException("Nepravilan format web adrese ! (npr. www.nesto.com)");
 	}
 	
 	
