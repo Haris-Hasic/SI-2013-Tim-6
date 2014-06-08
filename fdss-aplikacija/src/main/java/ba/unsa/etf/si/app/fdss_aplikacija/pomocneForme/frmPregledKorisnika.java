@@ -25,6 +25,8 @@ import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class frmPregledKorisnika extends JFrame {
@@ -36,6 +38,13 @@ public class frmPregledKorisnika extends JFrame {
 	final JList list;
 	public static frmPregledKorisnika korisniciPregled;
 	public frmPregledKorisnika(Uposlenik u) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				frmAdministrator fa = new frmAdministrator(uposlenik);
+				fa.setVisible(true);
+			}
+		});
 		korisniciPregled=this;
 		uposlenik=u;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

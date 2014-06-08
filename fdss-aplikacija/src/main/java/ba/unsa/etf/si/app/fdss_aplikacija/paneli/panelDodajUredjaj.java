@@ -71,11 +71,17 @@ public class panelDodajUredjaj extends JPanel {
 				else{
 					try
 					{
-						Uredjaj u=new Uredjaj();
-						kreirajUredjaj(u);
-						new HibernateUredjaj().dodajUredjaj(u);
-						ocistiPolja();
-						new Validacija().poruka("Uređaj dodan!");
+						if(cbKlijent.getSelectedIndex()>=0)
+						{
+							Uredjaj u=new Uredjaj();
+							kreirajUredjaj(u);
+							new HibernateUredjaj().dodajUredjaj(u);
+							ocistiPolja();
+							new Validacija().poruka("Uređaj dodan!");
+						}else
+						{
+							new Validacija().poruka("Nepostojeći klijent!");
+						}
 					}catch(GeneralniException gen)
 					{
 						new Validacija().poruka(gen.getMessage());
