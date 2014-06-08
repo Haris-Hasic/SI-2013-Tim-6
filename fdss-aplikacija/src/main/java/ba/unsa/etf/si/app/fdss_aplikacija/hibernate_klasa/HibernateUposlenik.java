@@ -38,6 +38,37 @@ public class HibernateUposlenik {
 		session.close();
 	}
 	
+	public void updateUposlenikBezSifre(Uposlenik uposlenik)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		Query query = session.createQuery("update Uposlenik set"
+				+ " ime = :tIme ,"
+				+ " prezime = :tPrezime ,"
+				+ " jib = :tJib ,"
+				+ " adresa = :tAdresa ,"
+				+ " mjesto = :tMjesto ,"
+				+ " telefon = :tTelefon ,"
+				+ " email = :tEmail ,"
+				+ " tip = :tTip ,"
+				+ " userName = :tUsername"
+				+ " where id = :tId ");
+			query.setParameter("tIme",uposlenik.getIme());
+			query.setParameter("tPrezime",uposlenik.getPrezime() );
+			query.setParameter("tJib",uposlenik.getJmbg() );
+			query.setParameter("tAdresa",uposlenik.getAdresa() );
+			query.setParameter("tMjesto",uposlenik.getMjesto() );
+			query.setParameter("tTelefon",uposlenik.getTelefon() );
+			query.setParameter("tEmail",uposlenik.getEmail() );
+			query.setParameter("tTip",uposlenik.getTip() );
+			query.setParameter("tUsername",uposlenik.getUserName() );
+			query.setParameter("tId",uposlenik.getId() );
+			
+			int result = query.executeUpdate();
+			t.commit();
+			session.close();
+			
+	}
 	public Uposlenik dajUposlenika(long id) {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();

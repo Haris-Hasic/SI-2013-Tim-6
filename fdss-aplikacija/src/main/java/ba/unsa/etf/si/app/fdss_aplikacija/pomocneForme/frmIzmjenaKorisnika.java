@@ -20,11 +20,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
+
+import javax.swing.JCheckBox;
 
 public class frmIzmjenaKorisnika extends JDialog{
 
@@ -44,7 +48,7 @@ public class frmIzmjenaKorisnika extends JDialog{
 	JRadioButton menadzer_rdbtn;
 	JRadioButton dispecer_rdbtn;
 	JRadioButton serviser_rdbtn;
-
+	JCheckBox chckbxNovaLozinka;
 	/**
 	 * Launch the application.
 	 */
@@ -141,11 +145,6 @@ public class frmIzmjenaKorisnika extends JDialog{
 		label_2.setBounds(27, 123, 93, 14);
 		panel.add(label_2);
 		
-		JLabel label_3 = new JLabel("Lozinka :");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setBounds(50, 154, 70, 14);
-		panel.add(label_3);
-		
 		JLabel label_4 = new JLabel("Adresa :");
 		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_4.setBounds(50, 182, 70, 14);
@@ -182,8 +181,9 @@ public class frmIzmjenaKorisnika extends JDialog{
 		panel.add(username_tb);
 		
 		password_tb = new JPasswordField();
+		password_tb.setEnabled(false);
 		password_tb.setColumns(10);
-		password_tb.setBounds(130, 151, 241, 20);
+		password_tb.setBounds(234, 151, 137, 20);
 		panel.add(password_tb);
 		
 		adresa_tb = new JTextField();
@@ -216,6 +216,23 @@ public class frmIzmjenaKorisnika extends JDialog{
 		label_8.setBounds(74, 90, 46, 14);
 		panel.add(label_8);
 		
+		chckbxNovaLozinka = new JCheckBox("Nova lozinka");
+		chckbxNovaLozinka.setBounds(131, 150, 99, 23);
+		panel.add(chckbxNovaLozinka);
+		
+		ChangeListener changeListener = new ChangeListener() {
+		      public void stateChanged(ChangeEvent changeEvent) {
+		        if(chckbxNovaLozinka.isSelected())
+		        {
+		        	password_tb.setEnabled(true);
+		        }
+		        else {
+		        	password_tb.setText("");
+		        	password_tb.setEnabled(false);
+		        }
+		      }
+		    };
+		chckbxNovaLozinka.addChangeListener(changeListener);   
 		JButton btnNapraviIzmjene = new JButton("Napravi Izmjene");
 		btnNapraviIzmjene.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -230,9 +247,16 @@ public class frmIzmjenaKorisnika extends JDialog{
 					pokupiPodatke(up); // Ovdje baca exception ako podaci nisu ispravni 
 					
 					HibernateUposlenik h = new HibernateUposlenik();
-					h.updateUposlenika(up);
+					if(chckbxNovaLozinka.isSelected())
+					{
+						h.updateUposlenika(up);
+					}
+					else
+					{
+						h.updateUposlenikBezSifre(up);
+					}
 					JOptionPane.showMessageDialog(null, "Izmjene izvršene !");
-					
+					up=h.dajUposlenika(up.getId());
 					frmPregledKorisnika.korisniciPregled.setVisible(true);
 					dispose();
 				}
@@ -261,7 +285,7 @@ public class frmIzmjenaKorisnika extends JDialog{
 		u.setEmail(email_tb.getText());
 		
 		u.setUserName(username_tb.getText());
-		//u.setPassword(password_tb.getText());
+		u.setPassword(password_tb.getText());
 		
 		if(menadzer_rdbtn.isSelected())
 			u.SetPrivilegija(PrivilegijaUposlenika.MENADZER);
