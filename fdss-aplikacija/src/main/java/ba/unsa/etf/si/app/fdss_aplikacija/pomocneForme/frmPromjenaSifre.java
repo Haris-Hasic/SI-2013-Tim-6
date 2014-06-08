@@ -76,18 +76,19 @@ public class frmPromjenaSifre extends JDialog {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				HibernateUposlenik hu = new HibernateUposlenik();
+				String lol = up.getPassword();
 				
-				if( novaSifra_pf.getText().compareTo(potvrdaSifre_pf.getText()) == 0 && up.getPassword().compareTo(Validacija.HesirajMD5(Validacija.HesirajMD5(staraSifra_pf.getText()))) == 0
-					&& !hu.postojiPassword(Validacija.HesirajMD5(novaSifra_pf.getText()))) {
+				if( novaSifra_pf.getText().compareToIgnoreCase(potvrdaSifre_pf.getText()) == 0 && ( up.getPassword().compareToIgnoreCase(Validacija.HesirajMD5(Validacija.HesirajMD5(staraSifra_pf.getText()))) == 0 || up.getPassword().compareToIgnoreCase(Validacija.HesirajMD5(staraSifra_pf.getText())) == 0 ) && !hu.postojiPassword(Validacija.HesirajMD5(novaSifra_pf.getText()))) {
 					
 					up.setPassword(novaSifra_pf.getText());
 					hu.updateUposlenika(up);
+
+					JOptionPane.showMessageDialog(null, "Uspješno promijenjena lozinka !");
 					
 					novaSifra_pf.setText("");
 					staraSifra_pf.setText("");
 					potvrdaSifre_pf.setText("");
-					
-					JOptionPane.showMessageDialog(null, "Uspješno promijenjena lozinka !");
+					dispose();
 				}
 				
 				else {
@@ -97,7 +98,7 @@ public class frmPromjenaSifre extends JDialog {
 					
 					else
 						JOptionPane.showMessageDialog(null, "Lozinke se ne slažu !");
-				}		
+				}
 			}
 		});
 		btnNewButton.setBounds(305, 123, 89, 23);
