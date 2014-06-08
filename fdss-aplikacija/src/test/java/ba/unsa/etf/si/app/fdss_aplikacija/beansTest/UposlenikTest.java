@@ -2,6 +2,7 @@ package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,34 +13,38 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 public class UposlenikTest {
-	HibernateUposlenik hup;
-	Uposlenik up;
+	
+	HibernateUposlenik hu;
+	Uposlenik u;
 	
 	@Before
 	public void TestnePostavke () {
+		
 		try {
-			up =  new Uposlenik("Haris", "Hasic", "1504992173043", "Tuzlanska bb", "Olovo", "+38762380249", "haristd@hotmail.com", 1, "hhasic2", "harishasic21");
+			
+			hu = new HibernateUposlenik();
+			u =  new Uposlenik("Kemo", "Administrator", "1703965714205", "Branilaca grada", "Mostar", "+38762123456", "kemica@hotmail.com", 1, "kemo", "moke6969");
 		}
 		
 		catch (GeneralniException e)
 		{
-			Validacija v= new Validacija();
+			Validacija v = new Validacija();
 			v.poruka(e.getMessage());
 		}
-		
-		hup = new HibernateUposlenik();
 	}
 	
 	@Test
 	public void testGetSetNazivAdresa() {
 
-		
 			try {
-				up.setAdresa("Radiceva 10");
-				Assert.assertEquals("Radiceva 10", up.getAdresa());
-			} catch (GeneralniException e) {
+
+				u.setAdresa("Radiceva 10");
+				Assert.assertEquals("Radiceva 10", u.getAdresa());
+			} 
+			
+			catch (GeneralniException e) {
 				
-				Assert.assertEquals("Radiceva 10", "lol");
+				Assert.fail("Test neuspješan. Ne rade get i set metode za atribut jmbg.");
 			}
 	}
 
@@ -47,10 +52,8 @@ public class UposlenikTest {
 	public void testGetSetJmbgIspravno() {
 		
 		try {
-			
-			Uposlenik u = new Uposlenik("Haris", "Hasic", "1504992173043", "Tuzlanska bb", "Olovo", "+38762380249", "haristd@hotmail.com", 1, "hhasic2", "harishasic21");
+
 			u.setJmbg("1703965714205");
-			
 			Assert.assertEquals("1703965714205", u.getJmbg());
 		} 
 		
@@ -64,14 +67,14 @@ public class UposlenikTest {
 	public void testGetSetJmbgNeispravno() {
 		
 		try {
-			up.setJmbg("1111");
 			
+			u.setJmbg("1111");
 			Assert.fail("Test neuspješan. Ne rade get i set metode za atribut jmbg.");
 		} 
 		
 		catch (GeneralniException e) {
 			
-			Assert.assertEquals("1504992173043", up.getJmbg());
+			Assert.assertEquals("1703965714205", u.getJmbg());
 		}
 	}
 
@@ -80,9 +83,7 @@ public class UposlenikTest {
 		
 		try {
 			
-			Uposlenik u = new Uposlenik("Haris", "Hasic", "1504992173043", "Tuzlanska bb", "Olovo", "+38762380249", "haristd@hotmail.com", 1, "hhasic2", "harishasic21");
 			u.setTelefon("+38762666666");
-			
 			Assert.assertEquals("+38762666666", u.getTelefon());
 		} 
 		
@@ -97,9 +98,7 @@ public class UposlenikTest {
 		
 		try {
 			
-			Uposlenik u = new Uposlenik("Haris", "Hasic", "1504992173043", "Tuzlanska bb", "Olovo", "+38762380249", "haristd@hotmail.com", 1, "hhasic2", "harishasic21");
 			u.setEmail("hhasic2@etf.unsa.ba");
-			
 			Assert.assertEquals("hhasic2@etf.unsa.ba", u.getEmail());
 		} 
 		
@@ -114,26 +113,25 @@ public class UposlenikTest {
 		
 		try {
 		
-			hup.dodajUposlenika(up);
+			hu.dodajUposlenika(u);
 			
-			up.setAdresa("Trg djece Dobrinje");
-			up.setMjesto("Sarajevo");
-			up.setIme("Ajdin");
-			up.setPrezime("Kahrovic");
-			up.setJmbg("2706992172174");
-			up.setEmail("kahrovic@hotmail.com");
-			up.setTelefon("+38761503098");
-			up.setUserName("akahrovic");
-			up.setPassword("sifra123");
-			up.setTip(2);
-			hup.updateUposlenika(up);
-			Uposlenik novi = hup.dajUposlenika("akahrovic");
+			u.setAdresa("Trg djece Dobrinje");
+			u.setMjesto("Sarajevo");
+			u.setIme("Ajdin");
+			u.setPrezime("Kahrovic");
+			u.setJmbg("2706992172174");
+			u.setEmail("kahrovic@hotmail.com");
+			u.setTelefon("+38761503098");
+			u.setUserName("akahrovic");
+			u.setPassword("sifra123");
+			u.setTip(2);
 			
-			Boolean flag=false;
-			if (up.getAdresa()=="Trg djece Dobrinje" && up.getMjesto()=="Sarajevo" && up.getIme()=="Ajdin" && up.getPrezime()=="Kahrovic" && up.getJmbg()=="2706992172174" && up.getEmail()=="kahrovic@hotmail.com" && up.getPassword()=="sifra123" && up.getTelefon()=="+38761503098" && up.getUserName()=="akahrovic" );//&& up.getTip()==2)
-				flag=true;
+			hu.updateUposlenika(u);
+			Uposlenik novi = hu.dajUposlenika("akahrovic");
+			Boolean b = hu.postojiUposlenikJMBG(u.getJmbg());
+			hu.brisiUposlenika(u);
 			
-			Assert.assertTrue(flag);
+			Assert.assertTrue(b);
 		} 
 		
 		catch (GeneralniException e) {
@@ -144,20 +142,41 @@ public class UposlenikTest {
 	
 	@Test
 	public void testBrisanjeUposlenika() {
-			long id = up.getId();
-			hup.dodajUposlenika(up);
-			hup.brisiUposlenika(up);
+		
+			hu.dodajUposlenika(u);
+			hu.brisiUposlenika(u);
 			
-			Assert.assertFalse(hup.postojiUposlenik(id));
+			Assert.assertFalse(hu.postojiUposlenik(u.getJmbg()));
 	}
 	
 	@Test
 	public void testPretragaUposlenika() {
 		
-			hup.dodajUposlenika(up);		
-			Assert.assertEquals(hup.dajUposlenikaJMBG("1504992173043").getAdresa(), "Tuzlanska bb");
-	}	
+			hu.dodajUposlenika(u);
+			int b = hu.dajUposlenikaJMBG("1703965714205").getMjesto().compareTo("Mostar");
+			hu.brisiUposlenika(u);
+			
+			Assert.assertEquals(0, b);
+	}
 	
-
+	@After
+	public void TestniTeardown() {
+		
+		try {
+			
+			hu = new HibernateUposlenik();
+			Uposlenik u1 =  new Uposlenik("Kemo", "Administrator", "1703965714205", "Branilaca grada", "Mostar", "+38762123456", "kemica@hotmail.com", 1, "kemo", "moke6969");
+			Uposlenik u2 = new Uposlenik("Ajdin", "Kahrovic", "2706992172174", "Trg djece Dobrinje", "Sarajevo", "+38761503098", "kahrovic@hotmail.com", 2, "akahrovic", "sifra123");
+			
+			hu.brisiUposlenika(u1);
+			hu.brisiUposlenika(u2);
+		}
+		
+		catch (GeneralniException e)
+		{
+			Validacija v = new Validacija();
+			v.poruka(e.getMessage());
+		}
+	}
 }
 
