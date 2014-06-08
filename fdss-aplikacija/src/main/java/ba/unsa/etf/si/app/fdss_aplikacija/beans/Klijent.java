@@ -1,13 +1,7 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;

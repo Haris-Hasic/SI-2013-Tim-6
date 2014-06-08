@@ -2,14 +2,12 @@ package ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.util.HibernateUtil;
 

@@ -1,7 +1,5 @@
 package ba.unsa.etf.si.app.fdss_aplikacija;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

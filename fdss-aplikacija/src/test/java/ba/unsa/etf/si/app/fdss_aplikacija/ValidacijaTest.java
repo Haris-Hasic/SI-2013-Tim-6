@@ -1,8 +1,9 @@
 package ba.unsa.etf.si.app.fdss_aplikacija;
 
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
+import org.junit.Assert;
+import org.junit.Test;
 
-import org.junit.*;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 public class ValidacijaTest {
 	

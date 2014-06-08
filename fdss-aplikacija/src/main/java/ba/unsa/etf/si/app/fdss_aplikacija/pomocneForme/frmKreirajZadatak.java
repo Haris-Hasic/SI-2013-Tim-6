@@ -1,28 +1,23 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-
-import org.hibernate.cfg.annotations.reflection.XMLContext.Default;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
@@ -33,18 +28,8 @@ import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-import ba.unsa.etf.si.app.fdss_aplikacija.paneli.panelObradiZahtjev;
 
 import com.toedter.calendar.JDateChooser;
-
-import java.awt.SystemColor;
-
-import javax.swing.UIManager;
-
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dialog.ModalityType;
 
 public class frmKreirajZadatak extends JDialog {
 

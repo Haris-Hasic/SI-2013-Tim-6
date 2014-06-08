@@ -1,25 +1,21 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
-import javax.crypto.spec.OAEPParameterSpec;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollBar;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
 
-import antlr.Parser;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Servis;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmKreirajZadatak;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 
 public final class panelObradiZahtjev extends JPanel {

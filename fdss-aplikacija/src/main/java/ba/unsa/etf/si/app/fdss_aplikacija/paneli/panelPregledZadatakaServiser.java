@@ -1,40 +1,26 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollBar;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-
-
-
-
-
-
-
-
-
-
-
+import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmDetaljnijeZadatakServiser;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class panelPregledZadatakaServiser extends JPanel {
 	 private JTable tabela=new JTable();

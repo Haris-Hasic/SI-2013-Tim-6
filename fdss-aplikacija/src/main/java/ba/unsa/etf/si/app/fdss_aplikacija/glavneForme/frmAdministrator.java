@@ -1,53 +1,36 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
-import javax.swing.JEditorPane;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.SwingUtilities;
-
-import java.awt.Desktop;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Window;
-
-import javax.swing.SwingConstants;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.ImageIcon;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-
-import javax.swing.JMenu;
+import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.TestPristupaBazi;
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmDodavanjeKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPregledKorisnika;
 import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmPromjenaSifre;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JLabel;
-
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class frmAdministrator extends JFrame {

@@ -5,12 +5,14 @@ package ba.unsa.etf.si.app.fdss_aplikacija;
 
 import java.util.List;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
-
-import org.junit.*;
 
 public class HibernateKlijentTest {
 

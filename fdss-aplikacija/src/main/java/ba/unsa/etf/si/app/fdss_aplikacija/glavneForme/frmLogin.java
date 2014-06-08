@@ -1,29 +1,28 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
-import javax.swing.*;
-
-import org.hibernate.HibernateError;
-import org.hibernate.HibernateException;
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.PrivilegijaUposlenika;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.TestPristupaBazi;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.net.ConnectException;
-import java.security.MessageDigest;
-import java.util.List;
 
 public class frmLogin extends JFrame {
 	

@@ -1,34 +1,31 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JRadioButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JSeparator;
-import javax.swing.border.TitledBorder;
-
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
-
-import javax.swing.UIManager;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
@@ -40,7 +37,6 @@ import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.TestPristupaBazi;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.Document;
@@ -54,10 +50,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.toedter.calendar.JDateChooser;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.FileOutputStream;
 
 public class panelIzvjestaji extends JPanel {
 	private JTextField teh_ibfuUred_tb;

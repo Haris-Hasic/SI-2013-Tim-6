@@ -1,14 +1,10 @@
 package ba.unsa.etf.si.app.fdss_aplikacija;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;

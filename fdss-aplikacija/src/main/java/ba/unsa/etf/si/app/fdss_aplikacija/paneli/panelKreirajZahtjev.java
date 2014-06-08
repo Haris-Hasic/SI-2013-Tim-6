@@ -1,20 +1,24 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
@@ -24,12 +28,6 @@ import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 
 import com.toedter.calendar.JDateChooser;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.awt.Color;
 
 public class panelKreirajZahtjev extends JPanel {
 	JComboBox cbNazivFirme;

@@ -1,29 +1,18 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zadatak;
-
-import javax.swing.UIManager;
-
-import java.awt.Color;
-import java.awt.Dialog.ModalityType;
 
 
 public class frmDetaljnijeZadatakServiser extends JDialog {

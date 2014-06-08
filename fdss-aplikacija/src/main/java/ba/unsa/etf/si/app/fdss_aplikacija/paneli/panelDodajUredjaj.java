@@ -1,27 +1,23 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import java.awt.FlowLayout;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
@@ -29,12 +25,6 @@ import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-import ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme.frmIzmjenaUredjaja;
-
-import javax.swing.JComboBox;
-
-import java.awt.Color;
-import java.util.List;
 
 public class panelDodajUredjaj extends JPanel {
 	private JTextField tJIBProzivodzaca;

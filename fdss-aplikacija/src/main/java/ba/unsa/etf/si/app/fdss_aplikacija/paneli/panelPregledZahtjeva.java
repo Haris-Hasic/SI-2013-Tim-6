@@ -3,15 +3,13 @@ package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 import java.util.List;
 
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JScrollBar;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Zahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;

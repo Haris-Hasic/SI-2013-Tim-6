@@ -1,18 +1,12 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.glavneForme;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
-
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
-import javax.swing.SwingConstants;
-import javax.swing.JProgressBar;
 
 public class frmSplashScreen extends JFrame {
 	

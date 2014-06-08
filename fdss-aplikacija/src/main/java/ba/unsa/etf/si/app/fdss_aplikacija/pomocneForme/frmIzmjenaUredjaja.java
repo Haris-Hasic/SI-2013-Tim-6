@@ -1,25 +1,23 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.pomocneForme;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uredjaj;
@@ -31,11 +29,6 @@ import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.List;
-import java.awt.Dialog.ModalityType;
 
 public class frmIzmjenaUredjaja extends JDialog {
 

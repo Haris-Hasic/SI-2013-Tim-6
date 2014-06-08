@@ -1,32 +1,24 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.paneli;
 
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-
-import java.awt.Component;
-
-import javax.swing.JSeparator;
-
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
-import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
-import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUposlenik;
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+
+import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateKlijent;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
+import ba.unsa.etf.si.app.fdss_aplikacija.klase.Validacija;
 
 public class panelDodajKlijenta extends JPanel {
 	private JTextField naziv_tb;

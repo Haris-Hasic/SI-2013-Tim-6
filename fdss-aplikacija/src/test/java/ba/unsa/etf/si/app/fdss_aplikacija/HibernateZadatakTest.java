@@ -1,7 +1,5 @@
 package ba.unsa.etf.si.app.fdss_aplikacija;
 
-import static org.junit.Assert.*;
-
 import java.sql.Date;
 
 import junit.framework.Assert;
@@ -17,7 +15,6 @@ import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateUredjaj;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZadatak;
 import ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa.HibernateZahtjev;
 import ba.unsa.etf.si.app.fdss_aplikacija.klase.GeneralniException;
-import ba.unsa.etf.si.app.fdss_aplikacija.klase.Hitnost;
 
 public class HibernateZadatakTest {
 
