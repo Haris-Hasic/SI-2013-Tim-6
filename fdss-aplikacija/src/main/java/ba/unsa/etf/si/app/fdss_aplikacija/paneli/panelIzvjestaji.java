@@ -385,7 +385,7 @@ public class panelIzvjestaji extends JPanel {
 						
 						iscrtajHeader(document, i);
 						podesiDetaljeIzvjestaja(document, i);
-						ispisiTijeloPoslovanjeIzvjestaja(document, Do, Od);
+						ispisiTijeloPoslovanjeIzvjestaja(document, Od, Do);
 					}
 
 					else if(hrmIzv_rdbtn.isSelected() == true) {
@@ -474,7 +474,7 @@ public class panelIzvjestaji extends JPanel {
 
 				catch (Exception e) {
 
-					JOptionPane.showMessageDialog(null, "Kreiranje izvještaja neuspjelo ! \nDetalji :\n" + e.getMessage());
+					JOptionPane.showMessageDialog(null, "Kreiranje izvještaja neuspjelo: Neuspjelo dohvaćanje podataka iz baze. \nDetalji : \n" + e.getClass().getName()+": "+ e.getMessage());
 				}
 			}
 		});
@@ -589,8 +589,8 @@ public class panelIzvjestaji extends JPanel {
 		document.addTitle(t);
 	    document.addSubject(t);
 	    document.addKeywords("Java, PDF, iText");
-	    //document.addAuthor(uposlenik.getIme() + " " + uposlenik.getPrezime());
-	    //document.addCreator(uposlenik.getIme() + " " + uposlenik.getPrezime());
+	    document.addAuthor(uposlenik.getIme() + " " + uposlenik.getPrezime());
+	    document.addCreator(uposlenik.getIme() + " " + uposlenik.getPrezime());
 	}
 	
 	public static void ispisiTijeloHRMIzvjestaja(Document document, Date Od, Date Do, Uposlenik up) throws Exception {
@@ -724,8 +724,8 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    HibernateZadatak hz = new HibernateZadatak();
-	    List<Zadatak> lz = hz.dajSveZadatke(up);
-	    List<Zadatak> lnz = hz.dajSveNezavrseneZadatke(up);
+	    List<Zadatak> lz = hz.dajZadatkePeriod(Od, Do);
+	    List<Zadatak> lnz = hz.dajNezavrseneZadatkePeriod(Od, Do);
 	    
 	    c1 = new PdfPCell(new Phrase("Broj aktivnih zadataka:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -764,7 +764,10 @@ public class panelIzvjestaji extends JPanel {
 		c1.setPaddingRight(5);
 	    table2.addCell(c1);
 	    
-	    double ef = (lzz/lz.size())*100;
+	    double ef = 0;
+	    
+	    if(lz.size() != 0)
+	    	ef = (lzz/lz.size())*100;
 	    
 	    c1 = new PdfPCell(new Phrase(ef + " %", obicniFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_LEFT);
@@ -906,7 +909,7 @@ public class panelIzvjestaji extends JPanel {
 	    HibernateZadatak hz = new HibernateZadatak();
 	    HibernateUredjaj hu = new HibernateUredjaj();
 	    List<Uredjaj> listaUred = hu.dajSveUredjaje();
-	    List<Zadatak> listaZad = hz.dajSveZadatke();
+	    List<Zadatak> listaZad = hz.dajZadatkePeriod(Od, Do);
 	    int br = 0;
 	    
 	    for(Uredjaj ur:listaUred)
@@ -922,7 +925,7 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    HibernateZahtjev hzah = new HibernateZahtjev();
-	    List<Zahtjev> listaZah = hzah.dajSveZahtjeve();
+	    List<Zahtjev> listaZah = hzah.dajZahtjevePeriod(Od, Do);
 	    int bru = 0;
 	    
 	    for(Uredjaj ur:listaUred)
@@ -1160,9 +1163,9 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    HibernateZahtjev hz = new HibernateZahtjev();
-	    List<Zahtjev> lz = hz.dajSveZahtjeve();
+	    List<Zahtjev> lz = hz.dajZahtjevePeriod(Od, Do);
 	    HibernateZadatak hzad = new HibernateZadatak();
-	    List<Zadatak> lzad = hzad.dajSveZadatke();
+	    List<Zadatak> lzad = hzad.dajZadatkePeriod(Od, Do);
 	    int i = 0;
 	    int j = 0;
 	    
@@ -1358,7 +1361,7 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    HibernateZahtjev hz = new HibernateZahtjev();
-	    List<Zahtjev> lz = hz.dajSveZahtjeve();
+	    List<Zahtjev> lz = hz.dajZahtjevePeriod(Od, Do);
 	    
 	    c1 = new PdfPCell(new Phrase("Ukupno primljenih zahtjeva:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -1375,7 +1378,7 @@ public class panelIzvjestaji extends JPanel {
 	    table2.addCell(c1);
 	    
 	    HibernateZadatak hzad = new HibernateZadatak();
-	    int br = hzad.dajSveZadatke().size() - hzad.dajSveNezavrseneZadatke().size();
+	    int br = hzad.dajZadatkePeriod(Od, Do).size() - hzad.dajNezavrseneZadatkePeriod(Od, Do).size();
 	    
 	    c1 = new PdfPCell(new Phrase("Ukupno obavljenih zadataka:", boldFont));
 	    c1.setHorizontalAlignment(Element.ALIGN_RIGHT);

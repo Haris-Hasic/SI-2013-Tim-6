@@ -1,6 +1,7 @@
 package ba.unsa.etf.si.app.fdss_aplikacija.hibernate_klasa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -135,6 +136,41 @@ public class HibernateZadatak {
 		return lista ;
 	}
 	
+	public  List<Zadatak> dajZadatkePeriod(Date o, Date d)
+	{
+		List<Zadatak> temp = dajSveZadatke();
+		
+		if(temp==null)
+			return new ArrayList<Zadatak>();
+			
+		List<Zadatak> lista = new ArrayList<Zadatak>();
+		
+		for(Zadatak z : temp) {
+			
+			if(z.getZahtjevPodnesen().after(o) && z.getZahtjevPodnesen().before(d))
+				lista.add(z);
+		}
+		
+		return lista ;
+	}
+	
+	public  List<Zadatak> dajNezavrseneZadatkePeriod(Date o, Date d)
+	{
+		List<Zadatak> temp = dajSveNezavrseneZadatke();
+		
+		if(temp==null)
+			return new ArrayList<Zadatak>();
+			
+		List<Zadatak> lista = new ArrayList<Zadatak>();
+		
+		for(Zadatak z : temp) {
+			
+			if(z.getZahtjevPodnesen().after(o) && z.getZahtjevPodnesen().before(d))
+				lista.add(z);
+		}
+		
+		return lista ;
+	}
 	
 	public boolean postojiZadatak(long id) {
 		
