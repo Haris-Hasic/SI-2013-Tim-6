@@ -1,4 +1,4 @@
-package ba.unsa.etf.si.app.fdss_aplikacija.beansTest;
+package ba.unsa.etf.si.app.fdss_aplikacija;
 
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Klijent;
 import ba.unsa.etf.si.app.fdss_aplikacija.beans.Uposlenik;
