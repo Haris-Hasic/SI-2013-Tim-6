@@ -123,6 +123,27 @@ public boolean postojiUposlenik(String userName) {
 	}
 }
 
+public boolean postojiPassword(String pass) {
+	
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	Transaction t = session.beginTransaction();
+	
+	Query query = session.createQuery("from Uposlenik where password = :password");
+	query.setParameter("password", pass);
+	
+	if(query.list().size()==0) {
+		
+		session.close();
+		return false;
+	}
+	
+	else {
+		
+		session.close();
+		return true;
+	}
+}
+
 
 public boolean postojiUposlenikJMBG(String jmbg) {
 	

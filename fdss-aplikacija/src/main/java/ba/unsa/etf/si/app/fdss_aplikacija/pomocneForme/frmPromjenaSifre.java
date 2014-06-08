@@ -75,9 +75,11 @@ public class frmPromjenaSifre extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				if( novaSifra_pf.getText().compareTo(potvrdaSifre_pf.getText()) == 0 && up.getPassword().compareTo(Validacija.HesirajMD5(Validacija.HesirajMD5(staraSifra_pf.getText()))) == 0) {
+				HibernateUposlenik hu = new HibernateUposlenik();
+				
+				if( novaSifra_pf.getText().compareTo(potvrdaSifre_pf.getText()) == 0 && up.getPassword().compareTo(Validacija.HesirajMD5(Validacija.HesirajMD5(staraSifra_pf.getText()))) == 0
+					&& !hu.postojiPassword(Validacija.HesirajMD5(novaSifra_pf.getText()))) {
 					
-					HibernateUposlenik hu = new HibernateUposlenik();
 					up.setPassword(novaSifra_pf.getText());
 					hu.updateUposlenika(up);
 					
@@ -89,8 +91,12 @@ public class frmPromjenaSifre extends JDialog {
 				}
 				
 				else {
-
-					JOptionPane.showMessageDialog(null, "Lozinke se ne slažu !");
+					
+					if(hu.postojiPassword(Validacija.HesirajMD5(novaSifra_pf.getText())))
+						JOptionPane.showMessageDialog(null, "Unesena nova lozinka je već zauzeta !");
+					
+					else
+						JOptionPane.showMessageDialog(null, "Lozinke se ne slažu !");
 				}		
 			}
 		});
