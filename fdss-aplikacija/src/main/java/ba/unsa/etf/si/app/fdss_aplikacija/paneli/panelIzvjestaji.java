@@ -367,7 +367,7 @@ public class panelIzvjestaji extends JPanel {
 
 					Document document = new Document(PageSize.A4, 50, 50, 50, 50);
 					//String putanja= System.getProperty("user.home") + "/Desktop";
-					String putanja=new java.io.File(".").getAbsolutePath();
+					String putanja=new java.io.File(".").getCanonicalPath();
 					Date Od, Do; 
 					String user, IBFU, JIBKlijenta;
 					String i = "Izvještaj";
