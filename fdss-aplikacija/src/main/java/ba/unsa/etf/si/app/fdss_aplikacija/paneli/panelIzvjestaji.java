@@ -366,8 +366,8 @@ public class panelIzvjestaji extends JPanel {
 				try {
 
 					Document document = new Document(PageSize.A4, 50, 50, 50, 50);
-					//String putanja= System.getProperty("user.home") + "/Desktop";
-					String putanja=new java.io.File(".").getCanonicalPath();
+					String putanja= System.getProperty("user.home") + "/Desktop";
+
 					Date Od, Do; 
 					String user, IBFU, JIBKlijenta;
 					String i = "Izvještaj";
@@ -469,7 +469,7 @@ public class panelIzvjestaji extends JPanel {
 					iscrtajFooter(document);
 					document.close();
 					
-					JOptionPane.showMessageDialog(null, "Izvještaj uspješno kreiran i nalazi se u "+putanja);
+					JOptionPane.showMessageDialog(null, "Izvještaj uspješno kreiran i nalazi se na vašem desktopu !");
 				} 
 
 				catch (Exception e) {
